@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import TableComponent from "../components/TableComponent";
+import { Container } from "react-bootstrap";
 import { useGarantiasStore } from "../store/useGarantiasStore";
-import ResumoOperacoes from "../components/ResumoOperacoes";
 import CreditoTabs from "../components/CreditoTabs";
-import SearchAndExportBar from "../components/SearchAndExportBar";
+import Details from "./Details";
 
 const GarantiasScreen: React.FC = () => {
   const { data } = useGarantiasStore();
@@ -13,31 +11,12 @@ const GarantiasScreen: React.FC = () => {
   return (
     <Container className="mt-4">
       <CreditoTabs tabs={["Detalhes", "Documentos"]} />
-
-      <ResumoOperacoes data={data} />
-
-      <SearchAndExportBar
-        placeholder="Pesquisar por beneficiário"
+      <Details
         data={data}
-        setData={setFilteredData}
+        filteredData={filteredData}
+        setFilteredData={setFilteredData}
+        isCreditoDocImportacao={false}
       />
-
-      <Row>
-        <Col>
-          <TableComponent
-            data={filteredData}
-            headers={[
-              "Nome do Beneficiário",
-              "Local",
-              "Nº Operação",
-              "Data inicial",
-              "Data final",
-              "Montante",
-            ]}
-            isCurrency
-          />
-        </Col>
-      </Row>
     </Container>
   );
 };

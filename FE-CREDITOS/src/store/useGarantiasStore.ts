@@ -14,6 +14,12 @@ export const useGarantiasStore = create<GarantiaStore>(() => ({
       dataInicial: "01/01/1900",
       dataFinal: "01/01/2100",
       montante: -500,
+      extra: {
+        encargoAnual: 2.5,
+        intervaloCobranca: "Mês a mês",
+        debitoAgendado: "30 EUR",
+        contaOrigem: 1,
+      },
     },
     {
       beneficiario: "Beneficiário 2",
@@ -22,6 +28,12 @@ export const useGarantiasStore = create<GarantiaStore>(() => ({
       dataInicial: "01/01/1900",
       dataFinal: "01/01/2100",
       montante: -500,
+      extra: {
+        encargoAnual: 2.0,
+        intervaloCobranca: "Dois em dois meses",
+        debitoAgendado: "50 EUR",
+        contaOrigem: 1,
+      },
     },
   ],
 }));

@@ -6,6 +6,12 @@ declare module "#not-for-import/feCreditos/store/creditos.types" {
         dataInicial: string;
         dataFinal: string;
         montante: number;
+        extra: {
+            encargoAnual: number;
+            intervaloCobranca: string;
+            debitoAgendado: string;
+            contaOrigem: number;
+        };
     };
     export type CreditoDocImport = {
         beneficiario: string;
@@ -17,28 +23,8 @@ declare module "#not-for-import/feCreditos/store/creditos.types" {
         responsabilidade: number;
     };
 }
-declare module "#not-for-import/feCreditos/components/TableComponent" {
-    import React from "react";
-    import { CreditoDocImport, Garantia } from "#not-for-import/feCreditos/store/creditos.types";
-    interface TableComponentProps {
-        headers: string[];
-        data: Garantia[] | CreditoDocImport[];
-        isCurrency?: boolean;
-    }
-    const TableComponent: React.FC<TableComponentProps>;
-    export default TableComponent;
-}
 declare module "#not-for-import/feCreditos/store/useGarantiasStore" {
     export const useGarantiasStore: any;
-}
-declare module "#not-for-import/feCreditos/components/ResumoOperacoes" {
-    import React from "react";
-    import { Garantia } from "#not-for-import/feCreditos/store/creditos.types";
-    interface ResumoOperacoesProps {
-        data: Garantia[];
-    }
-    const ResumoOperacoes: React.FC<ResumoOperacoesProps>;
-    export default ResumoOperacoes;
 }
 declare module "#not-for-import/feCreditos/components/CreditoTabs" {
     import React from "react";
@@ -63,7 +49,9 @@ declare module "#not-for-import/feCreditos/components/ExportButton" {
     export default ExportButton;
 }
 declare module "#not-for-import/feCreditos/components/SearchAndExportBar" {
-    interface SearchAndExportBarProps<T> {
+    interface SearchAndExportBarProps<T extends {
+        beneficiario: string;
+    }> {
         placeholder: string;
         data: T[];
         setData: (newData: T[]) => void;
@@ -72,6 +60,52 @@ declare module "#not-for-import/feCreditos/components/SearchAndExportBar" {
         beneficiario: string;
     }>({ placeholder, data, setData, }: SearchAndExportBarProps<T>) => import("react/jsx-runtime").JSX.Element;
     export default SearchAndExportBar;
+}
+declare module "#not-for-import/feCreditos/components/ExpandableInfo" {
+    import React from "react";
+    interface ExpandableInfoProps {
+        data: {
+            encargoAnual: number;
+            intervaloCobranca: string;
+            debitoAgendado: string;
+            contaOrigem: number;
+        };
+    }
+    const ExpandableInfo: React.FC<ExpandableInfoProps>;
+    export default ExpandableInfo;
+}
+declare module "#not-for-import/feCreditos/components/TableComponent" {
+    import React from "react";
+    import { CreditoDocImport, Garantia } from "#not-for-import/feCreditos/store/creditos.types";
+    interface TableComponentProps {
+        headers: string[];
+        data: Garantia[] | CreditoDocImport[];
+        isCreditoDocImportacao: boolean;
+        isCurrency?: boolean;
+    }
+    const TableComponent: React.FC<TableComponentProps>;
+    export default TableComponent;
+}
+declare module "#not-for-import/feCreditos/components/ResumoOperacoes" {
+    import React from "react";
+    import { Garantia } from "#not-for-import/feCreditos/store/creditos.types";
+    interface ResumoOperacoesProps {
+        data: Garantia[];
+    }
+    const ResumoOperacoes: React.FC<ResumoOperacoesProps>;
+    export default ResumoOperacoes;
+}
+declare module "#not-for-import/feCreditos/screens/Details" {
+    type DetailsProps<T> = {
+        data: T[];
+        filteredData: T[];
+        setFilteredData: (newData: T[]) => void;
+        isCreditoDocImportacao: boolean;
+    };
+    const Details: <T extends {
+        beneficiario: string;
+    }>({ data, filteredData, setFilteredData, isCreditoDocImportacao, }: DetailsProps<T>) => import("react/jsx-runtime").JSX.Element;
+    export default Details;
 }
 declare module "creditos/GarantiasEAvales" {
     import React from "react";

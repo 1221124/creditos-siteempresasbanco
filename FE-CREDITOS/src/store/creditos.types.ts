@@ -5,6 +5,12 @@ export type Garantia = {
   dataInicial: string;
   dataFinal: string;
   montante: number;
+  extra: {
+    encargoAnual: number;
+    intervaloCobranca: string;
+    debitoAgendado: string;
+    contaOrigem: number;
+  };
 };
 
 export type CreditoDocImport = {

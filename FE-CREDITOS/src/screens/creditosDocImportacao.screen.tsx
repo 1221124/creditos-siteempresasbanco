@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import TableComponent from "../components/TableComponent";
+import { Container } from "react-bootstrap";
 import { useCreditoDocImportStore } from "../store/useCreditoDocImportStore";
 import CreditoTabs from "../components/CreditoTabs";
-import SearchAndExportBar from "../components/SearchAndExportBar";
+import Details from "./Details";
 
 const CreditosDocImportacaoScreen: React.FC = () => {
   const { data } = useCreditoDocImportStore();
@@ -12,30 +11,12 @@ const CreditosDocImportacaoScreen: React.FC = () => {
   return (
     <Container className="mt-4">
       <CreditoTabs tabs={["Detalhes"]} />
-
-      <SearchAndExportBar
-        placeholder="Pesquisar por beneficiário"
+      <Details
         data={data}
-        setData={setFilteredData}
+        filteredData={filteredData}
+        setFilteredData={setFilteredData}
+        isCreditoDocImportacao={true}
       />
-
-      <Row>
-        <Col>
-          <TableComponent
-            headers={[
-              "Nome do Beneficiário",
-              "Local",
-              "Nº Operação",
-              "Data inicial",
-              "Data final",
-              "Montante",
-              "Responsabilidade Atual",
-            ]}
-            data={filteredData}
-            isCurrency={true}
-          />
-        </Col>
-      </Row>
     </Container>
   );
 };

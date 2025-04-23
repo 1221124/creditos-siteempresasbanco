@@ -2,7 +2,7 @@ import { Row, Col } from "react-bootstrap";
 import SearchInput from "./SearchInput";
 import ExportButton from "./ExportButton";
 
-interface SearchAndExportBarProps<T> {
+interface SearchAndExportBarProps<T extends { beneficiario: string }> {
   placeholder: string;
   data: T[];
   setData: (newData: T[]) => void;
