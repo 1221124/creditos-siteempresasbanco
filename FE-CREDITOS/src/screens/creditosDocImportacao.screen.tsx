@@ -1,96 +1,42 @@
 import React from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Table,
-  InputGroup,
-  FormControl,
-  Button,
-} from "react-bootstrap";
-import { FaSearch, FaFileExport } from "react-icons/fa";
+import { Container, Row, Col } from "react-bootstrap";
+import TableComponent from "../components/TableComponent";
+import { useCreditoDocImportStore } from "../store/useCreditoDocImportStore";
+import CreditoTabs from "../components/CreditoTabs";
+import SearchAndExportBar from "../components/SearchAndExportBar";
 
-const CreditosDocImportacaoPage: React.FC = () => {
+const CreditosDocImportacaoScreen: React.FC = () => {
+  const { data, setData } = useCreditoDocImportStore();
+
   return (
     <Container className="mt-4">
-      <Row>
-        <Col className="d-flex gap-4 border-bottom pb-2 mb-4">
-          <span className="fw-bold" style={{ cursor: "pointer" }}>
-            Detalhes
-          </span>
-        </Col>
-      </Row>
+      <CreditoTabs tabs={["Detalhes"]} />
 
-      <Row className="d-flex mb-3 align-items-center justify-content-between">
-        <Col md={6}>
-          <InputGroup>
-            <InputGroup.Text>
-              <FaSearch />
-            </InputGroup.Text>
-            <FormControl placeholder="Pesquisar por beneficiário" />
-          </InputGroup>
-        </Col>
-        <Col className="text-end d-flex justify-content-end">
-          <Button variant="light" className="d-flex align-items-center gap-2">
-            <FaFileExport />
-            Exportar
-          </Button>
-        </Col>
-      </Row>
+      <SearchAndExportBar
+        placeholder="Pesquisar por beneficiário"
+        data={data}
+        setData={setData}
+      />
 
       <Row>
         <Col>
-          <Table responsive borderless>
-            <thead>
-              <tr className="border-bottom">
-                <th className="fw-normal">
-                  <strong>Nome do Beneficiário</strong>
-                </th>
-                <th className="fw-normal">
-                  <strong>Local</strong>
-                </th>
-                <th className="fw-normal">
-                  <strong>Nº Operação</strong>
-                </th>
-                <th className="fw-normal">
-                  <strong>Data inicial</strong>
-                </th>
-                <th className="fw-normal">
-                  <strong>Data final</strong>
-                </th>
-                <th className="fw-normal">
-                  <strong>Montante</strong>
-                </th>
-                <th className="fw-normal">
-                  <strong>Responsabilidade Atual</strong>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Beneficiário 1</td>
-                <td>Portugal</td>
-                <td>1</td>
-                <td>01/01/1900</td>
-                <td>01/01/2100</td>
-                <td className="text-danger">-500 EUR</td>
-                <td className="text-danger">-500 EUR</td>
-              </tr>
-              <tr className="border-top">
-                <td>Beneficiário 2</td>
-                <td>Portugal</td>
-                <td>2</td>
-                <td>01/01/1900</td>
-                <td>01/01/2100</td>
-                <td className="text-danger">-500 EUR</td>
-                <td className="text-danger">-500 EUR</td>
-              </tr>
-            </tbody>
-          </Table>
+          <TableComponent
+            headers={[
+              "Nome do Beneficiário",
+              "Local",
+              "Nº Operação",
+              "Data inicial",
+              "Data final",
+              "Montante",
+              "Responsabilidade Atual",
+            ]}
+            data={data}
+            isCurrency={true}
+          />
         </Col>
       </Row>
     </Container>
   );
 };
 
-export default CreditosDocImportacaoPage;
+export default CreditosDocImportacaoScreen;
