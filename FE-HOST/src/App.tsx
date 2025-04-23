@@ -22,7 +22,14 @@ const App: React.FC = () => {
         }
       >
         <Routes>
-          <Route path="/" element={<div>Bem-vindo à App de Créditos</div>} />
+          <Route
+            path="/"
+            element={
+              <h1 className="d-flex justify-content-center align-items-center">
+                Bem-vindo ao módulo de Créditos do Site de Empresas do Banco
+              </h1>
+            }
+          />
           <Route
             path="/garantias-e-avales"
             element={
