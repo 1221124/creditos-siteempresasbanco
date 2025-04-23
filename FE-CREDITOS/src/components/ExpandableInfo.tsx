@@ -1,16 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
+import PdfPreview from "./PdfPreview";
 
 interface ExpandableInfoProps {
-  data: {
-    encargoAnual: number;
-    intervaloCobranca: string;
-    debitoAgendado: string;
-    contaOrigem: number;
-  };
+  row: any;
 }
 
-const ExpandableInfo: React.FC<ExpandableInfoProps> = ({ data }) => {
-  return (
+const ExpandableInfo: React.FC<ExpandableInfoProps> = ({ row }) => {
+  return row.extra !== undefined ? (
     <div className="p-3">
       <em>
         <div className="d-flex justify-content-between">
@@ -18,27 +15,33 @@ const ExpandableInfo: React.FC<ExpandableInfoProps> = ({ data }) => {
             <div>
               <strong>Comissão Anual</strong>
             </div>
-            <div>{data.encargoAnual} EUR</div>
+            <div>{row.extra.encargoAnual} EUR</div>
           </div>
           <div className="d-flex flex-column align-items-center">
             <div>
               <strong>Periodicidade</strong>
             </div>
-            <div>{data.intervaloCobranca}</div>
+            <div>{row.extra.intervaloCobranca}</div>
           </div>
           <div className="d-flex flex-column align-items-center">
             <div>
               <strong>Próximo Débito</strong>
             </div>
-            <div>{data.debitoAgendado}</div>
+            <div>{row.extra.debitoAgendado}</div>
           </div>
           <div className="d-flex flex-column align-items-center">
             <div>
               <strong>Conta Associada</strong>
             </div>
-            <div>{data.contaOrigem}</div>
+            <div>{row.extra.contaOrigem}</div>
           </div>
         </div>
+      </em>
+    </div>
+  ) : (
+    <div className="p-3">
+      <em>
+        <PdfPreview />
       </em>
     </div>
   );

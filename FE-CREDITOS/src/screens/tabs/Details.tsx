@@ -44,12 +44,7 @@ const Details = <T extends { beneficiario: string }>({
 
       <Row>
         <Col>
-          <TableComponent
-            headers={headers}
-            data={filteredData}
-            isCreditoDocImportacao={isCreditoDocImportacao}
-            isCurrency={true}
-          />
+          <TableComponent headers={headers} data={filteredData} />
         </Col>
       </Row>
     </>

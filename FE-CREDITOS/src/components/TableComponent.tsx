@@ -1,23 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { Table } from "react-bootstrap";
-import { Garantia } from "../store/creditos.types";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import ExpandableInfo from "./ExpandableInfo";
 
 interface TableComponentProps {
   headers: string[];
   data: any[];
-  isCreditoDocImportacao: boolean;
-  isCurrency?: boolean;
 }
 
-const TableComponent = ({
-  headers,
-  data,
-  isCreditoDocImportacao,
-  isCurrency = false,
-}: TableComponentProps) => {
+const TableComponent = ({ headers, data }: TableComponentProps) => {
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
 
   const toggleRow = (index: number) => {
@@ -40,23 +32,25 @@ const TableComponent = ({
           <React.Fragment key={rowIndex}>
             <tr className={rowIndex !== 0 ? "border-top" : ""}>
               {Object.values(row)
-                .slice(0, isCreditoDocImportacao ? undefined : -1)
+                .slice(0, row.extra === undefined ? undefined : -1)
                 .map((value, colIndex) => {
-                  const isNegative =
-                    isCurrency && typeof value === "number" && value < 0;
+                  const isNegative = typeof value === "number" && value < 0;
 
                   return (
                     <td
                       key={colIndex}
                       className={`${isNegative ? "text-danger" : ""}`}
                     >
-                      {isCurrency && typeof value === "number"
-                        ? `${value} EUR`
+                      {isNegative && typeof value === "number"
+                        ? new Intl.NumberFormat("pt-PT", {
+                            style: "currency",
+                            currency: "EUR",
+                          }).format(value)
                         : String(value)}
                     </td>
                   );
                 })}
-              {!isCreditoDocImportacao && (
+              {row.responsabilidade === undefined && (
                 <td className="text-center">
                   <button
                     onClick={() => toggleRow(rowIndex)}
@@ -71,10 +65,10 @@ const TableComponent = ({
                 </td>
               )}
             </tr>
-            {expandedRow === rowIndex && !isCreditoDocImportacao && (
+            {expandedRow === rowIndex && row.responsabilidade === undefined && (
               <tr>
                 <td colSpan={headers.length + 1} className="bg-light">
-                  {<ExpandableInfo data={(row as Garantia).extra} />}
+                  {<ExpandableInfo row={row} />}
                 </td>
               </tr>
             )}

@@ -7,10 +7,15 @@ import Details from "./tabs/Details";
 const CreditosDocImportacaoScreen: React.FC = () => {
   const { data } = useCreditoDocImportStore();
   const [filteredData, setFilteredData] = useState(data);
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
     <Container className="mt-4">
-      <CreditoTabs tabs={["Detalhes"]} />
+      <CreditoTabs
+        tabs={["Detalhes"]}
+        activeTab={activeTab}
+        onTabClick={setActiveTab}
+      />
       <Details
         data={data}
         filteredData={filteredData}

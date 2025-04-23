@@ -22,6 +22,10 @@ declare module "#not-for-import/feCreditos/store/creditos.types" {
         montante: number;
         responsabilidade: number;
     };
+    export type Documento = {
+        data: string;
+        nome: string;
+    };
 }
 declare module "#not-for-import/feCreditos/store/useGarantiasStore" {
     export const useGarantiasStore: any;
@@ -30,6 +34,8 @@ declare module "#not-for-import/feCreditos/components/CreditoTabs" {
     import React from "react";
     interface CreditoTabsProps {
         tabs: string[];
+        activeTab: number;
+        onTabClick: (index: number) => void;
     }
     const CreditoTabs: React.FC<CreditoTabsProps>;
     export default CreditoTabs;
@@ -61,15 +67,14 @@ declare module "#not-for-import/feCreditos/components/SearchAndExportBar" {
     }>({ placeholder, data, setData, }: SearchAndExportBarProps<T>) => import("react/jsx-runtime").JSX.Element;
     export default SearchAndExportBar;
 }
+declare module "#not-for-import/feCreditos/components/PdfPreview" {
+    const PdfPreview: () => import("react/jsx-runtime").JSX.Element;
+    export default PdfPreview;
+}
 declare module "#not-for-import/feCreditos/components/ExpandableInfo" {
     import React from "react";
     interface ExpandableInfoProps {
-        data: {
-            encargoAnual: number;
-            intervaloCobranca: string;
-            debitoAgendado: string;
-            contaOrigem: number;
-        };
+        row: any;
     }
     const ExpandableInfo: React.FC<ExpandableInfoProps>;
     export default ExpandableInfo;
@@ -78,10 +83,8 @@ declare module "#not-for-import/feCreditos/components/TableComponent" {
     interface TableComponentProps {
         headers: string[];
         data: any[];
-        isCreditoDocImportacao: boolean;
-        isCurrency?: boolean;
     }
-    const TableComponent: ({ headers, data, isCreditoDocImportacao, isCurrency, }: TableComponentProps) => import("react/jsx-runtime").JSX.Element;
+    const TableComponent: ({ headers, data }: TableComponentProps) => import("react/jsx-runtime").JSX.Element;
     export default TableComponent;
 }
 declare module "#not-for-import/feCreditos/components/ResumoOperacoes" {
@@ -104,6 +107,13 @@ declare module "#not-for-import/feCreditos/screens/tabs/Details" {
         beneficiario: string;
     }>({ data, filteredData, setFilteredData, isCreditoDocImportacao, }: DetailsProps<T>) => import("react/jsx-runtime").JSX.Element;
     export default Details;
+}
+declare module "#not-for-import/feCreditos/store/useDocumentosStore" {
+    export const useDocumentosStore: any;
+}
+declare module "#not-for-import/feCreditos/screens/tabs/Documents" {
+    const Documents: () => import("react/jsx-runtime").JSX.Element;
+    export default Documents;
 }
 declare module "creditos/GarantiasEAvales" {
     import React from "react";

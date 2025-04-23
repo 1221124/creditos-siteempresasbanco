@@ -54,6 +54,10 @@ module.exports = {
           singleton: true,
           requiredVersion: packageJson.dependencies["react-router-dom"],
         },
+        "react-pdf": {
+          singleton: true,
+          requiredVersion: packageJson.dependencies["react-pdf"],
+        },
       },
     }),
     new ModulefederationTypesPlugin({

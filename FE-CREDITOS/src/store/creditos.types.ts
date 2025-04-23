@@ -22,3 +22,8 @@ export type CreditoDocImport = {
   montante: number;
   responsabilidade: number;
 };
+
+export type Documento = {
+  data: string;
+  nome: string;
+};
