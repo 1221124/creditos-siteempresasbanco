@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { useGarantiasStore } from "../store/useGarantiasStore";
 import CreditoTabs from "../components/CreditoTabs";
-import Details from "./Details";
+import Details from "./tabs/Details";
 
 const GarantiasScreen: React.FC = () => {
   const { data } = useGarantiasStore();

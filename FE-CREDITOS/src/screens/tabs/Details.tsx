@@ -1,8 +1,8 @@
 import { Row, Col } from "react-bootstrap";
-import SearchAndExportBar from "../components/SearchAndExportBar";
-import TableComponent from "../components/TableComponent";
-import { CreditoDocImport, Garantia } from "../store/creditos.types";
-import ResumoOperacoes from "../components/ResumoOperacoes";
+import SearchAndExportBar from "../../components/SearchAndExportBar";
+import TableComponent from "../../components/TableComponent";
+import { Garantia } from "../../store/creditos.types";
+import ResumoOperacoes from "../../components/ResumoOperacoes";
 
 type DetailsProps<T> = {
   data: T[];
@@ -46,11 +46,7 @@ const Details = <T extends { beneficiario: string }>({
         <Col>
           <TableComponent
             headers={headers}
-            data={
-              isCreditoDocImportacao
-                ? (filteredData as unknown as CreditoDocImport[])
-                : (filteredData as unknown as Garantia[])
-            }
+            data={filteredData}
             isCreditoDocImportacao={isCreditoDocImportacao}
             isCurrency={true}
           />

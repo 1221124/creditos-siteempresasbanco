@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import { useCreditoDocImportStore } from "../store/useCreditoDocImportStore";
 import CreditoTabs from "../components/CreditoTabs";
-import Details from "./Details";
+import { useCreditoDocImportStore } from "../store/useCreditoDocImportStore";
+import Details from "./tabs/Details";
 
 const CreditosDocImportacaoScreen: React.FC = () => {
   const { data } = useCreditoDocImportStore();

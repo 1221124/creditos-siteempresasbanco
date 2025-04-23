@@ -75,15 +75,13 @@ declare module "#not-for-import/feCreditos/components/ExpandableInfo" {
     export default ExpandableInfo;
 }
 declare module "#not-for-import/feCreditos/components/TableComponent" {
-    import React from "react";
-    import { CreditoDocImport, Garantia } from "#not-for-import/feCreditos/store/creditos.types";
     interface TableComponentProps {
         headers: string[];
-        data: Garantia[] | CreditoDocImport[];
+        data: any[];
         isCreditoDocImportacao: boolean;
         isCurrency?: boolean;
     }
-    const TableComponent: React.FC<TableComponentProps>;
+    const TableComponent: ({ headers, data, isCreditoDocImportacao, isCurrency, }: TableComponentProps) => import("react/jsx-runtime").JSX.Element;
     export default TableComponent;
 }
 declare module "#not-for-import/feCreditos/components/ResumoOperacoes" {
@@ -95,7 +93,7 @@ declare module "#not-for-import/feCreditos/components/ResumoOperacoes" {
     const ResumoOperacoes: React.FC<ResumoOperacoesProps>;
     export default ResumoOperacoes;
 }
-declare module "#not-for-import/feCreditos/screens/Details" {
+declare module "#not-for-import/feCreditos/screens/tabs/Details" {
     type DetailsProps<T> = {
         data: T[];
         filteredData: T[];
