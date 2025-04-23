@@ -3,10 +3,9 @@ import { Garantia } from "./creditos.types";
 
 interface GarantiaStore {
   data: Garantia[];
-  setData: (newData: Garantia[]) => void;
 }
 
-export const useGarantiasStore = create<GarantiaStore>((set) => ({
+export const useGarantiasStore = create<GarantiaStore>(() => ({
   data: [
     {
       beneficiario: "Beneficiário 1",
@@ -25,5 +24,4 @@ export const useGarantiasStore = create<GarantiaStore>((set) => ({
       montante: -500,
     },
   ],
-  setData: (newData) => set({ data: newData }),
 }));

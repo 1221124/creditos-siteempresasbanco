@@ -1,17 +1,3 @@
-declare module "#not-for-import/feCreditos/components/SearchInput" {
-    import React from "react";
-    interface SearchInputProps {
-        placeholder: string;
-        onSearch: (value: string) => void;
-    }
-    const SearchInput: React.FC<SearchInputProps>;
-    export default SearchInput;
-}
-declare module "#not-for-import/feCreditos/components/ExportButton" {
-    import React from "react";
-    const ExportButton: React.FC;
-    export default ExportButton;
-}
 declare module "#not-for-import/feCreditos/store/creditos.types" {
     export type Garantia = {
         beneficiario: string;
@@ -62,13 +48,19 @@ declare module "#not-for-import/feCreditos/components/CreditoTabs" {
     const CreditoTabs: React.FC<CreditoTabsProps>;
     export default CreditoTabs;
 }
-declare module "creditos/GarantiasEAvales" {
+declare module "#not-for-import/feCreditos/components/SearchInput" {
     import React from "react";
-    const GarantiasScreen: React.FC;
-    export default GarantiasScreen;
+    interface SearchInputProps {
+        placeholder: string;
+        onSearch: (value: string) => void;
+    }
+    const SearchInput: React.FC<SearchInputProps>;
+    export default SearchInput;
 }
-declare module "#not-for-import/feCreditos/store/useCreditoDocImportStore" {
-    export const useCreditoDocImportStore: any;
+declare module "#not-for-import/feCreditos/components/ExportButton" {
+    import React from "react";
+    const ExportButton: React.FC;
+    export default ExportButton;
 }
 declare module "#not-for-import/feCreditos/components/SearchAndExportBar" {
     interface SearchAndExportBarProps<T> {
@@ -80,6 +72,14 @@ declare module "#not-for-import/feCreditos/components/SearchAndExportBar" {
         beneficiario: string;
     }>({ placeholder, data, setData, }: SearchAndExportBarProps<T>) => import("react/jsx-runtime").JSX.Element;
     export default SearchAndExportBar;
+}
+declare module "creditos/GarantiasEAvales" {
+    import React from "react";
+    const GarantiasScreen: React.FC;
+    export default GarantiasScreen;
+}
+declare module "#not-for-import/feCreditos/store/useCreditoDocImportStore" {
+    export const useCreditoDocImportStore: any;
 }
 declare module "creditos/CreditosDocImportacao" {
     import React from "react";

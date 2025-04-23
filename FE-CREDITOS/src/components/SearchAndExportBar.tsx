@@ -13,15 +13,20 @@ const SearchAndExportBar = <T extends { beneficiario: string }>({
   data,
   setData,
 }: SearchAndExportBarProps<T>) => {
+  const originalData = data.map((item) => ({ ...item }));
+
   const handleSearch = (value: string) => {
+    let updatedData: T[];
+
     if (value === "") {
-      setData(data);
+      updatedData = [...originalData];
     } else {
-      const filteredData = data.filter((item) =>
+      updatedData = originalData.filter((item) =>
         item.beneficiario.toLowerCase().includes(value.toLowerCase())
       );
-      setData(filteredData);
     }
+
+    setData(updatedData);
   };
 
   return (

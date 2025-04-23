@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import TableComponent from "../components/TableComponent";
 import { useGarantiasStore } from "../store/useGarantiasStore";
@@ -7,7 +7,8 @@ import CreditoTabs from "../components/CreditoTabs";
 import SearchAndExportBar from "../components/SearchAndExportBar";
 
 const GarantiasScreen: React.FC = () => {
-  const { data, setData } = useGarantiasStore();
+  const { data } = useGarantiasStore();
+  const [filteredData, setFilteredData] = useState(data);
 
   return (
     <Container className="mt-4">
@@ -18,13 +19,13 @@ const GarantiasScreen: React.FC = () => {
       <SearchAndExportBar
         placeholder="Pesquisar por beneficiário"
         data={data}
-        setData={setData}
+        setData={setFilteredData}
       />
 
       <Row>
         <Col>
           <TableComponent
-            data={data}
+            data={filteredData}
             headers={[
               "Nome do Beneficiário",
               "Local",
