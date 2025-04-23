@@ -1,7 +1,7 @@
-import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const App: React.FC = () => {
-  return <h1>FE-CREDITOS</h1>;
+  return <></>; //Não usado no FE-HOST
 };
 
 export default App;
