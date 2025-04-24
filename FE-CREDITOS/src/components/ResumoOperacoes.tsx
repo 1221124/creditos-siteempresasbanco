@@ -9,11 +9,13 @@ interface ResumoOperacoesProps {
 const ResumoOperacoes: React.FC<ResumoOperacoesProps> = ({ data }) => {
   const numeroOperacoes = data.length;
   const totalNacionais = getTotalByLocal(data, "Portugal");
-  const totalInternacionais = getTotalByLocal(data, "Internacional");
+  const totalInternacionais = getTotalByLocal(data);
 
-  function getTotalByLocal(data: Garantia[], local: string): number {
+  function getTotalByLocal(data: Garantia[], local?: string): number {
     return data
-      .filter((item) => item.local === local)
+      .filter((item) =>
+        local ? item.local === local : item.local !== "Portugal"
+      )
       .reduce((acc, item) => acc + item.montante, 0);
   }
 
