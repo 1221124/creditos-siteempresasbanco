@@ -1,8 +1,10 @@
 import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Container, Spinner } from "react-bootstrap";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavTabs from "./components/NavTabs";
+import BankProfile from "./components/BankProfile";
+import UserProfile from "./components/UserProfile";
 
 const GarantiasScreen = lazy(() => import("creditos/GarantiasEAvales"));
 const CreditosDocImportacaoScreen = lazy(
@@ -12,7 +14,18 @@ const CreditosDocImportacaoScreen = lazy(
 const App: React.FC = () => {
   return (
     <Container className="py-4">
-      <NavTabs />
+      <Row className="d-flex align-items-center justify-content-between my-4">
+        <Col xs="auto">
+          <BankProfile />
+        </Col>
+        <Col xs="auto">
+          <NavTabs />
+        </Col>
+        <Col xs="auto">
+          <UserProfile />
+        </Col>
+      </Row>
+
       <Suspense
         fallback={
           <Spinner

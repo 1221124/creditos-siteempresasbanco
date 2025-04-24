@@ -6,7 +6,7 @@ const NavTabs = () => {
 
   return (
     <Nav
-      className="justify-content-center border-bottom mb-4"
+      className="d-flex align-items-center justify-content-center border-bottom"
       variant="underline"
       activeKey={pathname}
     >
