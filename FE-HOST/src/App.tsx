@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavTabs from "./components/NavTabs";
@@ -32,8 +32,9 @@ const App: React.FC = () => {
         }
       >
         <Routes>
+          <Route index element={<Navigate to="creditos" />} />
           <Route
-            path="/"
+            path="/creditos"
             element={
               <h1 className="d-flex justify-content-center align-items-center">
                 Bem-vindo ao módulo de Créditos do Site de Empresas do Banco

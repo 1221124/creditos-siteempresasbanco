@@ -11,7 +11,7 @@ const NavTabs = () => {
       activeKey={pathname}
     >
       <Nav.Item>
-        <Nav.Link as={Link} to="/" eventKey="/">
+        <Nav.Link as={Link} to="/creditos" eventKey="/creditos">
           Início
         </Nav.Link>
       </Nav.Item>
