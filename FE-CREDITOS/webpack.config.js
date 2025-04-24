@@ -16,6 +16,7 @@ module.exports = {
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    fullySpecified: false,
   },
   module: {
     rules: [
@@ -79,6 +80,9 @@ module.exports = {
     port: 3001,
     hot: true,
     historyApiFallback: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
   },
   devtool: "inline-source-map",
 };

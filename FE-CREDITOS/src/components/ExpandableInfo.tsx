@@ -40,9 +40,7 @@ const ExpandableInfo: React.FC<ExpandableInfoProps> = ({ row }) => {
     </div>
   ) : (
     <div className="p-3">
-      <em>
-        <PdfPreview fileUrl={"/fake.pdf"} />
-      </em>
+      <PdfPreview fileUrl={"/fake.pdf"} />
     </div>
   );
 };

@@ -1,11 +1,19 @@
+import { Document, Page, pdfjs } from "react-pdf";
+
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+
 const PdfPreview = ({ fileUrl }: { fileUrl: string }) => {
   return (
-    // <PDFViewer
-    //   document={{
-    //     url: fileUrl,
-    //   }}
-    // />
-    <div>{fileUrl}</div>
+    <Document
+      file={fileUrl}
+      className="d-flex justify-content-center align-items-center"
+    >
+      <Page
+        pageNumber={1}
+        renderTextLayer={false}
+        renderAnnotationLayer={false}
+      />
+    </Document>
   );
 };
 
