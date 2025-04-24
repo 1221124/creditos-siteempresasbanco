@@ -137,7 +137,7 @@ declare module "#not-for-import/feCreditos/screens/tabs/Details" {
 declare module "#not-for-import/feCreditos/store/useDocumentosStore" {
     export const useDocumentosStore: any;
 }
-declare module "creditos/GarantiasEAvales" {
+declare module "#not-for-import/feCreditos/screens/garantias.screen" {
     import React from "react";
     const GarantiasScreen: React.FC;
     export default GarantiasScreen;
@@ -145,8 +145,11 @@ declare module "creditos/GarantiasEAvales" {
 declare module "#not-for-import/feCreditos/store/useCreditoDocImportStore" {
     export const useCreditoDocImportStore: any;
 }
-declare module "creditos/CreditosDocImportacao" {
+declare module "#not-for-import/feCreditos/screens/creditosDocImportacao.screen" {
     import React from "react";
     const CreditosDocImportacaoScreen: React.FC;
     export default CreditosDocImportacaoScreen;
+}
+declare module "creditos/App" {
+    export default function App(): import("react/jsx-runtime").JSX.Element;
 }

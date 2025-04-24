@@ -6,10 +6,7 @@ import NavTabs from "./components/NavTabs";
 import BankProfile from "./components/BankProfile";
 import UserProfile from "./components/UserProfile";
 
-const GarantiasScreen = lazy(() => import("creditos/GarantiasEAvales"));
-const CreditosDocImportacaoScreen = lazy(
-  () => import("creditos/CreditosDocImportacao")
-);
+const CreditosApp = lazy(() => import("creditos/App"));
 
 const App: React.FC = () => {
   return (
@@ -44,7 +41,7 @@ const App: React.FC = () => {
             }
           />
           <Route
-            path="/garantias-e-avales"
+            path="/creditos/*"
             element={
               <Suspense
                 fallback={
@@ -54,22 +51,7 @@ const App: React.FC = () => {
                   />
                 }
               >
-                <GarantiasScreen />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/creditos-doc-importacao"
-            element={
-              <Suspense
-                fallback={
-                  <Spinner
-                    className="d-flex justify-content-center align-items-center"
-                    animation="border"
-                  />
-                }
-              >
-                <CreditosDocImportacaoScreen />
+                <CreditosApp />
               </Suspense>
             }
           />

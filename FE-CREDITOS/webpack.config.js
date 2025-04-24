@@ -39,9 +39,7 @@ module.exports = {
       name: "feCreditos",
       filename: "remoteEntry.js",
       exposes: {
-        "./GarantiasEAvales": "./src/screens/garantias.screen.tsx",
-        "./CreditosDocImportacao":
-          "./src/screens/creditosDocImportacao.screen.tsx",
+        "./App": "./src/App",
       },
       shared: {
         react: {

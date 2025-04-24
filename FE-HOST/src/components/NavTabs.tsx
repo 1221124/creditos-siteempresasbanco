@@ -18,8 +18,8 @@ const NavTabs = () => {
       <Nav.Item>
         <Nav.Link
           as={Link}
-          to="/garantias-e-avales"
-          eventKey="/garantias-e-avales"
+          to="/creditos/garantias-e-avales"
+          eventKey="/creditos/garantias-e-avales"
         >
           Garantias e Avales
         </Nav.Link>
@@ -27,8 +27,8 @@ const NavTabs = () => {
       <Nav.Item>
         <Nav.Link
           as={Link}
-          to="/creditos-doc-importacao"
-          eventKey="/creditos-doc-importacao"
+          to="/creditos/doc-importacao"
+          eventKey="/creditos/doc-importacao"
         >
           Créditos Doc. Importação
         </Nav.Link>
