@@ -23,7 +23,7 @@ const NavTabs: React.FC<NavTabsProps> = ({
 
   return (
     <Nav
-      className={`d-flex align-items-center justify-content-${align} border-bottom`}
+      className={`d-flex align-items-center justify-content-${align} border-bottom my-2`}
       variant="underline"
       activeKey={activeKey}
     >

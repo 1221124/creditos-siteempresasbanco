@@ -4,6 +4,7 @@ import { Col, Container, Row, Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BankProfile from "./components/BankProfile";
 import UserProfile from "./components/UserProfile";
+import HomePage from "./components/HomePage";
 
 const NavTabs = lazy(() => import("creditos/NavTabs"));
 const CreditosApp = lazy(() => import("creditos/App"));
@@ -26,7 +27,7 @@ const App: React.FC = () => {
 
   return (
     <Container className="py-4">
-      <Row className="d-flex align-items-center justify-content-between my-4">
+      <Row className="d-flex align-items-center justify-content-between mt-4">
         <Col xs="auto">
           <BankProfile />
         </Col>
@@ -49,14 +50,7 @@ const App: React.FC = () => {
       >
         <Routes>
           <Route index element={<Navigate to="creditos" />} />
-          <Route
-            path="/creditos"
-            element={
-              <h1 className="d-flex justify-content-center align-items-center">
-                Bem-vindo ao módulo de Créditos do Site de Empresas do Banco
-              </h1>
-            }
-          />
+          <Route path="/creditos" element={<HomePage />} />
           <Route
             path="/creditos/*"
             element={

@@ -5,7 +5,7 @@ declare module "creditos/NavTabs" {
             label: string;
             path: string;
         }[];
-        align?: "left" | "center" | "right";
+        align?: "start" | "center" | "end";
         topLevel?: boolean;
     }
     const NavTabs: React.FC<NavTabsProps>;
