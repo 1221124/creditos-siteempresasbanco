@@ -1,11 +1,8 @@
 import { Row, Col } from "react-bootstrap";
 import TableComponent from "../../components/TableComponent";
-import { useDocumentosStore } from "../../store/useDocumentosStore";
 
-const Documents = () => {
+const Documents = ({ data }: { data: { date: string; nome: string }[] }) => {
   const headers = ["Data", "Nome"];
-
-  const { data } = useDocumentosStore();
 
   return (
     <Row>

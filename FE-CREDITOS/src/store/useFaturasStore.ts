@@ -1,27 +1,27 @@
 import { create } from "zustand";
 import { Documento } from "./creditos.types";
 
-interface DocumentoStore {
+interface FaturaStore {
   data: Documento[];
 }
 
-export const useDocumentosStore = create<DocumentoStore>(() => ({
+export const useFaturasStore = create<FaturaStore>(() => ({
   data: [
     {
       date: "2023-10-01",
-      nome: "Documento 1",
+      nome: "Fatura 1",
     },
     {
       date: "2023-10-02",
-      nome: "Documento 2",
+      nome: "Fatura 2",
     },
     {
       date: "2023-10-03",
-      nome: "Documento 3",
+      nome: "Fatura 3",
     },
     {
       date: "2023-10-04",
-      nome: "Documento 4",
+      nome: "Fatura 4",
     },
   ],
 }));

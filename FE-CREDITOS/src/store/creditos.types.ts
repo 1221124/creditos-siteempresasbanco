@@ -24,6 +24,6 @@ export type CreditoDocImport = {
 };
 
 export type Documento = {
-  data: string;
+  date: string;
   nome: string;
 };

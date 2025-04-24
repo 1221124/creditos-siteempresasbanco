@@ -4,10 +4,13 @@ import { useGarantiasStore } from "../store/useGarantiasStore";
 import CreditoTabs from "../components/CreditoTabs";
 import Details from "./tabs/Details";
 import Documents from "./tabs/Documents";
+import { useDocumentosStore } from "../store/useDocumentosStore";
 
 const GarantiasScreen: React.FC = () => {
-  const { data } = useGarantiasStore();
-  const [filteredData, setFilteredData] = useState(data);
+  const { data: garantiasData } = useGarantiasStore();
+  const { data: documentosData } = useDocumentosStore();
+
+  const [filteredData, setFilteredData] = useState(garantiasData);
   const [activeTab, setActiveTab] = useState(0);
 
   return (
@@ -19,13 +22,13 @@ const GarantiasScreen: React.FC = () => {
       />
       {activeTab === 0 ? (
         <Details
-          data={data}
+          data={garantiasData}
           filteredData={filteredData}
           setFilteredData={setFilteredData}
           isCreditoDocImportacao={false}
         />
       ) : (
-        <Documents />
+        <Documents data={documentosData} />
       )}
     </Container>
   );

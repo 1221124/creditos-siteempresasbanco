@@ -23,7 +23,7 @@ declare module "#not-for-import/feCreditos/store/creditos.types" {
         responsabilidade: number;
     };
     export type Documento = {
-        data: string;
+        date: string;
         nome: string;
     };
 }
@@ -73,6 +73,30 @@ declare module "#not-for-import/feCreditos/components/PdfPreview" {
     }) => import("react/jsx-runtime").JSX.Element;
     export default PdfPreview;
 }
+declare module "#not-for-import/feCreditos/store/useFaturasStore" {
+    export const useFaturasStore: any;
+}
+declare module "#not-for-import/feCreditos/screens/tabs/Documents" {
+    const Documents: ({ data }: {
+        data: {
+            date: string;
+            nome: string;
+        }[];
+    }) => import("react/jsx-runtime").JSX.Element;
+    export default Documents;
+}
+declare module "#not-for-import/feCreditos/components/Invoices" {
+    interface InvoicesProps {
+        data: {
+            date: string;
+            nome: string;
+        }[];
+        show: boolean;
+        setShow: (value: boolean) => void;
+    }
+    const Invoices: ({ data, show, setShow }: InvoicesProps) => import("react/jsx-runtime").JSX.Element | null;
+    export default Invoices;
+}
 declare module "#not-for-import/feCreditos/components/ExpandableInfo" {
     import React from "react";
     interface ExpandableInfoProps {
@@ -112,10 +136,6 @@ declare module "#not-for-import/feCreditos/screens/tabs/Details" {
 }
 declare module "#not-for-import/feCreditos/store/useDocumentosStore" {
     export const useDocumentosStore: any;
-}
-declare module "#not-for-import/feCreditos/screens/tabs/Documents" {
-    const Documents: () => import("react/jsx-runtime").JSX.Element;
-    export default Documents;
 }
 declare module "feCreditos/GarantiasEAvales" {
     import React from "react";
