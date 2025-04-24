@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import PdfPreview from "./PdfPreview";
+import { FaChevronRight } from "react-icons/fa";
 
 interface ExpandableInfoProps {
   row: any;
@@ -35,6 +36,17 @@ const ExpandableInfo: React.FC<ExpandableInfoProps> = ({ row }) => {
             </div>
             <div>{row.extra.contaOrigem}</div>
           </div>
+        </div>
+        <hr className="my-3" />
+        <div
+          className="d-flex justify-content-end align-items-center align-text-center gap-2"
+          onClick={() => alert("Ver Faturas!")}
+          style={{ cursor: "pointer" }}
+        >
+          <span style={{ display: "contents" }} className="align-self-center">
+            Ver Faturas
+          </span>
+          <FaChevronRight />
         </div>
       </em>
     </div>

@@ -3,7 +3,7 @@ import TableComponent from "../../components/TableComponent";
 import { useDocumentosStore } from "../../store/useDocumentosStore";
 
 const Documents = () => {
-  const headers = ["Data", "Nome", "Ações"];
+  const headers = ["Data", "Nome"];
 
   const { data } = useDocumentosStore();
 
