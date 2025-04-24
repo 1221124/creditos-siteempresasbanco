@@ -68,7 +68,9 @@ declare module "#not-for-import/feCreditos/components/SearchAndExportBar" {
     export default SearchAndExportBar;
 }
 declare module "#not-for-import/feCreditos/components/PdfPreview" {
-    const PdfPreview: () => import("react/jsx-runtime").JSX.Element;
+    const PdfPreview: ({ fileUrl }: {
+        fileUrl: string;
+    }) => import("react/jsx-runtime").JSX.Element;
     export default PdfPreview;
 }
 declare module "#not-for-import/feCreditos/components/ExpandableInfo" {
