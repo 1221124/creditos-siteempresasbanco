@@ -39,6 +39,7 @@ module.exports = {
       name: "feCreditos",
       filename: "remoteEntry.js",
       exposes: {
+        "./NavTabs": "./src/components/NavTabs",
         "./App": "./src/App",
       },
       shared: {

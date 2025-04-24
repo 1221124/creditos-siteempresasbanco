@@ -2,13 +2,28 @@ import React, { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavTabs from "./components/NavTabs";
 import BankProfile from "./components/BankProfile";
 import UserProfile from "./components/UserProfile";
 
+const NavTabs = lazy(() => import("creditos/NavTabs"));
 const CreditosApp = lazy(() => import("creditos/App"));
 
 const App: React.FC = () => {
+  const tabs = [
+    {
+      label: "Início",
+      path: "/creditos",
+    },
+    {
+      label: "Garantias e Avales",
+      path: "/creditos/garantias-e-avales",
+    },
+    {
+      label: "Créditos Doc. Importação",
+      path: "/creditos/doc-importacao",
+    },
+  ];
+
   return (
     <Container className="py-4">
       <Row className="d-flex align-items-center justify-content-between my-4">
@@ -16,7 +31,8 @@ const App: React.FC = () => {
           <BankProfile />
         </Col>
         <Col xs="auto">
-          <NavTabs />
+          {/* Tabs de nível máximo */}
+          <NavTabs tabs={tabs} topLevel={true} />
         </Col>
         <Col xs="auto">
           <UserProfile />

@@ -1,3 +1,16 @@
+declare module "feCreditos/NavTabs" {
+    import React from "react";
+    interface NavTabsProps {
+        tabs: {
+            label: string;
+            path: string;
+        }[];
+        align?: "start" | "center" | "end";
+        topLevel?: boolean;
+    }
+    const NavTabs: React.FC<NavTabsProps>;
+    export default NavTabs;
+}
 declare module "#not-for-import/feCreditos/store/creditos.types" {
     export type Garantia = {
         beneficiario: string;
@@ -29,16 +42,6 @@ declare module "#not-for-import/feCreditos/store/creditos.types" {
 }
 declare module "#not-for-import/feCreditos/store/useGarantiasStore" {
     export const useGarantiasStore: any;
-}
-declare module "#not-for-import/feCreditos/components/CreditoTabs" {
-    import React from "react";
-    interface CreditoTabsProps {
-        tabs: string[];
-        activeTab: number;
-        onTabClick: (index: number) => void;
-    }
-    const CreditoTabs: React.FC<CreditoTabsProps>;
-    export default CreditoTabs;
 }
 declare module "#not-for-import/feCreditos/components/SearchInput" {
     import React from "react";

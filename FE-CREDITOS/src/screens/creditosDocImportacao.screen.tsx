@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import CreditoTabs from "../components/CreditoTabs";
+import NavTabs from "../components/NavTabs";
 import { useCreditoDocImportStore } from "../store/useCreditoDocImportStore";
 import Details from "./tabs/Details";
 
 const CreditosDocImportacaoScreen: React.FC = () => {
   const { data } = useCreditoDocImportStore();
   const [filteredData, setFilteredData] = useState(data);
-  const [activeTab, setActiveTab] = useState(0);
+
+  const tabs = [
+    {
+      label: "Detalhes",
+      path: "/creditos/doc-importacao",
+    },
+  ];
 
   return (
     <Container className="mt-4">
-      <CreditoTabs
-        tabs={["Detalhes"]}
-        activeTab={activeTab}
-        onTabClick={setActiveTab}
-      />
+      <NavTabs tabs={tabs} align="start" />
       <Details
         data={data}
         filteredData={filteredData}
