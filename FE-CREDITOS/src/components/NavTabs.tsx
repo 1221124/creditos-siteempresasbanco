@@ -15,7 +15,7 @@ const NavTabs: React.FC<NavTabsProps> = ({
 }) => {
   const { pathname } = useLocation();
 
-  // Tratamento do caso específico da tab "Garantias e Avales": qualquer que seja a subtab, Garantias e Avales também deve ser ativa
+  //tratamento do caso específico da tab "Garantias e Avales": qualquer que seja a subtab, Garantias e Avales também deve ser ativa
   const activeKey =
     topLevel && pathname.includes("/documentos")
       ? "/creditos/garantias-e-avales"

@@ -1,10 +1,11 @@
 import React, { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Col, Container, Row, Spinner } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BankProfile from "./components/BankProfile";
 import UserProfile from "./components/UserProfile";
 import HomePage from "./components/HomePage";
+import Loading from "./components/Loading";
 
 const NavTabs = lazy(() => import("creditos/NavTabs"));
 const CreditosApp = lazy(() => import("creditos/App"));
@@ -32,7 +33,7 @@ const App: React.FC = () => {
           <BankProfile />
         </Col>
         <Col xs="auto">
-          {/* Tabs de nível máximo */}
+          {/*tabs de nível máximo*/}
           <NavTabs tabs={tabs} topLevel={true} />
         </Col>
         <Col xs="auto">
@@ -40,28 +41,14 @@ const App: React.FC = () => {
         </Col>
       </Row>
 
-      <Suspense
-        fallback={
-          <Spinner
-            className="d-flex justify-content-center align-items-center"
-            animation="border"
-          />
-        }
-      >
+      <Suspense fallback={<Loading />}>
         <Routes>
           <Route index element={<Navigate to="creditos" />} />
           <Route path="/creditos" element={<HomePage />} />
           <Route
             path="/creditos/*"
             element={
-              <Suspense
-                fallback={
-                  <Spinner
-                    className="d-flex justify-content-center align-items-center"
-                    animation="border"
-                  />
-                }
-              >
+              <Suspense fallback={<Loading />}>
                 <CreditosApp />
               </Suspense>
             }

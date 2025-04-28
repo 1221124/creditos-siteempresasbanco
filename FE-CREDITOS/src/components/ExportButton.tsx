@@ -7,7 +7,7 @@ const ExportButton: React.FC = () => {
     <Button
       variant="light"
       className="d-flex align-items-center gap-2"
-      onClick={() => alert("Exportar!")} //Simulação de exportação
+      onClick={() => alert("Exportar!")} //simulação de exportação
     >
       <FaFileExport />
       Exportar
