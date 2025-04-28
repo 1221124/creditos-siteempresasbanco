@@ -17,7 +17,7 @@ const Invoices = ({ data, show, setShow }: InvoicesProps) => {
       show={show}
       onHide={handleClose}
       placement="end"
-      style={{ width: window.innerWidth * 0.3 }}
+      style={{ width: window.innerWidth * 0.4 }}
     >
       <Offcanvas.Header closeButton>
         <Offcanvas.Title>Faturas</Offcanvas.Title>
