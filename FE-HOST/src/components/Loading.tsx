@@ -15,7 +15,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    height: "100vh",
+    marginTop: "20px",
+    height: "80vh",
     backgroundColor: "#f9f9f9",
   },
   spinner: {
