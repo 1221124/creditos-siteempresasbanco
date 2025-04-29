@@ -3,7 +3,7 @@ import TableComponent from "../../components/TableComponent";
 import { useLabelsStore } from "../../store/useLabelsStore";
 
 const Documents = ({ data }: { data: { date: string; nome: string }[] }) => {
-  const documentosHeaders = useLabelsStore.getState().documentosHeaders;
+  const documentosHeaders = useLabelsStore((state) => state.documentosHeaders);
 
   return (
     <Row>

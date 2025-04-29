@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Alert, Button, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useLabelsStore } from "../store/useLabelsStore";
 
 interface ErrorProps {
   message: string;
@@ -8,6 +9,8 @@ interface ErrorProps {
 
 const Error: React.FC<ErrorProps> = ({ message }) => {
   const navigate = useNavigate();
+  const errorOccuredLabel = useLabelsStore((state) => state.errorOccuredLabel);
+  const tryAgainLabel = useLabelsStore((state) => state.tryAgainLabel);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -21,13 +24,13 @@ const Error: React.FC<ErrorProps> = ({ message }) => {
     <Row className="justify-content-center mt-5">
       <Col md={6} lg={4}>
         <Alert variant="danger" className="text-center">
-          <Alert.Heading>Ocorreu um erro!</Alert.Heading>
+          <Alert.Heading>{errorOccuredLabel}</Alert.Heading>
           <p>{message}</p>
           <Button
             variant="outline-danger"
             onClick={() => window.location.reload()}
           >
-            Tentar novamente
+            {tryAgainLabel}
           </Button>
         </Alert>
       </Col>

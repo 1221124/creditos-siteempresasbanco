@@ -4,7 +4,7 @@ import { FaFileExport } from "react-icons/fa";
 import { useLabelsStore } from "../store/useLabelsStore";
 
 const ExportButton: React.FC = () => {
-  const exportLabel = useLabelsStore.getState().exportLabel;
+  const exportLabel = useLabelsStore((state) => state.exportLabel);
 
   return (
     <Button

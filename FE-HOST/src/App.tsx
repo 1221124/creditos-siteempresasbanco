@@ -11,14 +11,22 @@ const Loading = lazy(() => import("creditos/Loading"));
 const CreditosApp = lazy(() => import("creditos/App"));
 
 const App: React.FC = () => {
-  const [tabs, setTabs] = useState([]);
+  const [appTabs, setAppTabs] = useState([]);
+  const [homeLabel, setHomeLabel] = useState("");
+  const [bankNameLabel, setBankNameLabel] = useState("");
+  const [companyNameLabel, setCompanyNameLabel] = useState("");
+  const [personNameLabel, setPersonNameLabel] = useState("");
 
   useEffect(() => {
     const fetchTabs = async () => {
       const useLabelsStore = await import("creditos/useLabelsStore").then(
         (mod) => mod.useLabelsStore
       );
-      setTabs(useLabelsStore.getState().appTabs);
+      setAppTabs(useLabelsStore.getState().appTabs);
+      setHomeLabel(useLabelsStore.getState().homeLabel);
+      setBankNameLabel(useLabelsStore.getState().bankNameLabel);
+      setCompanyNameLabel(useLabelsStore.getState().companyNameLabel);
+      setPersonNameLabel(useLabelsStore.getState().personNameLabel);
     };
 
     fetchTabs();
@@ -28,21 +36,24 @@ const App: React.FC = () => {
     <Container className="py-4">
       <Row className="d-flex align-items-center justify-content-between mt-4">
         <Col xs="auto">
-          <BankProfile />
+          <BankProfile name={bankNameLabel} />
         </Col>
         <Col xs="auto">
           {/*tabs de nível máximo*/}
-          <NavTabs tabs={tabs} topLevel={true} />
+          <NavTabs tabs={appTabs} topLevel={true} />
         </Col>
         <Col xs="auto">
-          <UserProfile />
+          <UserProfile company={companyNameLabel} person={personNameLabel} />
         </Col>
       </Row>
 
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route index element={<Navigate to="/creditos" />} />
-          <Route path="/creditos" element={<HomePage />} />
+          <Route
+            path="/creditos"
+            element={<HomePage bankName={bankNameLabel} message={homeLabel} />}
+          />
           <Route
             path="/creditos/*"
             element={

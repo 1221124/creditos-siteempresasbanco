@@ -27,7 +27,7 @@ type ExpandableInfoProps = PdfProps | DataProps;
 
 const ExpandableInfo: React.FC<ExpandableInfoProps> = (props) => {
   const [showInvoicesPreview, setShowInvoicesPreview] = useState(false);
-  const seeInvoicesLabel = useLabelsStore.getState().seeInvoicesLabel;
+  const seeInvoicesLabel = useLabelsStore((state) => state.seeInvoicesLabel);
 
   if (props.pdfPreview) {
     return (

@@ -6,18 +6,32 @@ interface Tab {
 }
 
 interface LabelsStore {
+  //tabs
   appTabs: Tab[];
   garantiasTabs: Tab[];
   creditosDocImportTabs: Tab[];
+  //headers
   garantiasHeaders: string[];
   creditosDocImportHeaders: string[];
   documentosHeaders: string[];
+  operationsSummaryHeaders: string[];
+  extraInfoHeaders: string[];
+  //labels
   beneficiarySearchLabel: string;
   exportLabel: string;
   seeInvoicesLabel: string;
+  loadingLabel: string;
+  errorOccuredLabel: string;
+  tryAgainLabel: string;
+  invoicesLabel: string;
+  homeLabel: string;
+  bankNameLabel: string;
+  companyNameLabel: string;
+  personNameLabel: string;
 }
 
 export const useLabelsStore = create<LabelsStore>(() => ({
+  //tabs
   appTabs: [
     { label: "Início", path: "/creditos" },
     { label: "Garantias e Avales", path: "/creditos/garantias-e-avales" },
@@ -30,6 +44,7 @@ export const useLabelsStore = create<LabelsStore>(() => ({
   creditosDocImportTabs: [
     { label: "Detalhes", path: "/creditos/doc-importacao" },
   ],
+  //headers
   garantiasHeaders: [
     "Nome do Beneficiário",
     "Local",
@@ -47,8 +62,28 @@ export const useLabelsStore = create<LabelsStore>(() => ({
     "Montante",
     "Responsabilidade Atual",
   ],
-  documentosHeaders: ["Nome", "Data"],
+  documentosHeaders: ["Data", "Nome"],
+  operationsSummaryHeaders: [
+    "Número de Operações",
+    "Nacionais",
+    "Internacionais",
+  ],
+  extraInfoHeaders: [
+    "Encargo Anual",
+    "Intervalo de Cobrança",
+    "Débito Agendado",
+    "Conta de Origem",
+  ],
+  //labels
   beneficiarySearchLabel: "Pesquisar por beneficiário",
   exportLabel: "Exportar",
   seeInvoicesLabel: "Ver faturas",
+  loadingLabel: "A carregar...",
+  errorOccuredLabel: "Ocorreu um erro!",
+  tryAgainLabel: "Tentar novamente",
+  invoicesLabel: "Faturas",
+  homeLabel: "Bem-vindo ao módulo de Créditos do Site de Empresas do Banco",
+  bankNameLabel: "Site de Empresas - Banco",
+  companyNameLabel: "EMPRESA X",
+  personNameLabel: "Nome Falso",
 }));

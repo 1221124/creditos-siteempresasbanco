@@ -11,13 +11,13 @@ declare module "feCreditos/NavTabs" {
     const NavTabs: React.FC<NavTabsProps>;
     export default NavTabs;
 }
+declare module "feCreditos/useLabelsStore" {
+    export const useLabelsStore: any;
+}
 declare module "feCreditos/Loading" {
     import React from "react";
     const Loading: React.FC;
     export default Loading;
-}
-declare module "feCreditos/useLabelsStore" {
-    export const useLabelsStore: any;
 }
 declare module "#not-for-import/feCreditos/components/SearchInput" {
     import React from "react";

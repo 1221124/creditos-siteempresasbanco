@@ -23,6 +23,7 @@ module.exports = {
       { terms: ["todo", "tofix"], location: "start" },
     ],
     "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
   },
   overrides: [
     {

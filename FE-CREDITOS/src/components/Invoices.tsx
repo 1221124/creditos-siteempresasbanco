@@ -1,6 +1,7 @@
 import { Offcanvas } from "react-bootstrap";
 import Documents from "../screens/tabs/Documents";
 import { Documento } from "../types/types";
+import { useLabelsStore } from "../store/useLabelsStore";
 
 interface InvoicesProps {
   data: Documento[];
@@ -9,6 +10,8 @@ interface InvoicesProps {
 }
 
 const Invoices = ({ data, show, setShow }: InvoicesProps) => {
+  const invoicesLabel = useLabelsStore((state) => state.invoicesLabel);
+
   const handleClose = () => setShow(false);
 
   if (!show) return null;
@@ -21,7 +24,7 @@ const Invoices = ({ data, show, setShow }: InvoicesProps) => {
       style={{ width: window.innerWidth * 0.4 }}
     >
       <Offcanvas.Header closeButton>
-        <Offcanvas.Title>Faturas</Offcanvas.Title>
+        <Offcanvas.Title>{invoicesLabel}</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
         <Documents data={data} />

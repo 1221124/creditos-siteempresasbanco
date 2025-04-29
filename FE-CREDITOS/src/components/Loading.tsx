@@ -1,10 +1,13 @@
 import React from "react";
+import { useLabelsStore } from "../store/useLabelsStore";
 
 const Loading: React.FC = () => {
+  const loadingLabel = useLabelsStore((state) => state.loadingLabel);
+
   return (
     <div style={styles.container}>
       <div style={styles.spinner} />
-      <p style={styles.text}>A carregar...</p>
+      <p style={styles.text}>{loadingLabel}</p>
     </div>
   );
 };

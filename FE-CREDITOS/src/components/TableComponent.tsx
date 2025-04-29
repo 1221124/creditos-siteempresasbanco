@@ -4,6 +4,7 @@ import { Table } from "react-bootstrap";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import ExpandableInfo from "./ExpandableInfo";
 import { useFaturasFetch } from "../hooks/useFaturasFetch";
+import { useLabelsStore } from "../store/useLabelsStore";
 
 interface TableComponentProps {
   headers: string[];
@@ -14,6 +15,7 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
 
   const { data: invoicesData, loading, error } = useFaturasFetch();
+  const extraInfoHeaders = useLabelsStore((state) => state.extraInfoHeaders);
 
   const toggleRow = (index: number) => {
     setExpandedRow(expandedRow === index ? null : index);
@@ -72,12 +74,7 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
               <tr>
                 <td colSpan={headers.length + 1} className="bg-light">
                   <ExpandableInfo
-                    headers={[
-                      "Encargo Anual",
-                      "Intervalo de Cobrança",
-                      "Débito Agendado",
-                      "Conta de Origem",
-                    ]}
+                    headers={extraInfoHeaders}
                     data={row.extra ?? {}}
                     invoices={invoicesData}
                     loading={loading}
