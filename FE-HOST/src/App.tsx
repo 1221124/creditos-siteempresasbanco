@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,20 +11,18 @@ const Loading = lazy(() => import("creditos/Loading"));
 const CreditosApp = lazy(() => import("creditos/App"));
 
 const App: React.FC = () => {
-  const tabs = [
-    {
-      label: "Início",
-      path: "/creditos",
-    },
-    {
-      label: "Garantias e Avales",
-      path: "/creditos/garantias-e-avales",
-    },
-    {
-      label: "Créditos Doc. Importação",
-      path: "/creditos/doc-importacao",
-    },
-  ];
+  const [tabs, setTabs] = useState([]);
+
+  useEffect(() => {
+    const fetchTabs = async () => {
+      const useLabelsStore = await import("creditos/useLabelsStore").then(
+        (mod) => mod.useLabelsStore
+      );
+      setTabs(useLabelsStore.getState().appTabs);
+    };
+
+    fetchTabs();
+  }, []);
 
   return (
     <Container className="py-4">

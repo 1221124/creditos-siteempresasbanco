@@ -4,6 +4,7 @@ import TableComponent from "../../components/TableComponent";
 import { Garantia } from "../../types/types";
 import OperationsSummary from "../../components/OperationsSummary";
 import { useState } from "react";
+import { useLabelsStore } from "../../store/useLabelsStore";
 
 type DetailsProps<T> = {
   data: T[];
@@ -14,20 +15,13 @@ const Details = <T extends { beneficiario: string }>({
   data,
   isCreditoDocImportacao,
 }: DetailsProps<T>) => {
-  const headers = [
-    "Nome do Beneficiário",
-    "Local",
-    "Nº Operação",
-    "Data inicial",
-    "Data final",
-    "Montante",
-  ];
+  const state = useLabelsStore.getState();
+  const headers = isCreditoDocImportacao
+    ? state.creditosDocImportHeaders
+    : state.garantiasHeaders;
+  const beneficiarySearchLabel = state.beneficiarySearchLabel;
 
   const [filteredData, setFilteredData] = useState<T[]>(data);
-
-  if (isCreditoDocImportacao) {
-    headers.push("Responsabilidade Atual");
-  }
 
   return (
     <>
@@ -36,7 +30,7 @@ const Details = <T extends { beneficiario: string }>({
       )}
 
       <SearchAndExportBar
-        placeholder="Pesquisar por beneficiário"
+        placeholder={beneficiarySearchLabel}
         data={data}
         setData={setFilteredData}
       />

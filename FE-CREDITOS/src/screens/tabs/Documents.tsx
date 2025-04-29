@@ -1,13 +1,14 @@
 import { Row, Col } from "react-bootstrap";
 import TableComponent from "../../components/TableComponent";
+import { useLabelsStore } from "../../store/useLabelsStore";
 
 const Documents = ({ data }: { data: { date: string; nome: string }[] }) => {
-  const headers = ["Data", "Nome"];
+  const documentosHeaders = useLabelsStore.getState().documentosHeaders;
 
   return (
     <Row>
       <Col>
-        <TableComponent headers={headers} data={data} />
+        <TableComponent headers={documentosHeaders} data={data} />
       </Col>
     </Row>
   );

@@ -8,6 +8,7 @@ import Loading from "../components/Loading";
 import Error from "../components/Error";
 import CardItem from "./CardItem";
 import { Documento } from "../types/types";
+import { useLabelsStore } from "../store/useLabelsStore";
 
 type PdfProps = {
   pdfPreview: true;
@@ -26,6 +27,7 @@ type ExpandableInfoProps = PdfProps | DataProps;
 
 const ExpandableInfo: React.FC<ExpandableInfoProps> = (props) => {
   const [showInvoicesPreview, setShowInvoicesPreview] = useState(false);
+  const seeInvoicesLabel = useLabelsStore.getState().seeInvoicesLabel;
 
   if (props.pdfPreview) {
     return (
@@ -66,7 +68,7 @@ const ExpandableInfo: React.FC<ExpandableInfoProps> = (props) => {
               onClick={() => setShowInvoicesPreview(true)}
               style={{ cursor: "pointer" }}
             >
-              <span style={{ display: "contents" }}>Ver Faturas</span>
+              <span style={{ display: "contents" }}>{seeInvoicesLabel}</span>
               <FaChevronRight />
             </div>
 

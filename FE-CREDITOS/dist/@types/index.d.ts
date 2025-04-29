@@ -16,6 +16,9 @@ declare module "feCreditos/Loading" {
     const Loading: React.FC;
     export default Loading;
 }
+declare module "feCreditos/useLabelsStore" {
+    export const useLabelsStore: any;
+}
 declare module "#not-for-import/feCreditos/components/SearchInput" {
     import React from "react";
     interface SearchInputProps {

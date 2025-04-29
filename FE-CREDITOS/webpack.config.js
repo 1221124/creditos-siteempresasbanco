@@ -41,6 +41,7 @@ module.exports = {
       exposes: {
         "./NavTabs": "./src/components/NavTabs",
         "./Loading": "./src/components/Loading",
+        "./useLabelsStore": "./src/store/useLabelsStore.ts",
         "./App": "./src/App",
       },
       shared: {
