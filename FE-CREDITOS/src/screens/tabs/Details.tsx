@@ -1,20 +1,17 @@
 import { Row, Col } from "react-bootstrap";
 import SearchAndExportBar from "../../components/SearchAndExportBar";
 import TableComponent from "../../components/TableComponent";
-import { Garantia } from "../../store/creditos.types";
+import { Garantia } from "../../types/types";
 import ResumoOperacoes from "../../components/ResumoOperacoes";
+import { useState } from "react";
 
 type DetailsProps<T> = {
   data: T[];
-  filteredData: T[];
-  setFilteredData: (newData: T[]) => void;
   isCreditoDocImportacao: boolean;
 };
 
 const Details = <T extends { beneficiario: string }>({
   data,
-  filteredData,
-  setFilteredData,
   isCreditoDocImportacao,
 }: DetailsProps<T>) => {
   const headers = [
@@ -25,6 +22,8 @@ const Details = <T extends { beneficiario: string }>({
     "Data final",
     "Montante",
   ];
+
+  const [filteredData, setFilteredData] = useState<T[]>(data);
 
   if (isCreditoDocImportacao) {
     headers.push("Responsabilidade Atual");

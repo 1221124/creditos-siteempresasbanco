@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container } from "react-bootstrap";
 import NavTabs from "../components/NavTabs";
-import { useCreditoDocImportStore } from "../store/useCreditoDocImportStore";
 import Details from "./tabs/Details";
+import { useCreditosDocImportFetch } from "../hooks/useCreditosDocImportFetch";
+import Loading from "../components/Loading";
+import Error from "../components/Error";
 
 const CreditosDocImportacaoScreen: React.FC = () => {
-  const { data } = useCreditoDocImportStore();
-  const [filteredData, setFilteredData] = useState(data);
+  const { data, loading, error } = useCreditosDocImportFetch();
+
+  if (loading) return <Loading />;
+  if (error) return <Error message={error} />;
 
   const tabs = [
     {
@@ -18,12 +22,7 @@ const CreditosDocImportacaoScreen: React.FC = () => {
   return (
     <Container className="mt-4">
       <NavTabs tabs={tabs} align="start" />
-      <Details
-        data={data}
-        filteredData={filteredData}
-        setFilteredData={setFilteredData}
-        isCreditoDocImportacao={true}
-      />
+      <Details data={data} isCreditoDocImportacao={true} />
     </Container>
   );
 };

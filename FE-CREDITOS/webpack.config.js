@@ -40,6 +40,7 @@ module.exports = {
       filename: "remoteEntry.js",
       exposes: {
         "./NavTabs": "./src/components/NavTabs",
+        "./Loading": "./src/components/Loading",
         "./App": "./src/App",
       },
       shared: {

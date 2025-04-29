@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
-import { Garantia } from "../store/creditos.types";
+import { Garantia } from "../types/types";
 
 interface ResumoOperacoesProps {
   data: Garantia[];

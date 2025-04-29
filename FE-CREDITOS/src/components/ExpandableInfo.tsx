@@ -2,8 +2,10 @@
 import React, { useState } from "react";
 import PdfPreview from "./PdfPreview";
 import { FaChevronRight } from "react-icons/fa";
-import { useFaturasStore } from "../store/useFaturasStore";
 import Invoices from "./Invoices";
+import { useFaturasFetch } from "../hooks/useFaturasFetch";
+import Loading from "../components/Loading";
+import Error from "../components/Error";
 
 interface ExpandableInfoProps {
   row: any;
@@ -12,7 +14,10 @@ interface ExpandableInfoProps {
 const ExpandableInfo: React.FC<ExpandableInfoProps> = ({ row }) => {
   const [showInvoicesPreview, setShowInvoicesPreview] = useState(false);
 
-  const { data } = useFaturasStore();
+  const { data, loading, error } = useFaturasFetch();
+
+  if (loading) return <Loading />;
+  if (error) return <Error message={error} />;
 
   return row.extra !== undefined ? (
     <div className="p-3">

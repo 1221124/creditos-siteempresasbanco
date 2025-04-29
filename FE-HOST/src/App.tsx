@@ -5,9 +5,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import BankProfile from "./components/BankProfile";
 import UserProfile from "./components/UserProfile";
 import HomePage from "./components/HomePage";
-import Loading from "./components/Loading";
 
 const NavTabs = lazy(() => import("creditos/NavTabs"));
+const Loading = lazy(() => import("creditos/Loading"));
 const CreditosApp = lazy(() => import("creditos/App"));
 
 const App: React.FC = () => {
@@ -43,7 +43,7 @@ const App: React.FC = () => {
 
       <Suspense fallback={<Loading />}>
         <Routes>
-          <Route index element={<Navigate to="creditos" />} />
+          <Route index element={<Navigate to="/creditos" />} />
           <Route path="/creditos" element={<HomePage />} />
           <Route
             path="/creditos/*"

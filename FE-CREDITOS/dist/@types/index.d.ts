@@ -11,37 +11,10 @@ declare module "feCreditos/NavTabs" {
     const NavTabs: React.FC<NavTabsProps>;
     export default NavTabs;
 }
-declare module "#not-for-import/feCreditos/store/creditos.types" {
-    export type Garantia = {
-        beneficiario: string;
-        local: string;
-        operacao: number;
-        dataInicial: string;
-        dataFinal: string;
-        montante: number;
-        extra: {
-            encargoAnual: number;
-            intervaloCobranca: string;
-            debitoAgendado: string;
-            contaOrigem: number;
-        };
-    };
-    export type CreditoDocImport = {
-        beneficiario: string;
-        local: string;
-        operacao: number;
-        dataInicial: string;
-        dataFinal: string;
-        montante: number;
-        responsabilidade: number;
-    };
-    export type Documento = {
-        date: string;
-        nome: string;
-    };
-}
-declare module "#not-for-import/feCreditos/store/useGarantiasStore" {
-    export const useGarantiasStore: any;
+declare module "feCreditos/Loading" {
+    import React from "react";
+    const Loading: React.FC;
+    export default Loading;
 }
 declare module "#not-for-import/feCreditos/components/SearchInput" {
     import React from "react";
@@ -76,9 +49,6 @@ declare module "#not-for-import/feCreditos/components/PdfPreview" {
     }) => import("react/jsx-runtime").JSX.Element;
     export default PdfPreview;
 }
-declare module "#not-for-import/feCreditos/store/useFaturasStore" {
-    export const useFaturasStore: any;
-}
 declare module "#not-for-import/feCreditos/screens/tabs/Documents" {
     const Documents: ({ data }: {
         data: {
@@ -100,6 +70,81 @@ declare module "#not-for-import/feCreditos/components/Invoices" {
     const Invoices: ({ data, show, setShow }: InvoicesProps) => import("react/jsx-runtime").JSX.Element | null;
     export default Invoices;
 }
+declare module "#not-for-import/feCreditos/api/endpoints" {
+    export const ENDPOINTS: {
+        creditosDocImport: string;
+        documentos: string;
+        faturas: string;
+        garantias: string;
+    };
+}
+declare module "#not-for-import/feCreditos/api/config" {
+    export const BASE_URL = "https://run.mocky.io/v3/";
+}
+declare module "#not-for-import/feCreditos/types/types" {
+    export type Garantia = {
+        beneficiario: string;
+        local: string;
+        operacao: number;
+        dataInicial: string;
+        dataFinal: string;
+        montante: number;
+        extra: {
+            encargoAnual: number;
+            intervaloCobranca: string;
+            debitoAgendado: string;
+            contaOrigem: number;
+        };
+    };
+    export type CreditoDocImport = {
+        beneficiario: string;
+        local: string;
+        operacao: number;
+        dataInicial: string;
+        dataFinal: string;
+        montante: number;
+        responsabilidade: number;
+    };
+    export type Documento = {
+        date: string;
+        nome: string;
+    };
+}
+declare module "#not-for-import/feCreditos/services/service" {
+    import { CreditoDocImport, Garantia } from "#not-for-import/feCreditos/types/types";
+    export function fetchList<T>(endpoint: string): Promise<T[]>;
+    export function getCreditosDocImport(): Promise<CreditoDocImport[]>;
+    export function getDocumentos(): Promise<Document[]>;
+    export function getFaturas(): Promise<Document[]>;
+    export function getGarantias(): Promise<Garantia[]>;
+}
+declare module "#not-for-import/feCreditos/hooks/generic/useFetchData" {
+    export function useFetchData<T>(endpoint: string): {
+        data: T[];
+        loading: boolean;
+        error: string;
+    } | {
+        data: T[];
+        loading: boolean;
+        error: null;
+    };
+}
+declare module "#not-for-import/feCreditos/hooks/useFaturasFetch" {
+    import { Documento } from "#not-for-import/feCreditos/types/types";
+    export function useFaturasFetch(): {
+        data: Documento[];
+        loading: boolean;
+        error: string | null;
+    };
+}
+declare module "#not-for-import/feCreditos/components/Error" {
+    import React from "react";
+    interface ErrorProps {
+        message: string;
+    }
+    const Error: React.FC<ErrorProps>;
+    export default Error;
+}
 declare module "#not-for-import/feCreditos/components/ExpandableInfo" {
     import React from "react";
     interface ExpandableInfoProps {
@@ -118,7 +163,7 @@ declare module "#not-for-import/feCreditos/components/TableComponent" {
 }
 declare module "#not-for-import/feCreditos/components/ResumoOperacoes" {
     import React from "react";
-    import { Garantia } from "#not-for-import/feCreditos/store/creditos.types";
+    import { Garantia } from "#not-for-import/feCreditos/types/types";
     interface ResumoOperacoesProps {
         data: Garantia[];
     }
@@ -128,25 +173,41 @@ declare module "#not-for-import/feCreditos/components/ResumoOperacoes" {
 declare module "#not-for-import/feCreditos/screens/tabs/Details" {
     type DetailsProps<T> = {
         data: T[];
-        filteredData: T[];
-        setFilteredData: (newData: T[]) => void;
         isCreditoDocImportacao: boolean;
     };
     const Details: <T extends {
         beneficiario: string;
-    }>({ data, filteredData, setFilteredData, isCreditoDocImportacao, }: DetailsProps<T>) => import("react/jsx-runtime").JSX.Element;
+    }>({ data, isCreditoDocImportacao, }: DetailsProps<T>) => import("react/jsx-runtime").JSX.Element;
     export default Details;
 }
-declare module "#not-for-import/feCreditos/store/useDocumentosStore" {
-    export const useDocumentosStore: any;
+declare module "#not-for-import/feCreditos/hooks/useGarantiasFetch" {
+    import { Garantia } from "#not-for-import/feCreditos/types/types";
+    export function useGarantiasFetch(): {
+        data: Garantia[];
+        loading: boolean;
+        error: string | null;
+    };
+}
+declare module "#not-for-import/feCreditos/hooks/useDocumentosFetch" {
+    import { Documento } from "#not-for-import/feCreditos/types/types";
+    export function useDocumentosFetch(): {
+        data: Documento[];
+        loading: boolean;
+        error: string | null;
+    };
 }
 declare module "#not-for-import/feCreditos/screens/garantias.screen" {
     import React from "react";
     const GarantiasScreen: React.FC;
     export default GarantiasScreen;
 }
-declare module "#not-for-import/feCreditos/store/useCreditoDocImportStore" {
-    export const useCreditoDocImportStore: any;
+declare module "#not-for-import/feCreditos/hooks/useCreditosDocImportFetch" {
+    import { CreditoDocImport } from "#not-for-import/feCreditos/types/types";
+    export function useCreditosDocImportFetch(): {
+        data: CreditoDocImport[];
+        loading: boolean;
+        error: string | null;
+    };
 }
 declare module "#not-for-import/feCreditos/screens/creditosDocImportacao.screen" {
     import React from "react";
