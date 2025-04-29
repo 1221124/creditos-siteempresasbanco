@@ -1,13 +1,17 @@
 import React from "react";
 import { Col } from "react-bootstrap";
 
-interface CardStatsProps {
+interface ExpandableInfoItemProps {
   title: string;
   value: string | number;
   isCurrency?: boolean;
 }
 
-const CardStats: React.FC<CardStatsProps> = ({ title, value, isCurrency }) => (
+const ExpandableInfoItem: React.FC<ExpandableInfoItemProps> = ({
+  title,
+  value,
+  isCurrency,
+}) => (
   <Col className="bg-light py-4 border">
     <div className="fw-bold">{title}</div>
     <div>
@@ -23,4 +27,4 @@ const CardStats: React.FC<CardStatsProps> = ({ title, value, isCurrency }) => (
   </Col>
 );
 
-export default CardStats;
+export default ExpandableInfoItem;

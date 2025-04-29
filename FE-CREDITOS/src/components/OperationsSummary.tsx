@@ -2,14 +2,14 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { Garantia } from "../types/types";
 
-interface ResumoOperacoesProps {
+interface OperationsSummaryProps {
   data: Garantia[];
 }
 
-const ResumoOperacoes: React.FC<ResumoOperacoesProps> = ({ data }) => {
-  const numeroOperacoes = data.length;
-  const totalNacionais = getTotalByLocal(data, "Portugal");
-  const totalInternacionais = getTotalByLocal(data);
+const OperationsSummary: React.FC<OperationsSummaryProps> = ({ data }) => {
+  const numberOfOperations = data.length;
+  const nationalTotal = getTotalByLocal(data, "Portugal");
+  const internationalTotal = getTotalByLocal(data);
 
   function getTotalByLocal(data: Garantia[], local?: string): number {
     return data
@@ -23,22 +23,22 @@ const ResumoOperacoes: React.FC<ResumoOperacoesProps> = ({ data }) => {
     <Row className="text-center mb-4">
       <Col className="bg-light py-4 rounded-start border">
         <div className="fw-bold">Número de Operações</div>
-        <div>{numeroOperacoes}</div>
+        <div>{numberOfOperations}</div>
       </Col>
       <Col className="bg-light py-4 border">
         <div className="fw-bold">Nacionais</div>
         <div>
-          {totalNacionais} <span className="ms-1">EUR</span>
+          {nationalTotal} <span className="ms-1">EUR</span>
         </div>
       </Col>
       <Col className="bg-light py-4 rounded-end border">
         <div className="fw-bold">Internacionais</div>
         <div>
-          {totalInternacionais} <span className="ms-1">EUR</span>
+          {internationalTotal} <span className="ms-1">EUR</span>
         </div>
       </Col>
     </Row>
   );
 };
 
-export default ResumoOperacoes;
+export default OperationsSummary;

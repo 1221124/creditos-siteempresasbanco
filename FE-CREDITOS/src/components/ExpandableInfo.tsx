@@ -1,76 +1,86 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
+import { Row } from "react-bootstrap";
 import PdfPreview from "./PdfPreview";
 import { FaChevronRight } from "react-icons/fa";
 import Invoices from "./Invoices";
-import { useFaturasFetch } from "../hooks/useFaturasFetch";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
+import ExpandableInfoItem from "./ExpandableInfoItem";
+import { Documento } from "../types/types";
 
-interface ExpandableInfoProps {
-  row: any;
-}
+type PdfProps = {
+  pdfPreview: true;
+};
 
-const ExpandableInfo: React.FC<ExpandableInfoProps> = ({ row }) => {
+type DataProps = {
+  pdfPreview?: false;
+  headers: string[];
+  data: any;
+  invoices: Documento[];
+  loading: boolean;
+  error: string | null;
+};
+
+type ExpandableInfoProps = PdfProps | DataProps;
+
+const ExpandableInfo: React.FC<ExpandableInfoProps> = (props) => {
   const [showInvoicesPreview, setShowInvoicesPreview] = useState(false);
 
-  const { data, loading, error } = useFaturasFetch();
+  if (props.pdfPreview) {
+    return (
+      <div className="p-3">
+        <PdfPreview fileUrl="/fake.pdf" />
+      </div>
+    );
+  }
 
-  if (loading) return <Loading />;
-  if (error) return <Error message={error} />;
+  const { headers, data, invoices, loading, error } = props;
 
-  return row.extra !== undefined ? (
+  return (
     <div className="p-3">
       <em>
-        <div className="d-flex justify-content-between">
-          <div className="d-flex flex-column align-items-center">
-            <div>
-              <strong>Encargo Anual</strong>
+        {loading && <Loading />}
+        {error && <Error message={error} />}
+        {!loading && !error && (
+          <>
+            <Row className="gy-3">
+              {headers.map((header, index) => {
+                const key = Object.keys(data)[index];
+                const value = data?.[key] ?? "—";
+                const isCurrency = typeof value === "number" && value < 0;
+
+                return (
+                  <ExpandableInfoItem
+                    key={index}
+                    title={header}
+                    value={value}
+                    isCurrency={isCurrency}
+                  />
+                );
+              })}
+            </Row>
+
+            <hr className="my-3" />
+            <div
+              className="d-flex justify-content-end align-items-center gap-2"
+              onClick={() => setShowInvoicesPreview(true)}
+              style={{ cursor: "pointer" }}
+            >
+              <span style={{ display: "contents" }}>Ver Faturas</span>
+              <FaChevronRight />
             </div>
-            <div>{row.extra.encargoAnual} EUR</div>
-          </div>
-          <div className="d-flex flex-column align-items-center">
-            <div>
-              <strong>Intervalo de Cobrança</strong>
-            </div>
-            <div>{row.extra.intervaloCobranca}</div>
-          </div>
-          <div className="d-flex flex-column align-items-center">
-            <div>
-              <strong>Débito Agendado</strong>
-            </div>
-            <div>{row.extra.debitoAgendado}</div>
-          </div>
-          <div className="d-flex flex-column align-items-center">
-            <div>
-              <strong>Conta de Origem</strong>
-            </div>
-            <div>{row.extra.contaOrigem}</div>
-          </div>
-        </div>
-        <hr className="my-3" />
-        <div
-          className="d-flex justify-content-end align-items-center align-text-center gap-2"
-          onClick={() => setShowInvoicesPreview(true)}
-          style={{ cursor: "pointer" }}
-        >
-          <span style={{ display: "contents" }} className="align-self-center">
-            Ver Faturas
-          </span>
-          <FaChevronRight />
-        </div>
-        {showInvoicesPreview && (
-          <Invoices
-            data={data}
-            show={showInvoicesPreview}
-            setShow={setShowInvoicesPreview}
-          />
+
+            {showInvoicesPreview && (
+              <Invoices
+                data={invoices}
+                show={showInvoicesPreview}
+                setShow={setShowInvoicesPreview}
+              />
+            )}
+          </>
         )}
       </em>
-    </div>
-  ) : (
-    <div className="p-3">
-      <PdfPreview fileUrl={"/fake.pdf"} />
     </div>
   );
 };

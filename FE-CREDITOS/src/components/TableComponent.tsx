@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Table } from "react-bootstrap";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import ExpandableInfo from "./ExpandableInfo";
+import { useFaturasFetch } from "../hooks/useFaturasFetch";
 
 interface TableComponentProps {
   headers: string[];
@@ -11,6 +12,8 @@ interface TableComponentProps {
 
 const TableComponent = ({ headers, data }: TableComponentProps) => {
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
+
+  const { data: invoicesData, loading, error } = useFaturasFetch();
 
   const toggleRow = (index: number) => {
     setExpandedRow(expandedRow === index ? null : index);
@@ -68,7 +71,19 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
             {expandedRow === rowIndex && row.responsabilidade === undefined && (
               <tr>
                 <td colSpan={headers.length + 1} className="bg-light">
-                  {<ExpandableInfo row={row} />}
+                  <ExpandableInfo
+                    headers={[
+                      "Encargo Anual",
+                      "Montante",
+                      "Data de Vencimento",
+                      "Tipo",
+                    ]} //TODO: alterar
+                    data={row.extra ?? {}}
+                    invoices={invoicesData}
+                    loading={loading}
+                    error={error}
+                    pdfPreview={row.extra == null}
+                  />
                 </td>
               </tr>
             )}

@@ -1,8 +1,9 @@
 import { Offcanvas } from "react-bootstrap";
 import Documents from "../screens/tabs/Documents";
+import { Documento } from "../types/types";
 
 interface InvoicesProps {
-  data: { date: string; nome: string }[];
+  data: Documento[];
   show: boolean;
   setShow: (value: boolean) => void;
 }

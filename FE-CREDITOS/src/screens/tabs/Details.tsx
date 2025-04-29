@@ -2,7 +2,7 @@ import { Row, Col } from "react-bootstrap";
 import SearchAndExportBar from "../../components/SearchAndExportBar";
 import TableComponent from "../../components/TableComponent";
 import { Garantia } from "../../types/types";
-import ResumoOperacoes from "../../components/ResumoOperacoes";
+import OperationsSummary from "../../components/OperationsSummary";
 import { useState } from "react";
 
 type DetailsProps<T> = {
@@ -32,7 +32,7 @@ const Details = <T extends { beneficiario: string }>({
   return (
     <>
       {!isCreditoDocImportacao && (
-        <ResumoOperacoes data={data as unknown as Garantia[]} />
+        <OperationsSummary data={data as unknown as Garantia[]} />
       )}
 
       <SearchAndExportBar

@@ -58,29 +58,6 @@ declare module "#not-for-import/feCreditos/screens/tabs/Documents" {
     }) => import("react/jsx-runtime").JSX.Element;
     export default Documents;
 }
-declare module "#not-for-import/feCreditos/components/Invoices" {
-    interface InvoicesProps {
-        data: {
-            date: string;
-            nome: string;
-        }[];
-        show: boolean;
-        setShow: (value: boolean) => void;
-    }
-    const Invoices: ({ data, show, setShow }: InvoicesProps) => import("react/jsx-runtime").JSX.Element | null;
-    export default Invoices;
-}
-declare module "#not-for-import/feCreditos/api/endpoints" {
-    export const ENDPOINTS: {
-        creditosDocImport: string;
-        documentos: string;
-        faturas: string;
-        garantias: string;
-    };
-}
-declare module "#not-for-import/feCreditos/api/config" {
-    export const BASE_URL = "https://run.mocky.io/v3/";
-}
 declare module "#not-for-import/feCreditos/types/types" {
     export type Garantia = {
         beneficiario: string;
@@ -110,6 +87,63 @@ declare module "#not-for-import/feCreditos/types/types" {
         nome: string;
     };
 }
+declare module "#not-for-import/feCreditos/components/Invoices" {
+    import { Documento } from "#not-for-import/feCreditos/types/types";
+    interface InvoicesProps {
+        data: Documento[];
+        show: boolean;
+        setShow: (value: boolean) => void;
+    }
+    const Invoices: ({ data, show, setShow }: InvoicesProps) => import("react/jsx-runtime").JSX.Element | null;
+    export default Invoices;
+}
+declare module "#not-for-import/feCreditos/components/Error" {
+    import React from "react";
+    interface ErrorProps {
+        message: string;
+    }
+    const Error: React.FC<ErrorProps>;
+    export default Error;
+}
+declare module "#not-for-import/feCreditos/components/ExpandableInfoItem" {
+    import React from "react";
+    interface ExpandableInfoItemProps {
+        title: string;
+        value: string | number;
+        isCurrency?: boolean;
+    }
+    const ExpandableInfoItem: React.FC<ExpandableInfoItemProps>;
+    export default ExpandableInfoItem;
+}
+declare module "#not-for-import/feCreditos/components/ExpandableInfo" {
+    import React from "react";
+    import { Documento } from "#not-for-import/feCreditos/types/types";
+    type PdfProps = {
+        pdfPreview: true;
+    };
+    type DataProps = {
+        pdfPreview?: false;
+        headers: string[];
+        data: any;
+        invoices: Documento[];
+        loading: boolean;
+        error: string | null;
+    };
+    type ExpandableInfoProps = PdfProps | DataProps;
+    const ExpandableInfo: React.FC<ExpandableInfoProps>;
+    export default ExpandableInfo;
+}
+declare module "#not-for-import/feCreditos/api/endpoints" {
+    export const ENDPOINTS: {
+        creditosDocImport: string;
+        documentos: string;
+        faturas: string;
+        garantias: string;
+    };
+}
+declare module "#not-for-import/feCreditos/api/config" {
+    export const BASE_URL = "https://q577l.wiremockapi.cloud/";
+}
 declare module "#not-for-import/feCreditos/services/service" {
     import { CreditoDocImport, Garantia } from "#not-for-import/feCreditos/types/types";
     export function fetchList<T>(endpoint: string): Promise<T[]>;
@@ -137,22 +171,6 @@ declare module "#not-for-import/feCreditos/hooks/useFaturasFetch" {
         error: string | null;
     };
 }
-declare module "#not-for-import/feCreditos/components/Error" {
-    import React from "react";
-    interface ErrorProps {
-        message: string;
-    }
-    const Error: React.FC<ErrorProps>;
-    export default Error;
-}
-declare module "#not-for-import/feCreditos/components/ExpandableInfo" {
-    import React from "react";
-    interface ExpandableInfoProps {
-        row: any;
-    }
-    const ExpandableInfo: React.FC<ExpandableInfoProps>;
-    export default ExpandableInfo;
-}
 declare module "#not-for-import/feCreditos/components/TableComponent" {
     interface TableComponentProps {
         headers: string[];
@@ -161,14 +179,14 @@ declare module "#not-for-import/feCreditos/components/TableComponent" {
     const TableComponent: ({ headers, data }: TableComponentProps) => import("react/jsx-runtime").JSX.Element;
     export default TableComponent;
 }
-declare module "#not-for-import/feCreditos/components/ResumoOperacoes" {
+declare module "#not-for-import/feCreditos/components/OperationsSummary" {
     import React from "react";
     import { Garantia } from "#not-for-import/feCreditos/types/types";
-    interface ResumoOperacoesProps {
+    interface OperationsSummaryProps {
         data: Garantia[];
     }
-    const ResumoOperacoes: React.FC<ResumoOperacoesProps>;
-    export default ResumoOperacoes;
+    const OperationsSummary: React.FC<OperationsSummaryProps>;
+    export default OperationsSummary;
 }
 declare module "#not-for-import/feCreditos/screens/tabs/Details" {
     type DetailsProps<T> = {
