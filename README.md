@@ -18,7 +18,7 @@ O repositório está organizado da seguinte forma:
 - Zustand
 - React Bootstrap
 - React Icons
-- React PDF Viewer
+- React PDF
 
 ## Pré-Requisitos
 
@@ -33,14 +33,14 @@ npm -v
 
 - **FE-HOST**: Carregamento dinâmico dos micro-frontends via Module Federation.
 - **FE-CREDITOS**:
-  - **garantias.screen.tsx**: Gestão de créditos do tipo garantias e avales.
-  - **creditosDocImportacao.screen.tsx**: Gestão dos créditos do tipo documentários de importação.
+  - **garantias.screen.tsx**: Gestão de créditos do tipo "Garantias e Avales".
+  - **creditosDocImportacao.screen.tsx**: Gestão dos créditos do tipo "Créditos Documentários de Importação".
 
 ## Instalação e Execução
 
 ```bash
 # Clonagem do repositório
-git clone https://github.com/1221124/FE-HOST-FE-CREDITOS.git
+git clone https://github.com/1221124/creditos-siteempresasbanco.git
 
 # Instalação de dependências
 cd FE-CREDITS | npm install
