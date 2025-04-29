@@ -105,15 +105,18 @@ declare module "#not-for-import/feCreditos/components/Error" {
     const Error: React.FC<ErrorProps>;
     export default Error;
 }
-declare module "#not-for-import/feCreditos/components/ExpandableInfoItem" {
+declare module "#not-for-import/feCreditos/components/CardItem" {
     import React from "react";
-    interface ExpandableInfoItemProps {
+    interface CardItemProps {
         title: string;
         value: string | number;
         isCurrency?: boolean;
+        bordered?: boolean;
+        start?: boolean;
+        end?: boolean;
     }
-    const ExpandableInfoItem: React.FC<ExpandableInfoItemProps>;
-    export default ExpandableInfoItem;
+    const CardItem: React.FC<CardItemProps>;
+    export default CardItem;
 }
 declare module "#not-for-import/feCreditos/components/ExpandableInfo" {
     import React from "react";

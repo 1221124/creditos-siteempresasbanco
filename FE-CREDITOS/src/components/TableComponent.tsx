@@ -74,10 +74,10 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
                   <ExpandableInfo
                     headers={[
                       "Encargo Anual",
-                      "Montante",
-                      "Data de Vencimento",
-                      "Tipo",
-                    ]} //TODO: alterar
+                      "Intervalo de Cobrança",
+                      "Débito Agendado",
+                      "Conta de Origem",
+                    ]}
                     data={row.extra ?? {}}
                     invoices={invoicesData}
                     loading={loading}

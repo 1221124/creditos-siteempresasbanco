@@ -6,7 +6,7 @@ import { FaChevronRight } from "react-icons/fa";
 import Invoices from "./Invoices";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
-import ExpandableInfoItem from "./ExpandableInfoItem";
+import CardItem from "./CardItem";
 import { Documento } from "../types/types";
 
 type PdfProps = {
@@ -44,18 +44,17 @@ const ExpandableInfo: React.FC<ExpandableInfoProps> = (props) => {
         {error && <Error message={error} />}
         {!loading && !error && (
           <>
-            <Row className="gy-3">
+            <Row className="text-center gy-3">
               {headers.map((header, index) => {
                 const key = Object.keys(data)[index];
                 const value = data?.[key] ?? "—";
-                const isCurrency = typeof value === "number" && value < 0;
 
                 return (
-                  <ExpandableInfoItem
+                  <CardItem
                     key={index}
                     title={header}
                     value={value}
-                    isCurrency={isCurrency}
+                    bordered={false}
                   />
                 );
               })}
