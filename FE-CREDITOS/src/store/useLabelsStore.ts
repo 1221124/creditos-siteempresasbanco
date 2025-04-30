@@ -1,11 +1,11 @@
 import { create } from "zustand";
 
-interface Tab {
+type Tab = {
   label: string;
   path: string;
-}
+};
 
-interface LabelsStore {
+type LabelsStore = {
   //tabs
   appTabs: Tab[];
   garantiasTabs: Tab[];
@@ -23,12 +23,13 @@ interface LabelsStore {
   loadingLabel: string;
   errorOccuredLabel: string;
   tryAgainLabel: string;
+  apiErrorLabel: string;
   invoicesLabel: string;
   homeLabel: string;
   bankNameLabel: string;
   companyNameLabel: string;
   personNameLabel: string;
-}
+};
 
 export const useLabelsStore = create<LabelsStore>(() => ({
   //tabs
@@ -81,6 +82,7 @@ export const useLabelsStore = create<LabelsStore>(() => ({
   loadingLabel: "A carregar...",
   errorOccuredLabel: "Ocorreu um erro!",
   tryAgainLabel: "Tentar novamente",
+  apiErrorLabel: "Erro na chamada à API:",
   invoicesLabel: "Faturas",
   homeLabel: "Bem-vindo ao módulo de Créditos do Site de Empresas do Banco",
   bankNameLabel: "Site de Empresas - Banco",

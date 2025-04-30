@@ -46,12 +46,6 @@ declare module "#not-for-import/feCreditos/components/SearchAndExportBar" {
     }>({ placeholder, data, setData, }: SearchAndExportBarProps<T>) => import("react/jsx-runtime").JSX.Element;
     export default SearchAndExportBar;
 }
-declare module "#not-for-import/feCreditos/components/PdfPreview" {
-    const PdfPreview: ({ fileUrl }: {
-        fileUrl: string;
-    }) => import("react/jsx-runtime").JSX.Element;
-    export default PdfPreview;
-}
 declare module "#not-for-import/feCreditos/screens/tabs/Documents" {
     const Documents: ({ data }: {
         data: {
@@ -113,6 +107,7 @@ declare module "#not-for-import/feCreditos/components/CardItem" {
     interface CardItemProps {
         title: string;
         value: string | number;
+        isPercentage?: boolean;
         isCurrency?: boolean;
         bordered?: boolean;
         start?: boolean;
@@ -124,18 +119,13 @@ declare module "#not-for-import/feCreditos/components/CardItem" {
 declare module "#not-for-import/feCreditos/components/ExpandableInfo" {
     import React from "react";
     import { Documento } from "#not-for-import/feCreditos/types/types";
-    type PdfProps = {
-        pdfPreview: true;
-    };
-    type DataProps = {
-        pdfPreview?: false;
+    type ExpandableInfoProps = {
         headers: string[];
         data: any;
         invoices: Documento[];
         loading: boolean;
         error: string | null;
     };
-    type ExpandableInfoProps = PdfProps | DataProps;
     const ExpandableInfo: React.FC<ExpandableInfoProps>;
     export default ExpandableInfo;
 }
@@ -176,6 +166,12 @@ declare module "#not-for-import/feCreditos/hooks/useFaturasFetch" {
         loading: boolean;
         error: string | null;
     };
+}
+declare module "#not-for-import/feCreditos/components/PdfPreview" {
+    const PdfPreview: ({ fileUrl }: {
+        fileUrl: string;
+    }) => import("react/jsx-runtime").JSX.Element;
+    export default PdfPreview;
 }
 declare module "#not-for-import/feCreditos/components/TableComponent" {
     interface TableComponentProps {

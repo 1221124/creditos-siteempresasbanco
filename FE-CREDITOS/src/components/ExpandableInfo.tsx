@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { Row } from "react-bootstrap";
-import PdfPreview from "./PdfPreview";
 import { FaChevronRight } from "react-icons/fa";
 import Invoices from "./Invoices";
 import Loading from "../components/Loading";
@@ -10,12 +9,7 @@ import CardItem from "./CardItem";
 import { Documento } from "../types/types";
 import { useLabelsStore } from "../store/useLabelsStore";
 
-type PdfProps = {
-  pdfPreview: true;
-};
-
-type DataProps = {
-  pdfPreview?: false;
+type ExpandableInfoProps = {
   headers: string[];
   data: any;
   invoices: Documento[];
@@ -23,21 +17,15 @@ type DataProps = {
   error: string | null;
 };
 
-type ExpandableInfoProps = PdfProps | DataProps;
-
-const ExpandableInfo: React.FC<ExpandableInfoProps> = (props) => {
+const ExpandableInfo: React.FC<ExpandableInfoProps> = ({
+  headers,
+  data,
+  invoices,
+  loading,
+  error,
+}) => {
   const [showInvoicesPreview, setShowInvoicesPreview] = useState(false);
   const seeInvoicesLabel = useLabelsStore((state) => state.seeInvoicesLabel);
-
-  if (props.pdfPreview) {
-    return (
-      <div className="p-3">
-        <PdfPreview fileUrl="/fake.pdf" />
-      </div>
-    );
-  }
-
-  const { headers, data, invoices, loading, error } = props;
 
   return (
     <div className="p-3">
@@ -50,12 +38,14 @@ const ExpandableInfo: React.FC<ExpandableInfoProps> = (props) => {
               {headers.map((header, index) => {
                 const key = Object.keys(data)[index];
                 const value = data?.[key] ?? "—";
+                const isPercentage = Number(value).toString().includes(".");
 
                 return (
                   <CardItem
                     key={index}
                     title={header}
                     value={value}
+                    isPercentage={isPercentage}
                     bordered={false}
                   />
                 );

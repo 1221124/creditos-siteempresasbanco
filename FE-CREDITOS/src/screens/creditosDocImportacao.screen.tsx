@@ -5,23 +5,20 @@ import Details from "./tabs/Details";
 import { useCreditosDocImportFetch } from "../hooks/useCreditosDocImportFetch";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
+import { useLabelsStore } from "../store/useLabelsStore";
 
 const CreditosDocImportacaoScreen: React.FC = () => {
   const { data, loading, error } = useCreditosDocImportFetch();
+  const creditosDocImportTabs = useLabelsStore(
+    (state) => state.creditosDocImportTabs
+  );
 
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
 
-  const tabs = [
-    {
-      label: "Detalhes",
-      path: "/creditos/doc-importacao",
-    },
-  ];
-
   return (
     <Container className="mt-4">
-      <NavTabs tabs={tabs} align="start" />
+      <NavTabs tabs={creditosDocImportTabs} align="start" />
       <Details data={data} isCreditoDocImportacao={true} />
     </Container>
   );

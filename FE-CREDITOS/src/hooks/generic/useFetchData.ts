@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { fetchList } from "../../services/service";
+import { useLabelsStore } from "../../store/useLabelsStore";
 
 export function useFetchData<T>(endpoint: string) {
   const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  const errorOccuredLabel = useLabelsStore((state) => state.errorOccuredLabel);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -12,14 +15,14 @@ export function useFetchData<T>(endpoint: string) {
         const result = await fetchList<T>(endpoint);
         setData(result);
       } catch (err) {
-        setError("Erro ao buscar dados: " + (err as Error).message);
+        setError(errorOccuredLabel + ": " + (err as Error).message);
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [endpoint]);
+  }, [endpoint, errorOccuredLabel]);
 
   if (loading) {
     return { data, loading, error: null };

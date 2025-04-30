@@ -4,6 +4,7 @@ import { Col } from "react-bootstrap";
 interface CardItemProps {
   title: string;
   value: string | number;
+  isPercentage?: boolean;
   isCurrency?: boolean;
   bordered?: boolean;
   start?: boolean;
@@ -13,6 +14,7 @@ interface CardItemProps {
 const CardItem: React.FC<CardItemProps> = ({
   title,
   value,
+  isPercentage = false,
   isCurrency = false,
   bordered = true,
   start = false,
@@ -25,7 +27,13 @@ const CardItem: React.FC<CardItemProps> = ({
   >
     <div className="fw-bold">{title}</div>
     <div>
-      {value} {isCurrency ? <span className="ms-1">EUR</span> : null}
+      {isPercentage ? (
+        Number(value).toFixed(2).replace(".", ",") + " %"
+      ) : (
+        <>
+          {value} {isCurrency ? <span className="ms-1">EUR</span> : null}
+        </>
+      )}
     </div>
   </Col>
 );

@@ -5,6 +5,7 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import ExpandableInfo from "./ExpandableInfo";
 import { useFaturasFetch } from "../hooks/useFaturasFetch";
 import { useLabelsStore } from "../store/useLabelsStore";
+import PdfPreview from "./PdfPreview";
 
 interface TableComponentProps {
   headers: string[];
@@ -46,7 +47,7 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
                       key={colIndex}
                       className={`${isNegative ? "text-danger" : ""}`}
                     >
-                      {isNegative && typeof value === "number"
+                      {isNegative
                         ? new Intl.NumberFormat("pt-PT", {
                             style: "currency",
                             currency: "EUR",
@@ -73,14 +74,19 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
             {expandedRow === rowIndex && row.responsabilidade === undefined && (
               <tr>
                 <td colSpan={headers.length + 1} className="bg-light">
-                  <ExpandableInfo
-                    headers={extraInfoHeaders}
-                    data={row.extra ?? {}}
-                    invoices={invoicesData}
-                    loading={loading}
-                    error={error}
-                    pdfPreview={row.extra == null}
-                  />
+                  {row.extra != null ? (
+                    <ExpandableInfo
+                      headers={extraInfoHeaders}
+                      data={row.extra}
+                      invoices={invoicesData}
+                      loading={loading}
+                      error={error}
+                    />
+                  ) : (
+                    <div className="p-3">
+                      <PdfPreview fileUrl="/fake.pdf" />
+                    </div>
+                  )}
                 </td>
               </tr>
             )}

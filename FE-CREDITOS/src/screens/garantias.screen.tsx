@@ -8,6 +8,7 @@ import { useGarantiasFetch } from "../hooks/useGarantiasFetch";
 import { useDocumentosFetch } from "../hooks/useDocumentosFetch";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
+import { useLabelsStore } from "../store/useLabelsStore";
 
 const GarantiasScreen: React.FC = () => {
   const {
@@ -22,31 +23,15 @@ const GarantiasScreen: React.FC = () => {
   } = useDocumentosFetch();
 
   const { pathname } = useLocation();
-
-  const tabs = [
-    {
-      label: "Detalhes",
-      path: "/creditos/garantias-e-avales",
-    },
-    {
-      label: "Documentos",
-      path: "/creditos/garantias-e-avales/documentos",
-    },
-  ];
+  const garantiasTabs = useLabelsStore((state) => state.garantiasTabs);
 
   if (loadingGarantias || loadingDocumentos) return <Loading />;
   if (errorGarantias || errorDocumentos)
-    return (
-      <Error
-        message={
-          errorGarantias || errorDocumentos || "Um erro inesperado ocorreu"
-        }
-      />
-    );
+    return <Error message={(errorGarantias || errorDocumentos) as string} />;
 
   return (
     <Container className="mt-4">
-      <NavTabs tabs={tabs} align="start" />
+      <NavTabs tabs={garantiasTabs} align="start" />
       {pathname.includes("/documentos") ? (
         <Documents data={documentosData} />
       ) : (
