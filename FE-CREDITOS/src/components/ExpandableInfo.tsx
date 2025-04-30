@@ -38,7 +38,8 @@ const ExpandableInfo: React.FC<ExpandableInfoProps> = ({
               {headers.map((header, index) => {
                 const key = Object.keys(data)[index];
                 const value = data?.[key] ?? "—";
-                const isPercentage = Number(value).toString().includes(".");
+                const isPercentage = /%$/.test(value);
+                const isCurrency = /[.,]\d+$/.test(value);
 
                 return (
                   <CardItem
@@ -46,6 +47,7 @@ const ExpandableInfo: React.FC<ExpandableInfoProps> = ({
                     title={header}
                     value={value}
                     isPercentage={isPercentage}
+                    isCurrency={isCurrency}
                     bordered={false}
                   />
                 );

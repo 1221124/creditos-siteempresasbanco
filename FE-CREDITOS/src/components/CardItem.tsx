@@ -27,13 +27,16 @@ const CardItem: React.FC<CardItemProps> = ({
   >
     <div className="fw-bold">{title}</div>
     <div>
-      {isPercentage ? (
-        Number(value).toFixed(2).replace(".", ",") + " %"
-      ) : (
-        <>
-          {value} {isCurrency ? <span className="ms-1">EUR</span> : null}
-        </>
-      )}
+      {isPercentage
+        ? `${Number(value.toString().substring(0, value.toString().length - 1))
+            .toFixed(2)
+            .replace(".", ",")} %`
+        : isCurrency
+        ? new Intl.NumberFormat("pt-PT", {
+            style: "currency",
+            currency: "EUR",
+          }).format(Number(value))
+        : value}
     </div>
   </Col>
 );

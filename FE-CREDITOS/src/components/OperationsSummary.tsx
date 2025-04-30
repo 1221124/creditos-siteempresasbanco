@@ -12,17 +12,29 @@ const OperationsSummary: React.FC<OperationsSummaryProps> = ({ data }) => {
   const operationsSummaryHeaders = useLabelsStore(
     (state) => state.operationsSummaryHeaders
   );
+  const portugalLabel = useLabelsStore((state) => state.portugalLabel);
 
   const numberOfOperations = data.length;
-  const nationalTotal = getTotalByLocal(data, "Portugal");
+  const nationalTotal = getTotalByLocal(data, portugalLabel);
   const internationalTotal = getTotalByLocal(data);
 
   function getTotalByLocal(data: Garantia[], local?: string): number {
     return data
       .filter((item) =>
-        local ? item.local === local : item.local !== "Portugal"
+        local ? item.local === local : item.local !== portugalLabel
       )
-      .reduce((acc, item) => acc + item.montante, 0);
+      .reduce((acc, item) => {
+        const montanteStr = item.montante.trim();
+        const decimalPart = montanteStr.includes(",")
+          ? montanteStr.split(",")[1]
+          : montanteStr.split(".")[1];
+
+        const montanteDecimal = decimalPart ? Number("0." + decimalPart) : 0;
+
+        const montanteInteiro = Number(montanteStr.split(/[.,]/)[0]);
+
+        return acc + montanteInteiro + montanteDecimal;
+      }, 0);
   }
 
   return (

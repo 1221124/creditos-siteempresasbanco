@@ -20,6 +20,7 @@ type LabelsStore = {
   beneficiarySearchLabel: string;
   exportLabel: string;
   seeInvoicesLabel: string;
+  portugalLabel: string;
   loadingLabel: string;
   errorOccuredLabel: string;
   tryAgainLabel: string;
@@ -79,6 +80,7 @@ export const useLabelsStore = create<LabelsStore>(() => ({
   beneficiarySearchLabel: "Pesquisar por beneficiário",
   exportLabel: "Exportar",
   seeInvoicesLabel: "Ver faturas",
+  portugalLabel: "Portugal",
   loadingLabel: "A carregar...",
   errorOccuredLabel: "Ocorreu um erro!",
   tryAgainLabel: "Tentar novamente",

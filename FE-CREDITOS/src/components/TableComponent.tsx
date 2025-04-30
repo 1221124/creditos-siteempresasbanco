@@ -40,18 +40,19 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
               {Object.values(row)
                 .slice(0, row.extra === undefined ? undefined : -1)
                 .map((value, colIndex) => {
-                  const isNegative = typeof value === "number" && value < 0;
+                  const isCurrency = /[.,]\d+$/.test(value as string);
+                  const isNegative = isCurrency && Number(value) < 0;
 
                   return (
                     <td
                       key={colIndex}
                       className={`${isNegative ? "text-danger" : ""}`}
                     >
-                      {isNegative
+                      {isCurrency
                         ? new Intl.NumberFormat("pt-PT", {
                             style: "currency",
                             currency: "EUR",
-                          }).format(value)
+                          }).format(Number(value))
                         : String(value)}
                     </td>
                   );

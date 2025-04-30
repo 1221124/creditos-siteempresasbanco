@@ -62,9 +62,9 @@ declare module "#not-for-import/feCreditos/types/types" {
         operacao: number;
         dataInicial: string;
         dataFinal: string;
-        montante: number;
+        montante: string;
         extra: {
-            encargoAnual: number;
+            encargoAnual: string;
             intervaloCobranca: string;
             debitoAgendado: string;
             contaOrigem: number;
@@ -76,8 +76,8 @@ declare module "#not-for-import/feCreditos/types/types" {
         operacao: number;
         dataInicial: string;
         dataFinal: string;
-        montante: number;
-        responsabilidade: number;
+        montante: string;
+        responsabilidade: string;
     };
     export type Documento = {
         date: string;
