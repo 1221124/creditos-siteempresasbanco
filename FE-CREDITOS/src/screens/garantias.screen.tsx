@@ -3,12 +3,12 @@ import { Container } from "react-bootstrap";
 import NavTabs from "../components/NavTabs";
 import Details from "./tabs/Details";
 import { useLocation } from "react-router-dom";
-import Documents from "./tabs/Documents";
 import { useGarantiasFetch } from "../hooks/useGarantiasFetch";
 import { useDocumentosFetch } from "../hooks/useDocumentosFetch";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import { useLabelsStore } from "../store/useLabelsStore";
+import Documents from "./tabs/Documents";
 
 const GarantiasScreen: React.FC = () => {
   const {
@@ -25,17 +25,27 @@ const GarantiasScreen: React.FC = () => {
   const { pathname } = useLocation();
   const garantiasTabs = useLabelsStore((state) => state.garantiasTabs);
 
-  if (loadingGarantias || loadingDocumentos) return <Loading />;
+  if (loadingGarantias || loadingDocumentos)
+    return <Loading data-testid="loading" />;
   if (errorGarantias || errorDocumentos)
-    return <Error message={(errorGarantias || errorDocumentos) as string} />;
+    return (
+      <Error
+        data-testid="error"
+        message={(errorGarantias || errorDocumentos) as string}
+      />
+    );
 
   return (
     <Container className="mt-4">
-      <NavTabs tabs={garantiasTabs} align="start" />
+      <NavTabs data-testid="nav-tabs" tabs={garantiasTabs} align="start" />
       {pathname.includes("/documentos") ? (
-        <Documents data={documentosData} />
+        <Documents data-testid="documents" data={documentosData} />
       ) : (
-        <Details data={garantiasData} isCreditoDocImportacao={false} />
+        <Details
+          data-testid="details"
+          data={garantiasData}
+          isCreditoDocImportacao={false}
+        />
       )}
     </Container>
   );

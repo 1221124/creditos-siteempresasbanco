@@ -1,15 +1,12 @@
 import { ENDPOINTS } from "./../api/endpoints";
 import { BASE_URL } from "../api/config";
 import { CreditoDocImport, Garantia } from "../types/types";
-import { useLabelsStore } from "../store/useLabelsStore";
-
-const apiErrorLabel = useLabelsStore.getState().apiErrorLabel;
 
 export async function fetchList<T>(endpoint: string): Promise<T[]> {
   const response = await fetch(`${BASE_URL}${endpoint}`);
 
   if (!response.ok) {
-    throw new Error(`${apiErrorLabel} ${response.status}`);
+    throw new Error(`${response.status} - ${response.statusText}`);
   }
 
   const data = await response.json();
