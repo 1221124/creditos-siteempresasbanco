@@ -25,27 +25,17 @@ const GarantiasScreen: React.FC = () => {
   const { pathname } = useLocation();
   const garantiasTabs = useLabelsStore((state) => state.garantiasTabs);
 
-  if (loadingGarantias || loadingDocumentos)
-    return <Loading data-testid="loading" />;
+  if (loadingGarantias || loadingDocumentos) return <Loading />;
   if (errorGarantias || errorDocumentos)
-    return (
-      <Error
-        data-testid="error"
-        message={(errorGarantias || errorDocumentos) as string}
-      />
-    );
+    return <Error message={(errorGarantias || errorDocumentos) as string} />;
 
   return (
     <Container className="mt-4">
       <NavTabs data-testid="nav-tabs" tabs={garantiasTabs} align="start" />
       {pathname.includes("/documentos") ? (
-        <Documents data-testid="documents" data={documentosData} />
+        <Documents data={documentosData} />
       ) : (
-        <Details
-          data-testid="details"
-          data={garantiasData}
-          isCreditoDocImportacao={false}
-        />
+        <Details data={garantiasData} isCreditoDocImportacao={false} />
       )}
     </Container>
   );

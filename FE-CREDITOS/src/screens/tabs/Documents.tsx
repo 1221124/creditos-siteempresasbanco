@@ -6,7 +6,7 @@ const Documents = ({ data }: { data: { date: string; nome: string }[] }) => {
   const documentosHeaders = useLabelsStore((state) => state.documentosHeaders);
 
   return (
-    <Row>
+    <Row data-testid="documents">
       <Col>
         <TableComponent headers={documentosHeaders} data={data} />
       </Col>

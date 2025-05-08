@@ -197,24 +197,28 @@ const config = {
 };
 
 module.exports = {
-  preset: "ts-jest",
+  preset: "ts-jest/presets/default-esm",
   testEnvironment: "jsdom",
-  // moduleNameMapper: {
-  //   "^@store/(.*)$": "<rootDir>/src/store/$1",
-  //   "^@components/(.*)$": "<rootDir>/src/components/$1",
-  //   "^@hooks/(.*)$": "<rootDir>/src/hooks/$1",
-  //   "^@screens/(.*)$": "<rootDir>/src/screens/$1",
-  // },
   transform: {
     "^.+\\.(ts|tsx)$": [
       "ts-jest",
       {
         tsconfig: "./tsconfig.json",
+        useESM: true,
       },
     ],
-    "^.+\\.mjs$": "babel-jest",
+    "^.+\\.(mjs|js)$": "babel-jest",
   },
-  transformIgnorePatterns: ["/node_modules/(?!pdfjs-dist).+\\.js$"],
+  transformIgnorePatterns: ["/node_modules/(?!react-pdf|pdfjs-dist).+\\.mjs$"],
+  moduleNameMapper: {
+    "^@store/(.*)$": "<rootDir>/src/store/$1",
+    "^@components/(.*)$": "<rootDir>/src/components/$1",
+    "^@hooks/(.*)$": "<rootDir>/src/hooks/$1",
+    "^@screens/(.*)$": "<rootDir>/src/screens/$1",
+    "react-pdf": "<rootDir>/node_modules/react-pdf/dist/esm/index.js",
+    "pdfjs-dist": "<rootDir>/node_modules/pdfjs-dist/build/pdf.mjs",
+  },
+  extensionsToTreatAsEsm: [".ts", ".tsx"],
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
   collectCoverage: true,
   collectCoverageFrom: ["src/**/*.{ts,tsx}", "!src/**/*.d.ts"],

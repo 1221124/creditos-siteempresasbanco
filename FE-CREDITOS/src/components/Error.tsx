@@ -21,7 +21,7 @@ const Error: React.FC<ErrorProps> = ({ message }) => {
   }, [navigate]);
 
   return (
-    <Row className="justify-content-center mt-5">
+    <Row data-testid="error" className="justify-content-center mt-5">
       <Col md={6} lg={4}>
         <Alert variant="danger" className="text-center">
           <Alert.Heading>{errorOccuredLabel}</Alert.Heading>

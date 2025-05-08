@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.27.1",
-    "@babel/preset-env": "^7.27.1",
+    "@babel/preset-env": "^7.27.2",
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
     "@cloudbeds/webpack-module-federation-types-plugin": "^2.1.1",

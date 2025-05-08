@@ -35,7 +35,7 @@ const Details = <T extends { beneficiario: string }>({
         setData={setFilteredData}
       />
 
-      <Row>
+      <Row data-testid="details">
         <Col>
           <TableComponent headers={headers} data={filteredData} />
         </Col>
