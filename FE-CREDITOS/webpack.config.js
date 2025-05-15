@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
 const ModulefederationTypesPlugin =
   require("@cloudbeds/webpack-module-federation-types-plugin").ModuleFederationTypesPlugin;
@@ -70,6 +71,9 @@ module.exports = {
     new ModulefederationTypesPlugin({
       dirDownloadedTypes: "src/types",
       dirEmittedTypes: "@types",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: "public", to: "" }],
     }),
   ],
   devServer: {
