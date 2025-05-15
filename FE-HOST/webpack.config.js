@@ -38,6 +38,10 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html",
+      inject: "body",
+      publicPath: isProduction
+        ? "https://siteempresasbanco.netlify.app/"
+        : "http://localhost:3000/",
     }),
     new ModuleFederationPlugin({
       name: "feHost",
