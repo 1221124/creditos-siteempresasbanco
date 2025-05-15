@@ -73,7 +73,9 @@ module.exports = {
       dirEmittedTypes: "@types",
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: "public", to: "" }],
+      patterns: [
+        { from: "public", globOptions: { ignore: ["**/index.html"] } },
+      ],
     }),
   ],
   devServer: {
