@@ -5,13 +5,17 @@ const ModulefederationTypesPlugin =
   require("@cloudbeds/webpack-module-federation-types-plugin").ModuleFederationTypesPlugin;
 const packageJson = require("./package.json");
 
+const isProduction = process.env.NODE_ENV === "production";
+
 module.exports = {
-  mode: "development",
+  mode: isProduction ? "production" : "development",
   entry: "./src/index.ts",
   output: {
-    filename: "bundle.[contenthash].js",
+    filename: isProduction ? "bundle.[contenthash].js" : "bundle.js",
     path: path.resolve(__dirname, "dist"),
-    publicPath: "http://localhost:3000/",
+    publicPath: isProduction
+      ? "https://siteempresasbanco.netlify.app/"
+      : "http://localhost:3000/",
     clean: true,
   },
   resolve: {
@@ -38,7 +42,9 @@ module.exports = {
       name: "feHost",
       filename: "remoteEntry.js",
       remotes: {
-        creditos: "feCreditos@http://localhost:3001/remoteEntry.js",
+        creditos: isProduction
+          ? "feCreditos@https://creditos-siteempresasbanco.netlify.app/remoteEntry.js"
+          : "feCreditos@http://localhost:3001/remoteEntry.js",
       },
       exposes: {},
       shared: {
@@ -83,5 +89,5 @@ module.exports = {
       "Access-Control-Allow-Origin": "*",
     },
   },
-  devtool: "inline-source-map",
+  devtool: isProduction ? "source-map" : "inline-source-map",
 };

@@ -5,13 +5,17 @@ const ModulefederationTypesPlugin =
   require("@cloudbeds/webpack-module-federation-types-plugin").ModuleFederationTypesPlugin;
 const packageJson = require("./package.json");
 
+const isProduction = process.env.NODE_ENV === "production";
+
 module.exports = {
-  mode: "development",
+  mode: isProduction ? "production" : "development",
   entry: "./src/index.ts",
   output: {
-    filename: "bundle.[contenthash].js",
+    filename: isProduction ? "bundle.[contenthash].js" : "bundle.js",
     path: path.resolve(__dirname, "dist"),
-    publicPath: "http://localhost:3001/",
+    publicPath: isProduction
+      ? "https://creditos-siteempresasbanco.netlify.app/"
+      : "http://localhost:3001/",
     clean: true,
   },
   resolve: {
@@ -85,5 +89,5 @@ module.exports = {
       "Access-Control-Allow-Origin": "*",
     },
   },
-  devtool: "inline-source-map",
+  devtool: isProduction ? "source-map" : "inline-source-map",
 };
