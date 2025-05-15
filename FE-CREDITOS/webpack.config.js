@@ -39,6 +39,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html",
+      favicon: "./public/favicon.png",
       inject: "body",
       publicPath: isProduction
         ? "https://creditos-siteempresasbanco.netlify.app/"
