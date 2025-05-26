@@ -1,7 +1,7 @@
 {
   "name": "fe-creditos",
   "version": "1.0.0",
-  "description": "aplication creditos for microfrontend",
+  "description": "microfrontend aplication creditos",
   "main": "index.ts",
   "scripts": {
     "start": "webpack serve --mode development",
@@ -18,8 +18,7 @@
     "react-icons": "^5.5.0",
     "react-pdf": "^9.2.1",
     "react-router-dom": "7.4.0",
-    "util": "^0.12.5",
-    "zustand": "^5.0.3"
+    "util": "^0.12.5"
   },
   "devDependencies": {
     "@babel/core": "^7.27.1",

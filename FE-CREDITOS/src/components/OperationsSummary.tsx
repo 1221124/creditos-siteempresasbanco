@@ -2,8 +2,7 @@ import React from "react";
 import { Row } from "react-bootstrap";
 import { Garantia } from "../types/types";
 import CardItem from "./CardItem";
-import { useLabelsStore } from "../store/useLabelsStore";
-
+import { useLabelsStore } from "utils/useLabelsStore";
 interface OperationsSummaryProps {
   data: Garantia[];
 }

@@ -48,9 +48,15 @@ module.exports = {
       name: "feHost",
       filename: "remoteEntry.js",
       remotes: {
+        dashboard: isProduction
+          ? "feDashboard@https://dashboard-siteempresasbanco.netlify.app/remoteEntry.js"
+          : "feDashboard@http://localhost:3001/remoteEntry.js",
+        utils: isProduction
+          ? "feUtils@https://utils-siteempresasbanco.netlify.app/remoteEntry.js"
+          : "feUtils@http://localhost:3002/remoteEntry.js",
         creditos: isProduction
           ? "feCreditos@https://creditos-siteempresasbanco.netlify.app/remoteEntry.js"
-          : "feCreditos@http://localhost:3001/remoteEntry.js",
+          : "feCreditos@http://localhost:3003/remoteEntry.js",
       },
       exposes: {},
       shared: {

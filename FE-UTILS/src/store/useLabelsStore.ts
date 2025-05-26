@@ -35,7 +35,7 @@ type LabelsStore = {
 export const useLabelsStore = create<LabelsStore>(() => ({
   //tabs
   appTabs: [
-    { label: "Início", path: "/creditos" },
+    { label: "Início", path: "/dashboard" },
     { label: "Garantias e Avales", path: "/creditos/garantias-e-avales" },
     { label: "Créditos Doc. Importação", path: "/creditos/doc-importacao" },
   ],

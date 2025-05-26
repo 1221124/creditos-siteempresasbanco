@@ -16,7 +16,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     publicPath: isProduction
       ? "https://creditos-siteempresasbanco.netlify.app/"
-      : "http://localhost:3001/",
+      : "http://localhost:3003/",
     clean: true,
   },
   resolve: {
@@ -43,15 +43,17 @@ module.exports = {
       inject: "body",
       publicPath: isProduction
         ? "https://creditos-siteempresasbanco.netlify.app/"
-        : "http://localhost:3001/",
+        : "http://localhost:3003/",
     }),
     new ModuleFederationPlugin({
       name: "feCreditos",
       filename: "remoteEntry.js",
+      remotes: {
+        utils: isProduction
+          ? "feUtils@https://utils-siteempresasbanco.netlify.app/remoteEntry.js"
+          : "feUtils@http://localhost:3002/remoteEntry.js",
+      },
       exposes: {
-        "./NavTabs": "./src/components/NavTabs",
-        "./Loading": "./src/components/Loading",
-        "./useLabelsStore": "./src/store/useLabelsStore.ts",
         "./App": "./src/App",
       },
       shared: {
@@ -93,7 +95,7 @@ module.exports = {
         directory: path.join(__dirname, "dist"),
       },
     ],
-    port: 3001,
+    port: 3003,
     hot: true,
     historyApiFallback: true,
     headers: {

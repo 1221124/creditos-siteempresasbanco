@@ -1,7 +1,7 @@
 {
   "name": "fe-host",
   "version": "1.0.0",
-  "description": "aplication host for microfrontend",
+  "description": "microfrontend aplication host",
   "main": "index.ts",
   "scripts": {
     "start": "webpack serve --mode development",

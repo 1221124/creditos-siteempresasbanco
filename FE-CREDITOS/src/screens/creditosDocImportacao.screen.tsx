@@ -1,11 +1,12 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import NavTabs from "../components/NavTabs";
 import Details from "./tabs/Details";
 import { useCreditosDocImportFetch } from "../hooks/useCreditosDocImportFetch";
-import Loading from "../components/Loading";
-import Error from "../components/Error";
-import { useLabelsStore } from "../store/useLabelsStore";
+import { useLabelsStore } from "utils/useLabelsStore";
+
+const Loading = React.lazy(() => import("utils/Loading"));
+const Error = React.lazy(() => import("utils/Error"));
+const NavTabs = React.lazy(() => import("utils/NavTabs"));
 
 const CreditosDocImportacaoScreen: React.FC = () => {
   const { data, loading, error } = useCreditosDocImportFetch();

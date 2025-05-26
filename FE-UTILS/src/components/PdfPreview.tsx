@@ -12,6 +12,7 @@ const PdfPreview = ({ fileUrl }: { fileUrl: string }) => {
         pageNumber={1}
         renderTextLayer={false}
         renderAnnotationLayer={false}
+        scale={0.85}
       />
     </Document>
   );

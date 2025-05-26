@@ -1,6 +1,6 @@
 import { ENDPOINTS } from "./../api/endpoints";
 import { CreditoDocImport, Garantia } from "../types/types";
-import { get } from "./restAdapter";
+import { get } from "./RESTAdapter";
 
 export async function getCreditosDocImport(): Promise<CreditoDocImport[]> {
   return get<CreditoDocImport>(ENDPOINTS.creditosDocImport);

@@ -1,14 +1,15 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import NavTabs from "../components/NavTabs";
 import Details from "./tabs/Details";
 import { useLocation } from "react-router-dom";
 import { useGarantiasFetch } from "../hooks/useGarantiasFetch";
 import { useDocumentosFetch } from "../hooks/useDocumentosFetch";
-import Loading from "../components/Loading";
-import Error from "../components/Error";
-import { useLabelsStore } from "../store/useLabelsStore";
 import Documents from "./tabs/Documents";
+import { useLabelsStore } from "utils/useLabelsStore";
+
+const Loading = React.lazy(() => import("utils/Loading"));
+const Error = React.lazy(() => import("utils/Error"));
+const NavTabs = React.lazy(() => import("utils/NavTabs"));
 
 const GarantiasScreen: React.FC = () => {
   const {

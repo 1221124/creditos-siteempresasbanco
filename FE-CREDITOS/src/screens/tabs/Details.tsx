@@ -4,7 +4,8 @@ import TableComponent from "../../components/TableComponent";
 import { Garantia } from "../../types/types";
 import OperationsSummary from "../../components/OperationsSummary";
 import { useState } from "react";
-import { useLabelsStore } from "../../store/useLabelsStore";
+import React from "react";
+import { useLabelsStore } from "utils/useLabelsStore";
 
 type DetailsProps<T> = {
   data: T[];

@@ -1,24 +1,3 @@
-declare module "creditos/NavTabs" {
-    import React from "react";
-    interface NavTabsProps {
-        tabs: {
-            label: string;
-            path: string;
-        }[];
-        align?: "start" | "center" | "end";
-        topLevel?: boolean;
-    }
-    const NavTabs: React.FC<NavTabsProps>;
-    export default NavTabs;
-}
-declare module "creditos/useLabelsStore" {
-    export const useLabelsStore: any;
-}
-declare module "creditos/Loading" {
-    import React from "react";
-    const Loading: React.FC;
-    export default Loading;
-}
 declare module "#not-for-import/feCreditos/components/SearchInput" {
     import React from "react";
     interface SearchInputProps {
@@ -94,14 +73,6 @@ declare module "#not-for-import/feCreditos/components/Invoices" {
     const Invoices: ({ data, show, setShow }: InvoicesProps) => import("react/jsx-runtime").JSX.Element | null;
     export default Invoices;
 }
-declare module "#not-for-import/feCreditos/components/Error" {
-    import React from "react";
-    interface ErrorProps {
-        message: string;
-    }
-    const Error: React.FC<ErrorProps>;
-    export default Error;
-}
 declare module "#not-for-import/feCreditos/components/CardItem" {
     import React from "react";
     interface CardItemProps {
@@ -129,24 +100,11 @@ declare module "#not-for-import/feCreditos/components/ExpandableInfo" {
     const ExpandableInfo: React.FC<ExpandableInfoProps>;
     export default ExpandableInfo;
 }
-declare module "#not-for-import/feCreditos/api/endpoints" {
-    export const ENDPOINTS: {
-        creditosDocImport: string;
-        documentos: string;
-        faturas: string;
-        garantias: string;
-    };
-}
 declare module "#not-for-import/feCreditos/api/config" {
     export const BASE_URL = "https://q577l.wiremockapi.cloud/";
 }
-declare module "#not-for-import/feCreditos/services/service" {
-    import { CreditoDocImport, Garantia } from "#not-for-import/feCreditos/types/types";
-    export function fetchList<T>(endpoint: string): Promise<T[]>;
-    export function getCreditosDocImport(): Promise<CreditoDocImport[]>;
-    export function getDocumentos(): Promise<Document[]>;
-    export function getFaturas(): Promise<Document[]>;
-    export function getGarantias(): Promise<Garantia[]>;
+declare module "#not-for-import/feCreditos/services/RESTAdapter" {
+    export function get<T>(endpoint: string): Promise<T[]>;
 }
 declare module "#not-for-import/feCreditos/hooks/generic/useFetchData" {
     export function useFetchData<T>(endpoint: string): {
@@ -159,6 +117,14 @@ declare module "#not-for-import/feCreditos/hooks/generic/useFetchData" {
         error: null;
     };
 }
+declare module "#not-for-import/feCreditos/api/endpoints" {
+    export const ENDPOINTS: {
+        creditosDocImport: string;
+        documentos: string;
+        faturas: string;
+        garantias: string;
+    };
+}
 declare module "#not-for-import/feCreditos/hooks/useFaturasFetch" {
     import { Documento } from "#not-for-import/feCreditos/types/types";
     export function useFaturasFetch(): {
@@ -166,12 +132,6 @@ declare module "#not-for-import/feCreditos/hooks/useFaturasFetch" {
         loading: boolean;
         error: string | null;
     };
-}
-declare module "#not-for-import/feCreditos/components/PdfPreview" {
-    const PdfPreview: ({ fileUrl }: {
-        fileUrl: string;
-    }) => import("react/jsx-runtime").JSX.Element;
-    export default PdfPreview;
 }
 declare module "#not-for-import/feCreditos/components/TableComponent" {
     interface TableComponentProps {
@@ -235,5 +195,6 @@ declare module "#not-for-import/feCreditos/screens/creditosDocImportacao.screen"
     export default CreditosDocImportacaoScreen;
 }
 declare module "creditos/App" {
+    import "bootstrap/dist/css/bootstrap.min.css";
     export default function App(): import("react/jsx-runtime").JSX.Element;
 }

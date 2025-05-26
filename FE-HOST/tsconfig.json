@@ -15,7 +15,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "paths": { "@types": ["./@types"] }
+    "paths": { "@types": ["./@types"] },
+    "noImplicitAny": false
   },
   "include": ["src", "../bankingRecord/src/contexts"]
 }

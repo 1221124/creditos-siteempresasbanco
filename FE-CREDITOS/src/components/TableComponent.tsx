@@ -4,8 +4,9 @@ import { Table } from "react-bootstrap";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import ExpandableInfo from "./ExpandableInfo";
 import { useFaturasFetch } from "../hooks/useFaturasFetch";
-import { useLabelsStore } from "../store/useLabelsStore";
-import PdfPreview from "./PdfPreview";
+import { useLabelsStore } from "utils/useLabelsStore";
+
+const PdfPreview = React.lazy(() => import("utils/PdfPreview"));
 
 interface TableComponentProps {
   headers: string[];

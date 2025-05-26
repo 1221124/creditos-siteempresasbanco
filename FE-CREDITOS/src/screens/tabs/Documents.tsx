@@ -1,6 +1,6 @@
 import { Row, Col } from "react-bootstrap";
 import TableComponent from "../../components/TableComponent";
-import { useLabelsStore } from "../../store/useLabelsStore";
+import { useLabelsStore } from "utils/useLabelsStore";
 
 const Documents = ({ data }: { data: { date: string; nome: string }[] }) => {
   const documentosHeaders = useLabelsStore((state) => state.documentosHeaders);

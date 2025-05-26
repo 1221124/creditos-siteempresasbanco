@@ -1,7 +1,7 @@
 import { Offcanvas } from "react-bootstrap";
 import Documents from "../screens/tabs/Documents";
 import { Documento } from "../types/types";
-import { useLabelsStore } from "../store/useLabelsStore";
+import { useLabelsStore } from "utils/useLabelsStore";
 
 interface InvoicesProps {
   data: Documento[];

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useLabelsStore } from "../../store/useLabelsStore";
-import { get } from "../../services/restAdapter";
+import { get } from "../../services/RESTAdapter";
+import { useLabelsStore } from "utils/useLabelsStore";
 
 export function useFetchData<T>(endpoint: string) {
   const [data, setData] = useState<T[]>([]);

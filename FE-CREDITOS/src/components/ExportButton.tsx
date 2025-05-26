@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { FaFileExport } from "react-icons/fa";
-import { useLabelsStore } from "../store/useLabelsStore";
+import { useLabelsStore } from "utils/useLabelsStore";
 
 const ExportButton: React.FC = () => {
   const exportLabel = useLabelsStore((state) => state.exportLabel);

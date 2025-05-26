@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import { Row } from "react-bootstrap";
 import { FaChevronRight } from "react-icons/fa";
 import Invoices from "./Invoices";
-import Loading from "../components/Loading";
-import Error from "../components/Error";
 import CardItem from "./CardItem";
 import { Documento } from "../types/types";
-import { useLabelsStore } from "../store/useLabelsStore";
+import { useLabelsStore } from "utils/useLabelsStore";
+
+const Loading = React.lazy(() => import("utils/Loading"));
+const Error = React.lazy(() => import("utils/Error"));
 
 type ExpandableInfoProps = {
   headers: string[];
