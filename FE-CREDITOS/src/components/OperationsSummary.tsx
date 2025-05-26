@@ -3,9 +3,10 @@ import { Row } from "react-bootstrap";
 import { Garantia } from "../types/types";
 import CardItem from "./CardItem";
 import { useLabelsStore } from "utils/useLabelsStore";
-interface OperationsSummaryProps {
+
+type OperationsSummaryProps = {
   data: Garantia[];
-}
+};
 
 const OperationsSummary: React.FC<OperationsSummaryProps> = ({ data }) => {
   const operationsSummaryHeaders = useLabelsStore(

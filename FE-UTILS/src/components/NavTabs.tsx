@@ -2,11 +2,11 @@ import React from "react";
 import { Nav } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
-interface NavTabsProps {
+type NavTabsProps = {
   tabs: { label: string; path: string }[];
   align?: "start" | "center" | "end";
   topLevel?: boolean;
-}
+};
 
 const NavTabs: React.FC<NavTabsProps> = ({
   tabs,

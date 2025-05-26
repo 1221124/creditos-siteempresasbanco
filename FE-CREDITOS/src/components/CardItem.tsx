@@ -1,7 +1,7 @@
 import React from "react";
 import { Col } from "react-bootstrap";
 
-interface CardItemProps {
+type CardItemProps = {
   title: string;
   value: string | number;
   isPercentage?: boolean;
@@ -9,7 +9,7 @@ interface CardItemProps {
   bordered?: boolean;
   start?: boolean;
   end?: boolean;
-}
+};
 
 const CardItem: React.FC<CardItemProps> = ({
   title,

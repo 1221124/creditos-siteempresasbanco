@@ -3,11 +3,11 @@ import Documents from "../screens/tabs/Documents";
 import { Documento } from "../types/types";
 import { useLabelsStore } from "utils/useLabelsStore";
 
-interface InvoicesProps {
+type InvoicesProps = {
   data: Documento[];
   show: boolean;
   setShow: (value: boolean) => void;
-}
+};
 
 const Invoices = ({ data, show, setShow }: InvoicesProps) => {
   const invoicesLabel = useLabelsStore((state) => state.invoicesLabel);

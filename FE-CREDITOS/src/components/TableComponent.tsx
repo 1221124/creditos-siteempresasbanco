@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { Table } from "react-bootstrap";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
@@ -8,10 +7,10 @@ import { useLabelsStore } from "utils/useLabelsStore";
 
 const PdfPreview = React.lazy(() => import("utils/PdfPreview"));
 
-interface TableComponentProps {
+type TableComponentProps = {
   headers: string[];
   data: any[];
-}
+};
 
 const TableComponent = ({ headers, data }: TableComponentProps) => {
   const [expandedRow, setExpandedRow] = useState<number | null>(null);

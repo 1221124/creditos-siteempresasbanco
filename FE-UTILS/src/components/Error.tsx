@@ -3,9 +3,9 @@ import { Alert, Button, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useLabelsStore } from "../store/useLabelsStore";
 
-interface ErrorProps {
+type ErrorProps = {
   message: string;
-}
+};
 
 const Error: React.FC<ErrorProps> = ({ message }) => {
   const navigate = useNavigate();

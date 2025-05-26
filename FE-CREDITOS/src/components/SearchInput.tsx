@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { InputGroup, FormControl } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 
-interface SearchInputProps {
+type SearchInputProps = {
   placeholder: string;
   onSearch: (value: string) => void;
-}
+};
 
 const SearchInput: React.FC<SearchInputProps> = ({ placeholder, onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
