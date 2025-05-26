@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { fetchList } from "../../services/service";
 import { useLabelsStore } from "../../store/useLabelsStore";
+import { get } from "../../services/restAdapter";
 
 export function useFetchData<T>(endpoint: string) {
   const [data, setData] = useState<T[]>([]);
@@ -12,7 +12,7 @@ export function useFetchData<T>(endpoint: string) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetchList<T>(endpoint);
+        const result = await get<T>(endpoint);
         setData(result);
       } catch (err) {
         setError(errorOccuredLabel + ": " + (err as Error).message);
