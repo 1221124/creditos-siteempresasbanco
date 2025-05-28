@@ -86,7 +86,7 @@ export const useLabelsStore = create<LabelsStore>(() => ({
   tryAgainLabel: "Tentar novamente",
   apiErrorLabel: "Erro na chamada à API:",
   invoicesLabel: "Faturas",
-  homeLabel: "Bem-vindo ao módulo de Créditos do Site de Empresas do Banco",
+  homeLabel: "Bem-vindo ao novo Site de Empresas do Banco",
   bankNameLabel: "Site de Empresas - Banco",
   companyNameLabel: "EMPRESA X",
   personNameLabel: "Nome Falso",
