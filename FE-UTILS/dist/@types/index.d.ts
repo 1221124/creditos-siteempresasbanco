@@ -1,11 +1,40 @@
+declare module "#not-for-import/feUtils/store/types" {
+    export type Tab = {
+        label: string;
+        path: string;
+    };
+    export type LabelsStore = {
+        appTabs: Tab[];
+        garantiasTabs: Tab[];
+        creditosDocImportTabs: Tab[];
+        garantiasHeaders: string[];
+        creditosDocImportHeaders: string[];
+        documentosHeaders: string[];
+        operationsSummaryHeaders: string[];
+        extraInfoHeaders: string[];
+        beneficiarySearchLabel: string;
+        exportLabel: string;
+        seeInvoicesLabel: string;
+        portugalLabel: string;
+        loadingLabel: string;
+        errorOccuredLabel: string;
+        tryAgainLabel: string;
+        apiErrorLabel: string;
+        invoicesLabel: string;
+        homeLabel: string;
+        bankNameLabel: string;
+        companyNameLabel: string;
+        personNameLabel: string;
+    };
+}
 declare module "feUtils/useLabelsStore" {
     export const useLabelsStore: any;
 }
 declare module "feUtils/Error" {
     import React from "react";
-    interface ErrorProps {
+    type ErrorProps = {
         message: string;
-    }
+    };
     const Error: React.FC<ErrorProps>;
     export default Error;
 }
@@ -16,14 +45,13 @@ declare module "feUtils/Loading" {
 }
 declare module "feUtils/NavTabs" {
     import React from "react";
-    interface NavTabsProps {
+    type NavTabsProps = {
         tabs: {
             label: string;
             path: string;
         }[];
         align?: "start" | "center" | "end";
-        topLevel?: boolean;
-    }
+    };
     const NavTabs: React.FC<NavTabsProps>;
     export default NavTabs;
 }

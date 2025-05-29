@@ -1,9 +1,9 @@
 declare module "#not-for-import/feCreditos/components/SearchInput" {
     import React from "react";
-    interface SearchInputProps {
+    type SearchInputProps = {
         placeholder: string;
         onSearch: (value: string) => void;
-    }
+    };
     const SearchInput: React.FC<SearchInputProps>;
     export default SearchInput;
 }
@@ -13,13 +13,13 @@ declare module "#not-for-import/feCreditos/components/ExportButton" {
     export default ExportButton;
 }
 declare module "#not-for-import/feCreditos/components/SearchAndExportBar" {
-    interface SearchAndExportBarProps<T extends {
+    type SearchAndExportBarProps<T extends {
         beneficiario: string;
-    }> {
+    }> = {
         placeholder: string;
         data: T[];
         setData: (newData: T[]) => void;
-    }
+    };
     const SearchAndExportBar: <T extends {
         beneficiario: string;
     }>({ placeholder, data, setData, }: SearchAndExportBarProps<T>) => import("react/jsx-runtime").JSX.Element;
@@ -65,17 +65,17 @@ declare module "#not-for-import/feCreditos/types/types" {
 }
 declare module "#not-for-import/feCreditos/components/Invoices" {
     import { Documento } from "#not-for-import/feCreditos/types/types";
-    interface InvoicesProps {
+    type InvoicesProps = {
         data: Documento[];
         show: boolean;
         setShow: (value: boolean) => void;
-    }
+    };
     const Invoices: ({ data, show, setShow }: InvoicesProps) => import("react/jsx-runtime").JSX.Element | null;
     export default Invoices;
 }
 declare module "#not-for-import/feCreditos/components/CardItem" {
     import React from "react";
-    interface CardItemProps {
+    type CardItemProps = {
         title: string;
         value: string | number;
         isPercentage?: boolean;
@@ -83,7 +83,7 @@ declare module "#not-for-import/feCreditos/components/CardItem" {
         bordered?: boolean;
         start?: boolean;
         end?: boolean;
-    }
+    };
     const CardItem: React.FC<CardItemProps>;
     export default CardItem;
 }
@@ -134,19 +134,19 @@ declare module "#not-for-import/feCreditos/hooks/useFaturasFetch" {
     };
 }
 declare module "#not-for-import/feCreditos/components/TableComponent" {
-    interface TableComponentProps {
+    type TableComponentProps = {
         headers: string[];
         data: any[];
-    }
+    };
     const TableComponent: ({ headers, data }: TableComponentProps) => import("react/jsx-runtime").JSX.Element;
     export default TableComponent;
 }
 declare module "#not-for-import/feCreditos/components/OperationsSummary" {
     import React from "react";
     import { Garantia } from "#not-for-import/feCreditos/types/types";
-    interface OperationsSummaryProps {
+    type OperationsSummaryProps = {
         data: Garantia[];
-    }
+    };
     const OperationsSummary: React.FC<OperationsSummaryProps>;
     export default OperationsSummary;
 }

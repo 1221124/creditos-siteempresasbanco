@@ -43,8 +43,7 @@ const App: React.FC = () => {
           <BankProfile name={bankNameLabel} />
         </Col>
         <Col xs="auto">
-          {/*tabs de nível máximo*/}
-          <NavTabs tabs={appTabs} topLevel={true} />
+          <NavTabs tabs={appTabs} />
         </Col>
         <Col xs="auto">
           <UserProfile company={companyNameLabel} person={personNameLabel} />
@@ -53,7 +52,7 @@ const App: React.FC = () => {
 
       <Suspense fallback={<Loading />}>
         <Routes>
-          <Route index element={<Navigate to="/dashboard" />} />
+          <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="/dashboard/*" element={<DashboardApp />} />
           <Route
             path="/creditos/*"
