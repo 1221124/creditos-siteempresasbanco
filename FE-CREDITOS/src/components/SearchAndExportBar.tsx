@@ -35,7 +35,7 @@ const SearchAndExportBar = <T extends { beneficiario: string }>({
         <SearchInput placeholder={placeholder} onSearch={handleSearch} />
       </Col>
       <Col className="text-end d-flex justify-content-end">
-        <ExportButton />
+        <ExportButton data={originalData} />
       </Col>
     </Row>
   );

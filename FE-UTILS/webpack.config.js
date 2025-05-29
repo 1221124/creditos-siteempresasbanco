@@ -53,6 +53,7 @@ module.exports = {
         "./Loading": "./src/components/Loading",
         "./NavTabs": "./src/components/NavTabs",
         "./PdfPreview": "./src/components/PdfPreview",
+        "./useExcelExport": "./src/hooks/useExcelExport",
         "./useLabelsStore": "./src/store/useLabelsStore.ts",
         "./HostedContext": "./src/context/HostedContext",
       },

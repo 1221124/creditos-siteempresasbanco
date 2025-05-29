@@ -9,7 +9,10 @@ declare module "#not-for-import/feCreditos/components/SearchInput" {
 }
 declare module "#not-for-import/feCreditos/components/ExportButton" {
     import React from "react";
-    const ExportButton: React.FC;
+    interface ExportButtonProps {
+        data: any[];
+    }
+    const ExportButton: React.FC<ExportButtonProps>;
     export default ExportButton;
 }
 declare module "#not-for-import/feCreditos/components/SearchAndExportBar" {

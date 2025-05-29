@@ -71,3 +71,8 @@ declare module "utils/PdfPreview" {
     }) => import("react/jsx-runtime").JSX.Element;
     export default PdfPreview;
 }
+declare module "utils/useExcelExport" {
+    export const useExcelExport: () => {
+        exportToExcel: (data: any[], filename?: string) => void;
+    };
+}

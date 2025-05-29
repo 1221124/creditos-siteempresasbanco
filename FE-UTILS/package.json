@@ -19,6 +19,7 @@
     "react-pdf": "^9.2.1",
     "react-router-dom": "7.4.0",
     "util": "^0.12.5",
+    "xlsx": "^0.18.5",
     "zustand": "^5.0.5"
   },
   "devDependencies": {
