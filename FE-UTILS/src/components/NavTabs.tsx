@@ -16,6 +16,12 @@ const NavTabs: React.FC<NavTabsProps> = ({ tabs, align = "center" }) => {
   const makeFullPath = (path: string, module: string) =>
     hosted ? `/${module}${path}` : path;
 
+  const isActiveTab = (tab: Tab) =>
+    tab.path === "/"
+      ? pathname === `/${tab.module}` ||
+        pathname === makeFullPath(tab.path, tab.module)
+      : pathname.includes(makeFullPath(tab.path, tab.module));
+
   return (
     <Nav
       className={`d-flex align-items-center justify-content-${align} border-bottom my-2`}
@@ -26,7 +32,7 @@ const NavTabs: React.FC<NavTabsProps> = ({ tabs, align = "center" }) => {
           <Nav.Link
             as={Link}
             to={makeFullPath(tab.path, tab.module)}
-            active={pathname.includes(makeFullPath(tab.path, tab.module))}
+            active={isActiveTab(tab)}
           >
             {tab.label}
           </Nav.Link>
