@@ -31,7 +31,7 @@ const GarantiasScreen: React.FC = () => {
 
   return (
     <Container className="mt-4">
-      <NavTabs data-testid="nav-tabs" tabs={garantiasTabs} align="start" />
+      <NavTabs tabs={garantiasTabs} align="start" />
       <Routes>
         <Route index element={<Navigate to="detalhes" replace />} />
         <Route

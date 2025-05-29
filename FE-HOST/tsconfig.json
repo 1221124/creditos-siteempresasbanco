@@ -18,5 +18,5 @@
     "paths": { "@types": ["./@types"] },
     "noImplicitAny": false
   },
-  "include": ["src", "../bankingRecord/src/contexts"]
+  "include": ["src"]
 }

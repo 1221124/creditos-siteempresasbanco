@@ -1,10 +1,13 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import GarantiasScreen from "./screens/garantias.screen";
 import CreditosDocImportacaoScreen from "./screens/creditosDocImportacao.screen";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useHosted } from "utils/HostedContext";
 
 export default function App() {
-  return (
+  const { hosted } = useHosted();
+
+  const CreditosApp = (
     <Routes>
       <Route index element={<Navigate to="garantias-e-avales" replace />} />
       <Route path="garantias-e-avales/*" element={<GarantiasScreen />} />
@@ -12,7 +15,8 @@ export default function App() {
         path="doc-importacao/*"
         element={<CreditosDocImportacaoScreen />}
       />
-      <Route path="*" element={<div>Não encontrado</div>} />
     </Routes>
   );
+
+  return hosted ? CreditosApp : <BrowserRouter>{CreditosApp}</BrowserRouter>;
 }

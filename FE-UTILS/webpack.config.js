@@ -54,6 +54,7 @@ module.exports = {
         "./NavTabs": "./src/components/NavTabs",
         "./PdfPreview": "./src/components/PdfPreview",
         "./useLabelsStore": "./src/store/useLabelsStore.ts",
+        "./HostedContext": "./src/context/HostedContext",
       },
       shared: {
         react: {

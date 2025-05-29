@@ -2,6 +2,7 @@ declare module "#not-for-import/feUtils/store/types" {
     export type Tab = {
         label: string;
         path: string;
+        module: "creditos" | "dashboard";
     };
     export type LabelsStore = {
         appTabs: Tab[];
@@ -43,13 +44,22 @@ declare module "feUtils/Loading" {
     const Loading: React.FC;
     export default Loading;
 }
+declare module "feUtils/HostedContext" {
+    import React from "react";
+    type HostedContextType = {
+        hosted: boolean;
+    };
+    export const HostedProvider: React.FC<{
+        hosted: boolean;
+        children: React.ReactNode;
+    }>;
+    export function useHosted(): HostedContextType;
+}
 declare module "feUtils/NavTabs" {
     import React from "react";
+    import { Tab } from "#not-for-import/feUtils/store/types";
     type NavTabsProps = {
-        tabs: {
-            label: string;
-            path: string;
-        }[];
+        tabs: Tab[];
         align?: "start" | "center" | "end";
     };
     const NavTabs: React.FC<NavTabsProps>;

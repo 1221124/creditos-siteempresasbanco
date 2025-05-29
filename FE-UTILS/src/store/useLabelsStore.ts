@@ -4,16 +4,32 @@ import { LabelsStore } from "./types";
 export const useLabelsStore = create<LabelsStore>(() => ({
   //tabs
   appTabs: [
-    { label: "Início", path: "/dashboard" },
-    { label: "Garantias e Avales", path: "/creditos/garantias-e-avales" },
-    { label: "Créditos Doc. Importação", path: "/creditos/doc-importacao" },
+    { label: "Início", path: "/", module: "dashboard" },
+    {
+      label: "Garantias e Avales",
+      path: "/garantias-e-avales",
+      module: "creditos",
+    },
+    {
+      label: "Créditos Doc. Importação",
+      path: "/doc-importacao",
+      module: "creditos",
+    },
   ],
   garantiasTabs: [
-    { label: "Detalhes", path: "/creditos/garantias-e-avales/detalhes" },
-    { label: "Documentos", path: "/creditos/garantias-e-avales/documentos" },
+    {
+      label: "Detalhes",
+      path: "/garantias-e-avales/detalhes",
+      module: "creditos",
+    },
+    {
+      label: "Documentos",
+      path: "/garantias-e-avales/documentos",
+      module: "creditos",
+    },
   ],
   creditosDocImportTabs: [
-    { label: "Detalhes", path: "/creditos/doc-importacao/detalhes" },
+    { label: "Detalhes", path: "/doc-importacao/detalhes", module: "creditos" },
   ],
   //headers
   garantiasHeaders: [

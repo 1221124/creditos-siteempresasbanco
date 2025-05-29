@@ -1,6 +1,7 @@
 export type Tab = {
   label: string;
   path: string;
+  module: "creditos" | "dashboard";
 };
 
 export type LabelsStore = {

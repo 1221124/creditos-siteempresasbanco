@@ -29,11 +29,6 @@ const App: React.FC = () => {
     };
 
     fetchTabs();
-
-    window.history.replaceState(
-      { ...(window.history.state || {}), hosted: true },
-      ""
-    );
   }, []);
 
   return (

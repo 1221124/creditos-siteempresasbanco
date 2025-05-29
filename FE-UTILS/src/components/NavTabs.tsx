@@ -1,15 +1,20 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useHosted } from "../context/HostedContext";
+import { Tab } from "../store/types";
 
 type NavTabsProps = {
-  tabs: { label: string; path: string }[];
+  tabs: Tab[];
   align?: "start" | "center" | "end";
 };
 
 const NavTabs: React.FC<NavTabsProps> = ({ tabs, align = "center" }) => {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
+  const { hosted } = useHosted();
+
+  const makeFullPath = (path: string, module: string) =>
+    hosted ? `/${module}${path}` : path;
 
   return (
     <Nav
@@ -19,11 +24,9 @@ const NavTabs: React.FC<NavTabsProps> = ({ tabs, align = "center" }) => {
       {tabs.map((tab) => (
         <Nav.Item key={tab.path}>
           <Nav.Link
-            role="button"
-            active={pathname.includes(tab.path)}
-            onClick={() => {
-              navigate(tab.path);
-            }}
+            as={Link}
+            to={makeFullPath(tab.path, tab.module)}
+            active={pathname.includes(makeFullPath(tab.path, tab.module))}
           >
             {tab.label}
           </Nav.Link>

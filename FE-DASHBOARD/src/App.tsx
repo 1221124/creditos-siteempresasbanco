@@ -1,14 +1,17 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HomePage from "./components/HomePage";
+import { useHosted } from "utils/HostedContext";
 
 const Loading = lazy(() => import("utils/Loading"));
 
 const App: React.FC = () => {
   const [homeLabel, setHomeLabel] = useState("");
   const [bankNameLabel, setBankNameLabel] = useState("");
+
+  const { hosted } = useHosted();
 
   useEffect(() => {
     const fetchTabs = async () => {
@@ -22,7 +25,7 @@ const App: React.FC = () => {
     fetchTabs();
   }, []);
 
-  return (
+  const DashboardApp = (
     <Container className="py-4">
       <Suspense fallback={<Loading />}>
         <Routes>
@@ -35,6 +38,8 @@ const App: React.FC = () => {
       </Suspense>
     </Container>
   );
+
+  return hosted ? DashboardApp : <BrowserRouter>{DashboardApp}</BrowserRouter>;
 };
 
 export default App;

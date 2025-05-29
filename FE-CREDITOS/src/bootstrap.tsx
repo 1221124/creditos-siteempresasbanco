@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
-import { BrowserRouter } from "react-router-dom";
+import { HostedProvider } from "utils/HostedContext";
 
 const rootElement = document.getElementById("root");
 
@@ -10,16 +10,11 @@ if (!rootElement) {
 }
 
 const root = createRoot(rootElement);
-const isStandalone = () => !window.history.state?.hosted;
 
 root.render(
   <React.StrictMode>
-    {isStandalone() ? (
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    ) : (
+    <HostedProvider hosted={false}>
       <App />
-    )}
+    </HostedProvider>
   </React.StrictMode>
 );
