@@ -20,7 +20,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     justifyContent: "center",
     marginTop: "20px",
     height: "80vh",
-    backgroundColor: "#fff",
   },
   spinner: {
     width: "50px",
