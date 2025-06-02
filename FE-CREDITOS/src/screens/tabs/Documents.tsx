@@ -1,8 +1,14 @@
 import { Row, Col } from "react-bootstrap";
 import TableComponent from "../../components/TableComponent";
 import { useLabelsStore } from "utils/useLabelsStore";
+import { Documento } from "../../types/types";
+import React from "react";
 
-const Documents = ({ data }: { data: { date: string; nome: string }[] }) => {
+type DocumentsProps = {
+  data: Documento[];
+};
+
+const Documents: React.FC<DocumentsProps> = ({ data }) => {
   const documentosHeaders = useLabelsStore((state) => state.documentosHeaders);
 
   return (

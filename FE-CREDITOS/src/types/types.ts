@@ -26,4 +26,5 @@ export type CreditoDocImport = {
 export type Documento = {
   date: string;
   nome: string;
+  pdf: string;
 };

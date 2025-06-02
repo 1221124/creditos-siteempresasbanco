@@ -1,1 +1,1 @@
-export const BASE_URL = "https://q577l.wiremockapi.cloud/";
+export const BASE_URL = "https://run.mocky.io/v3/";

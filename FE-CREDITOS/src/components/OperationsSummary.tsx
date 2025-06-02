@@ -24,7 +24,10 @@ const OperationsSummary: React.FC<OperationsSummaryProps> = ({ data }) => {
         local ? item.local === local : item.local !== portugalLabel
       )
       .reduce((acc, item) => {
-        const montanteStr = item.montante.trim();
+        const montanteStr =
+          typeof item.montante === "string"
+            ? item.montante.trim()
+            : String(item.montante);
         const decimalPart = montanteStr.includes(",")
           ? montanteStr.split(",")[1]
           : montanteStr.split(".")[1];

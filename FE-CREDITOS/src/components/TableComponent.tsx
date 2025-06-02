@@ -4,6 +4,7 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import ExpandableInfo from "./ExpandableInfo";
 import { useFaturasFetch } from "../hooks/useFaturasFetch";
 import { useLabelsStore } from "utils/useLabelsStore";
+import { Documento } from "../types/types";
 
 const PdfPreview = React.lazy(() => import("utils/PdfPreview"));
 
@@ -22,6 +23,8 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
     setExpandedRow(expandedRow === index ? null : index);
   };
 
+  const extra = data.length > headers.length;
+
   return (
     <Table responsive borderless>
       <thead>
@@ -35,18 +38,17 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
               <strong>{header}</strong>
             </th>
           ))}
-          {data.some((item) => "extra" in item) && (
-            <th style={{ backgroundColor: "#f8f9fa" }} />
-          )}
+          {extra && <th style={{ backgroundColor: "#f8f9fa" }} />}
         </tr>
       </thead>
       <tbody>
         {data.map((row, rowIndex) => (
           <React.Fragment key={rowIndex}>
             <tr className={rowIndex !== 0 ? "border-top" : ""}>
-              {Object.values(row)
+              {Object.entries(row)
                 .slice(0, row.extra === undefined ? undefined : -1)
-                .map((value, colIndex) => {
+                .map(([key, value], colIndex) => {
+                  if (key === "pdf") return null;
                   const isCurrency = /[.,]\d+$/.test(value as string);
                   const isNegative = isCurrency && Number(value) < 0;
 
@@ -64,7 +66,7 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
                     </td>
                   );
                 })}
-              {row.responsabilidade === undefined && (
+              {extra && (
                 <td className="text-center">
                   <button
                     onClick={() => toggleRow(rowIndex)}
@@ -79,7 +81,7 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
                 </td>
               )}
             </tr>
-            {expandedRow === rowIndex && row.responsabilidade === undefined && (
+            {expandedRow === rowIndex && extra && (
               <tr>
                 <td colSpan={headers.length + 1} className="bg-light">
                   {row.extra != null ? (
@@ -92,7 +94,7 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
                     />
                   ) : (
                     <div className="p-3">
-                      <PdfPreview fileUrl="/fake.pdf" />
+                      <PdfPreview fileUrl={(row as unknown as Documento).pdf} />
                     </div>
                   )}
                 </td>

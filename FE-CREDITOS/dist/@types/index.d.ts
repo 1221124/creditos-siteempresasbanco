@@ -28,15 +28,6 @@ declare module "#not-for-import/feCreditos/components/SearchAndExportBar" {
     }>({ placeholder, data, setData, }: SearchAndExportBarProps<T>) => import("react/jsx-runtime").JSX.Element;
     export default SearchAndExportBar;
 }
-declare module "#not-for-import/feCreditos/screens/tabs/Documents" {
-    const Documents: ({ data }: {
-        data: {
-            date: string;
-            nome: string;
-        }[];
-    }) => import("react/jsx-runtime").JSX.Element;
-    export default Documents;
-}
 declare module "#not-for-import/feCreditos/types/types" {
     export type Garantia = {
         beneficiario: string;
@@ -64,7 +55,17 @@ declare module "#not-for-import/feCreditos/types/types" {
     export type Documento = {
         date: string;
         nome: string;
+        pdf: string;
     };
+}
+declare module "#not-for-import/feCreditos/screens/tabs/Documents" {
+    import { Documento } from "#not-for-import/feCreditos/types/types";
+    import React from "react";
+    type DocumentsProps = {
+        data: Documento[];
+    };
+    const Documents: React.FC<DocumentsProps>;
+    export default Documents;
 }
 declare module "#not-for-import/feCreditos/components/Invoices" {
     import { Documento } from "#not-for-import/feCreditos/types/types";
@@ -104,7 +105,7 @@ declare module "#not-for-import/feCreditos/components/ExpandableInfo" {
     export default ExpandableInfo;
 }
 declare module "#not-for-import/feCreditos/api/config" {
-    export const BASE_URL = "https://q577l.wiremockapi.cloud/";
+    export const BASE_URL = "https://run.mocky.io/v3/";
 }
 declare module "#not-for-import/feCreditos/services/RESTAdapter" {
     export function get<T>(endpoint: string): Promise<T[]>;
