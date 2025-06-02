@@ -1,172 +1,187 @@
-import { render, screen } from "@testing-library/react";
+/* eslint-disable react/display-name */
+import { render, screen, waitFor } from "@testing-library/react";
+import * as garantiasHook from "../../hooks/useGarantiasFetch";
+import * as documentosHook from "../../hooks/useDocumentosFetch";
+import * as labelsStore from "utils/useLabelsStore";
 import { MemoryRouter } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { useGarantiasFetch } from "../../hooks/useGarantiasFetch";
-import { useDocumentosFetch } from "../../hooks/useDocumentosFetch";
 import GarantiasScreen from "../../screens/garantias.screen";
 
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useLocation: jest.fn(),
+jest.mock("utils/Loading", () => ({
+  __esModule: true,
+  default: () => <div data-testid="loading">Loading Component</div>,
 }));
 
-jest.mock("../../hooks/useGarantiasFetch");
-jest.mock("../../hooks/useDocumentosFetch");
+jest.mock("utils/Error", () => ({
+  __esModule: true,
+  default: () => <div data-testid="error">Error Component</div>,
+}));
 
-const mockUseGarantiasFetch = useGarantiasFetch as jest.Mock;
-const mockUseDocumentosFetch = useDocumentosFetch as jest.Mock;
-const mockUseLocation = useLocation as jest.Mock;
+jest.mock("utils/NavTabs", () => ({
+  __esModule: true,
+  default: () => <div data-testid="nav-tabs">NavTabs Component</div>,
+}));
+jest.mock("../../screens/tabs/Details", () => ({
+  __esModule: true,
+  default: () => <div data-testid="details">Details Component</div>,
+}));
+jest.mock("../../screens/tabs/Documents", () => ({
+  __esModule: true,
+  default: () => <div data-testid="documents">Documents Component</div>,
+}));
 
 describe("GarantiasScreen", () => {
-  it("mostra o componente Loading quando loading é true (useGarantiasFetch)", () => {
-    // ARRANGE
-    mockUseGarantiasFetch.mockReturnValue({
+  beforeEach(() => {
+    jest
+      .spyOn(labelsStore, "useLabelsStore")
+      .mockImplementation((...args: any[]) =>
+        args[0]({
+          garantiasTabs: [
+            { path: "detalhes", label: "Detalhes" },
+            { path: "documentos", label: "Documentos" },
+          ],
+          garantiasHeaders: [],
+          creditosDocImportHeaders: [],
+          beneficiarySearchLabel: "Pesquisar beneficiário",
+          documentosHeaders: [],
+        })
+      );
+  });
+
+  test("Teste 1: renderiza Loading quando loadingGarantias é true", async () => {
+    jest.spyOn(garantiasHook, "useGarantiasFetch").mockReturnValue({
+      data: [],
       loading: true,
       error: null,
-      data: null,
     });
-    mockUseDocumentosFetch.mockReturnValue({
+    jest.spyOn(documentosHook, "useDocumentosFetch").mockReturnValue({
+      data: [],
       loading: false,
       error: null,
-      data: null,
     });
-    mockUseLocation.mockReturnValue({ pathname: "/" });
 
-    // ACT
     render(
-      <MemoryRouter>
+      <MemoryRouter initialEntries={["/detalhes"]}>
         <GarantiasScreen />
       </MemoryRouter>
     );
 
-    // ASSERT
-    expect(screen.getByTestId("loading")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId("loading")).toBeInTheDocument();
+    });
   });
 
-  it("mostra o componente Error quando error não é null (useGarantiasFetch)", () => {
-    // ARRANGE
-    mockUseGarantiasFetch.mockReturnValue({
+  test("Teste 2: renderiza Error quando errorGarantias não é null", async () => {
+    jest.spyOn(garantiasHook, "useGarantiasFetch").mockReturnValue({
+      data: [],
       loading: false,
-      error: "Erro em garantias",
-      data: null,
+      error: "Erro garantias",
     });
-    mockUseDocumentosFetch.mockReturnValue({
+    jest.spyOn(documentosHook, "useDocumentosFetch").mockReturnValue({
+      data: [],
       loading: false,
       error: null,
-      data: null,
     });
-    mockUseLocation.mockReturnValue({ pathname: "/" });
 
-    // ACT
     render(
-      <MemoryRouter>
+      <MemoryRouter initialEntries={["/detalhes"]}>
         <GarantiasScreen />
       </MemoryRouter>
     );
 
-    // ASSERT
-    expect(screen.getByTestId("error")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId("error")).toBeInTheDocument();
+    });
   });
 
-  it("mostra o componente Details com o data retornado quando loading é false e error é null (useGarantiasFetch) e pathname não contém '/documentos'", () => {
-    // ARRANGE
-    const mockData = [{ id: 1, montante: "100 EUR" }];
-    mockUseGarantiasFetch.mockReturnValue({
+  test("Teste 3: renderiza Details quando loading e error garantias são false/null e pathname não inclui 'documentos'", async () => {
+    jest.spyOn(garantiasHook, "useGarantiasFetch").mockReturnValue({
+      data: [],
       loading: false,
       error: null,
-      data: mockData,
     });
-    mockUseDocumentosFetch.mockReturnValue({
+    jest.spyOn(documentosHook, "useDocumentosFetch").mockReturnValue({
+      data: [],
       loading: false,
       error: null,
-      data: null,
     });
-    mockUseLocation.mockReturnValue({ pathname: "/" });
 
-    // ACT
     render(
-      <MemoryRouter>
+      <MemoryRouter initialEntries={["/detalhes"]}>
         <GarantiasScreen />
       </MemoryRouter>
     );
 
-    // ASSERT
-    expect(screen.getByTestId("details")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId("details")).toBeInTheDocument();
+    });
   });
 
-  it("mostra o componente Loading quando loading é true (useDocumentosFetch)", () => {
-    // ARRANGE
-    mockUseGarantiasFetch.mockReturnValue({
+  test("Teste 4: renderiza Loading quando loadingDocumentos é true", async () => {
+    jest.spyOn(garantiasHook, "useGarantiasFetch").mockReturnValue({
+      data: [],
       loading: false,
       error: null,
-      data: null,
     });
-    mockUseDocumentosFetch.mockReturnValue({
+    jest.spyOn(documentosHook, "useDocumentosFetch").mockReturnValue({
+      data: [],
       loading: true,
       error: null,
-      data: null,
     });
-    mockUseLocation.mockReturnValue({ pathname: "/documentos" });
 
-    // ACT
     render(
-      <MemoryRouter>
+      <MemoryRouter initialEntries={["/documentos"]}>
         <GarantiasScreen />
       </MemoryRouter>
     );
 
-    // ASSERT
-    expect(screen.getByTestId("loading")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId("loading")).toBeInTheDocument();
+    });
   });
 
-  it("mostra o componente Error quando error não é null (useDocumentosFetch)", () => {
-    // ARRANGE
-    mockUseGarantiasFetch.mockReturnValue({
+  test("Teste 5: renderiza Error quando errorDocumentos não é null", async () => {
+    jest.spyOn(garantiasHook, "useGarantiasFetch").mockReturnValue({
+      data: [],
       loading: false,
       error: null,
-      data: null,
     });
-    mockUseDocumentosFetch.mockReturnValue({
+    jest.spyOn(documentosHook, "useDocumentosFetch").mockReturnValue({
+      data: [],
       loading: false,
-      error: "Erro em documentos",
-      data: null,
+      error: "Erro documentos",
     });
-    mockUseLocation.mockReturnValue({ pathname: "/documentos" });
 
-    // ACT
     render(
-      <MemoryRouter>
+      <MemoryRouter initialEntries={["/documentos"]}>
         <GarantiasScreen />
       </MemoryRouter>
     );
 
-    // ASSERT
-    expect(screen.getByTestId("error")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId("error")).toBeInTheDocument();
+    });
   });
 
-  it("mostra o componente Documents com o data retornado quando loading é false e error é null (useDocumentosFetch) e pathname contém '/documentos'", () => {
-    // ARRANGE
-    const mockData = [{ id: 1, name: "Documento 1" }];
-    mockUseGarantiasFetch.mockReturnValue({
+  test("Teste 6: renderiza Documents quando loading e error documentos são false/null e pathname inclui 'documentos'", async () => {
+    jest.spyOn(garantiasHook, "useGarantiasFetch").mockReturnValue({
+      data: [],
       loading: false,
       error: null,
-      data: null,
     });
-    mockUseDocumentosFetch.mockReturnValue({
+    jest.spyOn(documentosHook, "useDocumentosFetch").mockReturnValue({
+      data: [],
       loading: false,
       error: null,
-      data: mockData,
     });
-    mockUseLocation.mockReturnValue({ pathname: "/documentos" });
 
-    // ACT
     render(
-      <MemoryRouter>
+      <MemoryRouter initialEntries={["/documentos"]}>
         <GarantiasScreen />
       </MemoryRouter>
     );
 
-    // ASSERT
-    expect(screen.getByTestId("documents")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId("documents")).toBeInTheDocument();
+    });
   });
 });

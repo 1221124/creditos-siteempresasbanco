@@ -15,11 +15,17 @@ const Details = <T extends { beneficiario: string }>({
   data,
   isCreditoDocImportacao,
 }: DetailsProps<T>) => {
-  const state = useLabelsStore.getState();
+  const creditosDocImportHeaders = useLabelsStore(
+    (state) => state.creditosDocImportHeaders
+  );
+  const garantiasHeaders = useLabelsStore((state) => state.garantiasHeaders);
+  const beneficiarySearchLabel = useLabelsStore(
+    (state) => state.beneficiarySearchLabel
+  );
+
   const headers = isCreditoDocImportacao
-    ? state.creditosDocImportHeaders
-    : state.garantiasHeaders;
-  const beneficiarySearchLabel = state.beneficiarySearchLabel;
+    ? creditosDocImportHeaders
+    : garantiasHeaders;
 
   const [filteredData, setFilteredData] = useState<T[]>(data);
 

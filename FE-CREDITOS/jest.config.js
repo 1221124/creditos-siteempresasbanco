@@ -215,6 +215,13 @@ module.exports = {
     "^@components/(.*)$": "<rootDir>/src/components/$1",
     "^@hooks/(.*)$": "<rootDir>/src/hooks/$1",
     "^@screens/(.*)$": "<rootDir>/src/screens/$1",
+    "^utils/Loading$": "<rootDir>/src/tests/mocks/utils/Loading.tsx",
+    "^utils/Error$": "<rootDir>/src/tests/mocks/utils/Error.tsx",
+    "^utils/NavTabs$": "<rootDir>/src/tests/mocks/utils/NavTabs.tsx",
+    "^utils/useLabelsStore$":
+      "<rootDir>/src/tests/mocks/utils/useLabelsStore.ts",
+    "^utils/useExcelExport$":
+      "<rootDir>/src/tests/mocks/utils/useExcelExport.ts",
     "react-pdf": "<rootDir>/node_modules/react-pdf/dist/esm/index.js",
     "pdfjs-dist": "<rootDir>/node_modules/pdfjs-dist/build/pdf.mjs",
   },
