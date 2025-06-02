@@ -199,5 +199,6 @@ declare module "#not-for-import/feCreditos/screens/creditosDocImportacao.screen"
 }
 declare module "creditos/App" {
     import "bootstrap/dist/css/bootstrap.min.css";
+    import "./styles/App.css";
     export default function App(): import("react/jsx-runtime").JSX.Element;
 }

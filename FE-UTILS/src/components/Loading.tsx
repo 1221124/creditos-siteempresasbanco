@@ -37,13 +37,19 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 };
 
-const styleSheet = document.styleSheets[0];
-const keyframes = `@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }`;
-if (styleSheet) {
-  styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
-}
+const injectKeyframes = () => {
+  if (document.getElementById("spinner-keyframes")) return;
+  const style = document.createElement("style");
+  style.id = "spinner-keyframes";
+  style.innerHTML = `
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  `;
+  document.head.appendChild(style);
+};
+
+injectKeyframes();
 
 export default Loading;

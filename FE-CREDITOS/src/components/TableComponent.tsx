@@ -25,12 +25,19 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
   return (
     <Table responsive borderless>
       <thead>
-        <tr className="border-bottom">
+        <tr className="border-bottom border-secondary">
           {headers.map((header, index) => (
-            <th key={index} className="fw-normal">
+            <th
+              key={index}
+              className="fw-normal"
+              style={{ backgroundColor: "#f8f9fa" }}
+            >
               <strong>{header}</strong>
             </th>
           ))}
+          {data.some((item) => "extra" in item) && (
+            <th style={{ backgroundColor: "#f8f9fa" }} />
+          )}
         </tr>
       </thead>
       <tbody>

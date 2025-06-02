@@ -9,16 +9,14 @@ type UserProfileProps = {
 const UserProfile: React.FC<UserProfileProps> = ({ company, person }) => {
   return (
     <Container className="p-0">
-      <Row className="align-items-center g-2">
-        <Col xs="auto">
+      <Row className="align-items-center g-0">
+        <Col xs="auto" className="me-3">
           <Badge bg="dark" className="px-2 py-1">
             {company}
           </Badge>
         </Col>
-        <Col xs="auto">
+        <Col xs="auto" className="d-flex align-items-center gap-1">
           <PersonCircle size={24} />
-        </Col>
-        <Col xs="auto">
           <span className="fw-semibold fs-5">{person}</span>
         </Col>
       </Row>
