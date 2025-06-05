@@ -4,7 +4,6 @@ import { Col, Container, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BankProfile from "./components/BankProfile";
 import UserProfile from "./components/UserProfile";
-import "./styles/App.css";
 
 const NavTabs = lazy(() => import("utils/NavTabs"));
 const Loading = lazy(() => import("utils/Loading"));

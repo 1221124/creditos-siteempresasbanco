@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { Table } from "react-bootstrap";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import ExpandableInfo from "./ExpandableInfo";
 import { useFaturasFetch } from "../hooks/useFaturasFetch";
 import { useLabelsStore } from "utils/useLabelsStore";
 import { Documento } from "../types/types";
+import Loading from "utils/Loading";
 
 const PdfPreview = React.lazy(() => import("utils/PdfPreview"));
 
@@ -93,9 +94,13 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
                       error={error}
                     />
                   ) : (
-                    <div className="p-3">
-                      <PdfPreview fileUrl={(row as unknown as Documento).pdf} />
-                    </div>
+                    <Suspense fallback={<Loading />}>
+                      <div className="p-3">
+                        <PdfPreview
+                          fileUrl={(row as unknown as Documento).pdf}
+                        />
+                      </div>
+                    </Suspense>
                   )}
                 </td>
               </tr>

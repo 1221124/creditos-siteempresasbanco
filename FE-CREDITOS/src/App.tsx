@@ -3,7 +3,6 @@ import GarantiasScreen from "./screens/garantias.screen";
 import CreditosDocImportacaoScreen from "./screens/creditosDocImportacao.screen";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useHosted } from "utils/HostedContext";
-import "./styles/App.css";
 
 export default function App() {
   const { hosted } = useHosted();

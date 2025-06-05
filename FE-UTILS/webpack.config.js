@@ -56,6 +56,7 @@ module.exports = {
         "./useExcelExport": "./src/hooks/useExcelExport",
         "./useLabelsStore": "./src/store/useLabelsStore.ts",
         "./HostedContext": "./src/context/HostedContext",
+        "./styles": "./src/styles/App.css",
       },
       shared: {
         react: {
