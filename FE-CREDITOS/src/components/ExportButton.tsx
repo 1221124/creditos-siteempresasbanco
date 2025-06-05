@@ -23,9 +23,10 @@ const ExportButton: React.FC<ExportButtonProps> = ({ data }) => {
 
   const handleExport = async () => {
     try {
-      await exportToExcel(data);
-      setError(false);
-      setShowToast(true);
+      if (await exportToExcel(data)) {
+        setError(false);
+        setShowToast(true);
+      }
     } catch (err) {
       console.error(errorOccuredLabel, err);
       setError(true);

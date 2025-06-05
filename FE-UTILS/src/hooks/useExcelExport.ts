@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import * as XLSX from "xlsx";
+import { useLabelsStore } from "../store/useLabelsStore";
 
 const flattenObject = (obj: any, prefix = ""): any => {
   return Object.keys(obj).reduce((acc, key) => {
@@ -15,13 +16,15 @@ const flattenObject = (obj: any, prefix = ""): any => {
 };
 
 export const useExcelExport = () => {
+  const errorOccuredLabel = useLabelsStore((state) => state.errorOccuredLabel);
+
   const exportToExcel = useCallback(
     async (
       data: any[],
       defaultFilename = "DADOS_DE_CREDITOS_EMPRESAX_SITEEMPRESASBANCO.xlsx"
-    ) => {
+    ): Promise<boolean> => {
       if (!data || data.length === 0) {
-        return;
+        return false;
       }
 
       const flattenedData = data.map((item) => flattenObject(item));
@@ -56,8 +59,11 @@ export const useExcelExport = () => {
           const writable = await handle.createWritable();
           await writable.write(blob);
           await writable.close();
+
+          return true;
         } catch (err) {
-          console.error("Exportação cancelada ou erro:", err);
+          console.error(errorOccuredLabel, err);
+          return false;
         }
       } else {
         const url = URL.createObjectURL(blob);
@@ -66,9 +72,10 @@ export const useExcelExport = () => {
         link.download = defaultFilename;
         link.click();
         URL.revokeObjectURL(url);
+        return true;
       }
     },
-    []
+    [errorOccuredLabel]
   );
 
   return { exportToExcel };

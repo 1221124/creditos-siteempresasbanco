@@ -76,6 +76,6 @@ declare module "utils/PdfPreview" {
 }
 declare module "utils/useExcelExport" {
     export const useExcelExport: () => {
-        exportToExcel: (data: any[], defaultFilename?: string) => Promise<void>;
+        exportToExcel: (data: any[], defaultFilename?: string) => Promise<boolean>;
     };
 }
