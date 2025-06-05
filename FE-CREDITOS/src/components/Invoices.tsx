@@ -24,7 +24,9 @@ const Invoices = ({ data, show, setShow }: InvoicesProps) => {
       style={{ width: window.innerWidth * 0.4 }}
     >
       <Offcanvas.Header closeButton>
-        <Offcanvas.Title>{invoicesLabel}</Offcanvas.Title>
+        <Offcanvas.Title>
+          <strong>{invoicesLabel}</strong>
+        </Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
         <Documents data={data} />
