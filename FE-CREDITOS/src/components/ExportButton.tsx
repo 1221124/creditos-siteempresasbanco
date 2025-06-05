@@ -9,13 +9,28 @@ interface ExportButtonProps {
 }
 
 const ExportButton: React.FC<ExportButtonProps> = ({ data }) => {
-  const exportLabel = useLabelsStore((state) => state.exportLabel);
+  const {
+    exportLabel,
+    exportToExcelLabel,
+    exportToExcelSuccessLabel,
+    exportToExcelErrorLabel,
+    errorOccuredLabel,
+  } = useLabelsStore();
+
   const [showToast, setShowToast] = useState(false);
+  const [error, setError] = useState(false);
   const { exportToExcel } = useExcelExport();
 
-  const handleExport = () => {
-    exportToExcel(data);
-    setShowToast(true);
+  const handleExport = async () => {
+    try {
+      await exportToExcel(data);
+      setError(false);
+      setShowToast(true);
+    } catch (err) {
+      console.error(errorOccuredLabel, err);
+      setError(true);
+      setShowToast(true);
+    }
   };
 
   return (
@@ -30,20 +45,24 @@ const ExportButton: React.FC<ExportButtonProps> = ({ data }) => {
       </Button>
 
       <ToastContainer position="top-end" className="p-3">
-        <Toast
-          bg="success"
-          show={showToast}
-          onClose={() => setShowToast(false)}
-          delay={3000}
-          autohide
-        >
-          <Toast.Header closeButton>
-            <strong className="me-auto">Exportação</strong>
-          </Toast.Header>
-          <Toast.Body className="text-white">
-            Exportação em Excel concluída com sucesso!
-          </Toast.Body>
-        </Toast>
+        {showToast && (
+          <Toast
+            bg={error ? "danger" : "success"}
+            show={showToast}
+            onClose={() => setShowToast(false)}
+            delay={3000}
+            autohide
+          >
+            <Toast.Header closeButton>
+              <strong className="me-auto">
+                {error ? errorOccuredLabel : exportToExcelLabel}
+              </strong>
+            </Toast.Header>
+            <Toast.Body className="text-white">
+              {error ? exportToExcelErrorLabel : exportToExcelSuccessLabel}
+            </Toast.Body>
+          </Toast>
+        )}
       </ToastContainer>
     </>
   );

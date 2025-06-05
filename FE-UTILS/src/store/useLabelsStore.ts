@@ -75,4 +75,7 @@ export const useLabelsStore = create<LabelsStore>(() => ({
   bankNameLabel: "Site de Empresas - Banco",
   companyNameLabel: "EMPRESA X",
   personNameLabel: "Nome Falso",
+  exportToExcelLabel: "Exportação para Excel",
+  exportToExcelSuccessLabel: "Exportação para Excel concluída com sucesso!",
+  exportToExcelErrorLabel: "Falha ao exportar o ficheiro. Tenta outra vez!",
 }));

@@ -26,6 +26,9 @@ declare module "#not-for-import/feUtils/store/types" {
         bankNameLabel: string;
         companyNameLabel: string;
         personNameLabel: string;
+        exportToExcelLabel: string;
+        exportToExcelSuccessLabel: string;
+        exportToExcelErrorLabel: string;
     };
 }
 declare module "feUtils/useLabelsStore" {
@@ -73,6 +76,6 @@ declare module "feUtils/PdfPreview" {
 }
 declare module "feUtils/useExcelExport" {
     export const useExcelExport: () => {
-        exportToExcel: (data: any[], filename?: string) => void;
+        exportToExcel: (data: any[], defaultFilename?: string) => Promise<void>;
     };
 }

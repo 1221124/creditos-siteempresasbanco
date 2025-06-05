@@ -29,4 +29,7 @@ export type LabelsStore = {
   bankNameLabel: string;
   companyNameLabel: string;
   personNameLabel: string;
+  exportToExcelLabel: string;
+  exportToExcelSuccessLabel: string;
+  exportToExcelErrorLabel: string;
 };
