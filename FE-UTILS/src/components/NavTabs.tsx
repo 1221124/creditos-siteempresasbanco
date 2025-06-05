@@ -13,8 +13,8 @@ const NavTabs: React.FC<NavTabsProps> = ({ tabs, align = "center" }) => {
   const { pathname } = useLocation();
   const { hosted } = useHosted();
 
-  const makeFullPath = (path: string, module: string) =>
-    hosted ? `/${module}${path}` : path;
+  const makeFullPath = (tabPath: string, tabModule: string) =>
+    hosted ? `/${tabModule}${tabPath}` : tabPath;
 
   const isActiveTab = (tab: Tab) =>
     tab.path === "/"
