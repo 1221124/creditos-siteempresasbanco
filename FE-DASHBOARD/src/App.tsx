@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HomePage from "./components/HomePage";
 import { useHosted } from "utils/HostedContext";
+import "utils/styles";
 
 const Loading = lazy(() => import("utils/Loading"));
 
