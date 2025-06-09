@@ -3,13 +3,14 @@ import { Nav } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { useHosted } from "../context/HostedContext";
 import { Tab } from "../store/types";
+import "../styles/NavTabs.css";
 
 type NavTabsProps = {
   tabs: Tab[];
-  align?: "start" | "center" | "end";
+  tabsStyle: 1 | 2;
 };
 
-const NavTabs: React.FC<NavTabsProps> = ({ tabs, align = "center" }) => {
+const NavTabs: React.FC<NavTabsProps> = ({ tabs, tabsStyle }) => {
   const { pathname } = useLocation();
   const { hosted } = useHosted();
 
@@ -24,19 +25,24 @@ const NavTabs: React.FC<NavTabsProps> = ({ tabs, align = "center" }) => {
 
   return (
     <Nav
-      className={`d-flex align-items-center justify-content-${align} border-bottom my-2`}
-      variant="underline"
+      className={`d-flex align-items-center justify-content-start nav-tabs-style-${tabsStyle} my-3`}
+      variant={tabsStyle === 2 ? "underline" : undefined}
     >
-      {tabs.map((tab) => (
-        <Nav.Item key={tab.path}>
-          <Nav.Link
-            as={Link}
-            to={makeFullPath(tab.path, tab.module)}
-            active={isActiveTab(tab)}
-          >
-            {tab.label}
-          </Nav.Link>
-        </Nav.Item>
+      {tabs.map((tab, index) => (
+        <React.Fragment key={tab.path}>
+          <Nav.Item>
+            <Nav.Link
+              as={Link}
+              to={makeFullPath(tab.path, tab.module)}
+              active={isActiveTab(tab)}
+            >
+              {tab.label}
+            </Nav.Link>
+          </Nav.Item>
+          {tabsStyle === 1 && index < tabs.length - 1 && (
+            <span className="nav-tabs-style-1-separator">{">"}</span>
+          )}
+        </React.Fragment>
       ))}
     </Nav>
   );

@@ -23,14 +23,27 @@ const GarantiasScreen: React.FC = () => {
   } = useDocumentosFetch();
 
   const garantiasTabs = useLabelsStore((state) => state.garantiasTabs);
+  const walletTabs = useLabelsStore((state) => state.walletTabs);
+  const garantiasLabel = useLabelsStore((state) => state.garantiasLabel);
+
+  const combinedTabs = [
+    ...walletTabs,
+    {
+      label: garantiasLabel,
+      path: "/garantias-e-avales",
+      module: "creditos",
+    },
+  ];
 
   if (loadingGarantias || loadingDocumentos) return <Loading />;
   if (errorGarantias || errorDocumentos)
     return <Error message={(errorGarantias || errorDocumentos) as string} />;
 
   return (
-    <div className="mt-4">
-      <NavTabs tabs={garantiasTabs} align="start" />
+    <div>
+      <h2 className="mb-4">{garantiasLabel}</h2>
+      <NavTabs tabs={combinedTabs} tabsStyle={1} />
+      <NavTabs tabs={garantiasTabs} tabsStyle={2} />
       <Routes>
         <Route index element={<Navigate to="detalhes" replace />} />
         <Route

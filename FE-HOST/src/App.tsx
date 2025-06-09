@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Col, Row, Container } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BankProfile from "./components/BankProfile";
 import UserProfile from "./components/UserProfile";
@@ -31,7 +31,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <Container fluid className="pt-4 pe-4 pb-4">
+    <div className="pt-4 pe-4 pb-4">
       <Row className="align-items-center justify-content-between mb-4">
         <Col xs="auto">
           <BankProfile name={bankNameLabel} />
@@ -63,7 +63,7 @@ const App: React.FC = () => {
           </Col>
         </Row>
       </Suspense>
-    </Container>
+    </div>
   );
 };
 

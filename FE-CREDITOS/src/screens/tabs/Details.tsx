@@ -30,7 +30,7 @@ const Details = <T extends { beneficiario: string }>({
   const [filteredData, setFilteredData] = useState<T[]>(data);
 
   return (
-    <>
+    <div className="d-flex w-100 flex-column">
       {!isCreditoDocImportacao && (
         <OperationsSummary data={data as unknown as Garantia[]} />
       )}
@@ -46,7 +46,7 @@ const Details = <T extends { beneficiario: string }>({
           <TableComponent headers={headers} data={filteredData} />
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 

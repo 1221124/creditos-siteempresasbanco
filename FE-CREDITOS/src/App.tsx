@@ -1,16 +1,17 @@
-import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import GarantiasScreen from "./screens/garantias.screen";
 import CreditosDocImportacaoScreen from "./screens/creditosDocImportacao.screen";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useHosted } from "utils/HostedContext";
 import "utils/styles";
+import CreditWallet from "./components/CreditWallet";
 
 export default function App() {
   const { hosted } = useHosted();
 
   const CreditosApp = (
     <Routes>
-      <Route index element={<Navigate to="garantias-e-avales" replace />} />
+      <Route index element={<CreditWallet />} />
       <Route path="garantias-e-avales/*" element={<GarantiasScreen />} />
       <Route
         path="doc-importacao/*"

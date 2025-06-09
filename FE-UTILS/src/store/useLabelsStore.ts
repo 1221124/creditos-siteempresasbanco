@@ -3,16 +3,15 @@ import { LabelsStore } from "./types";
 
 export const useLabelsStore = create<LabelsStore>(() => ({
   //tabs
-  appTabs: [
-    { label: "Início", path: "/", module: "dashboard" },
+  walletTabs: [
     {
-      label: "Garantias e Avales",
-      path: "/garantias-e-avales",
-      module: "creditos",
+      label: "Início",
+      path: "/",
+      module: "dashboard",
     },
     {
-      label: "Créditos Doc. Importação",
-      path: "/doc-importacao",
+      label: "Carteira",
+      path: "/",
       module: "creditos",
     },
   ],
@@ -78,4 +77,7 @@ export const useLabelsStore = create<LabelsStore>(() => ({
   exportToExcelLabel: "Exportação para Excel",
   exportToExcelSuccessLabel: "Exportação para Excel concluída com sucesso!",
   exportToExcelErrorLabel: "Falha ao exportar o ficheiro. Tenta outra vez!",
+  walletLabel: "Carteira de Créditos",
+  garantiasLabel: "Garantias e Avales",
+  creditosDocImportLabel: "Créditos Documentários de Importação",
 }));

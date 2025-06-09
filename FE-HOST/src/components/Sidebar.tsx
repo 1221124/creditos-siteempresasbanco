@@ -8,7 +8,7 @@ const Sidebar: React.FC = () => {
   return (
     <div
       className="d-flex flex-column align-items-center py-3 border-end"
-      style={{ minWidth: "4rem", height: "100%" }}
+      style={{ minWidth: "4rem", height: "85vh" }}
     >
       <Nav className="flex-column gap-4 w-100 align-items-center">
         <Nav.Item

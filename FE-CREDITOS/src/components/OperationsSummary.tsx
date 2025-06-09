@@ -41,7 +41,7 @@ const OperationsSummary: React.FC<OperationsSummaryProps> = ({ data }) => {
   }
 
   return (
-    <Row className="text-center mb-4">
+    <Row className="align-self-center text-center mb-4 w-100">
       <CardItem
         title={operationsSummaryHeaders[0]}
         value={numberOfOperations}

@@ -5,7 +5,7 @@ declare module "#not-for-import/feUtils/store/types" {
         module: "creditos" | "dashboard";
     };
     export type LabelsStore = {
-        appTabs: Tab[];
+        walletTabs: Tab[];
         garantiasTabs: Tab[];
         creditosDocImportTabs: Tab[];
         garantiasHeaders: string[];
@@ -29,6 +29,9 @@ declare module "#not-for-import/feUtils/store/types" {
         exportToExcelLabel: string;
         exportToExcelSuccessLabel: string;
         exportToExcelErrorLabel: string;
+        walletLabel: string;
+        garantiasLabel: string;
+        creditosDocImportLabel: string;
     };
 }
 declare module "feUtils/useLabelsStore" {
@@ -61,9 +64,10 @@ declare module "feUtils/HostedContext" {
 declare module "feUtils/NavTabs" {
     import React from "react";
     import { Tab } from "#not-for-import/feUtils/store/types";
+    import "../styles/NavTabs.css";
     type NavTabsProps = {
         tabs: Tab[];
-        align?: "start" | "center" | "end";
+        tabsStyle: 1 | 2;
     };
     const NavTabs: React.FC<NavTabsProps>;
     export default NavTabs;

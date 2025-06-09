@@ -13,13 +13,28 @@ const CreditosDocImportacaoScreen: React.FC = () => {
   const creditosDocImportTabs = useLabelsStore(
     (state) => state.creditosDocImportTabs
   );
+  const walletTabs = useLabelsStore((state) => state.walletTabs);
+  const creditosDocImportLabel = useLabelsStore(
+    (state) => state.creditosDocImportLabel
+  );
+
+  const combinedTabs = [
+    ...walletTabs,
+    {
+      label: creditosDocImportLabel,
+      path: "/doc-importacao",
+      module: "creditos",
+    },
+  ];
 
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
 
   return (
-    <div className="mt-4">
-      <NavTabs tabs={creditosDocImportTabs} align="start" />
+    <div>
+      <h2 className="mb-4">{creditosDocImportLabel}</h2>
+      <NavTabs tabs={combinedTabs} tabsStyle={1} />
+      <NavTabs tabs={creditosDocImportTabs} tabsStyle={2} />
       <Routes>
         <Route index element={<Navigate to="detalhes" replace />} />
         <Route

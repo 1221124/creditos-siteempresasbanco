@@ -1,0 +1,39 @@
+.nav-tabs-style-2 {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.nav-tabs-style-1 {
+  border-bottom: none;
+  font-size: 0.95rem;
+  color: #212529;
+  gap: 0.3rem;
+}
+
+.nav-tabs-style-1 .nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.nav-tabs-style-1 .nav-link {
+  padding: 0;
+  color: #212529;
+  background: none;
+  border: none;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav-tabs-style-1 .nav-link:hover {
+  color: #212529;
+  text-decoration: none;
+}
+
+.nav-tabs-style-1 .nav-link.active {
+  font-weight: 700;
+}
+
+.nav-tabs-style-1-separator {
+  margin: 0 0.5rem;
+  color: #6c757d;
+  font-size: 0.95rem;
+}

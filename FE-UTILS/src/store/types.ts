@@ -6,7 +6,7 @@ export type Tab = {
 
 export type LabelsStore = {
   //tabs
-  appTabs: Tab[];
+  walletTabs: Tab[];
   garantiasTabs: Tab[];
   creditosDocImportTabs: Tab[];
   //headers
@@ -32,4 +32,7 @@ export type LabelsStore = {
   exportToExcelLabel: string;
   exportToExcelSuccessLabel: string;
   exportToExcelErrorLabel: string;
+  walletLabel: string;
+  garantiasLabel: string;
+  creditosDocImportLabel: string;
 };
