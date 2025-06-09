@@ -1,6 +1,5 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HomePage from "./components/HomePage";
 import { useHosted } from "utils/HostedContext";
@@ -27,7 +26,7 @@ const App: React.FC = () => {
   }, []);
 
   const DashboardApp = (
-    <Container className="py-4">
+    <div className="py-4">
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route
@@ -37,7 +36,7 @@ const App: React.FC = () => {
           />
         </Routes>
       </Suspense>
-    </Container>
+    </div>
   );
 
   return hosted ? DashboardApp : <BrowserRouter>{DashboardApp}</BrowserRouter>;

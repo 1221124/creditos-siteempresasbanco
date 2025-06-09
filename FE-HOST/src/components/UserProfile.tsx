@@ -1,5 +1,4 @@
 import { Badge, Container, Row, Col } from "react-bootstrap";
-import { PersonCircle } from "react-bootstrap-icons";
 
 type UserProfileProps = {
   company: string;
@@ -16,8 +15,12 @@ const UserProfile: React.FC<UserProfileProps> = ({ company, person }) => {
           </Badge>
         </Col>
         <Col xs="auto" className="d-flex align-items-center gap-1">
-          <PersonCircle size={24} />
-          <span className="fw-semibold fs-5">{person}</span>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/480px-User_icon_2.svg.png"
+            alt="User"
+            style={{ width: "24px", height: "24px", objectFit: "contain" }}
+          />
+          <span className="fw-bold fs-5">{person}</span>
         </Col>
       </Row>
     </Container>

@@ -1,5 +1,4 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 import Details from "./tabs/Details";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useGarantiasFetch } from "../hooks/useGarantiasFetch";
@@ -30,7 +29,7 @@ const GarantiasScreen: React.FC = () => {
     return <Error message={(errorGarantias || errorDocumentos) as string} />;
 
   return (
-    <Container className="mt-4">
+    <div className="mt-4">
       <NavTabs tabs={garantiasTabs} align="start" />
       <Routes>
         <Route index element={<Navigate to="detalhes" replace />} />
@@ -45,7 +44,7 @@ const GarantiasScreen: React.FC = () => {
           element={<Documents data={documentosData} />}
         />
       </Routes>
-    </Container>
+    </div>
   );
 };
 
