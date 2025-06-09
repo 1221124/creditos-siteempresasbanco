@@ -88,19 +88,23 @@ export const useLabelsStore = create<LabelsStore>(() => ({
       title: "Notícias e Atualizações",
       items: [
         {
-          image: "https://picsum.photos/id/1015/60/60",
+          image:
+            "https://images.pexels.com/photos/4482900/pexels-photo-4482900.jpeg?auto=compress&cs=tinysrgb&w=600",
           text: "Novo cartão Platinum sem anuidade!",
         },
         {
-          image: "https://picsum.photos/id/1011/60/60",
-          text: "App mobile atualizado com novas funções",
+          image:
+            "https://images.pexels.com/photos/7534801/pexels-photo-7534801.jpeg?auto=compress&cs=tinysrgb&w=600",
+          text: "Nova atualização na app mobile",
         },
         {
-          image: "https://picsum.photos/id/1016/60/60",
+          image:
+            "https://images.pexels.com/photos/4359144/pexels-photo-4359144.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
           text: "Nova agência inaugurada no centro",
         },
         {
-          image: "https://picsum.photos/id/1018/60/60",
+          image:
+            "https://images.pexels.com/photos/7709172/pexels-photo-7709172.jpeg?auto=compress&cs=tinysrgb&w=600",
           text: "Atendimento 24h por chat disponível",
         },
       ],
@@ -109,19 +113,23 @@ export const useLabelsStore = create<LabelsStore>(() => ({
       title: "Dicas de Segurança",
       items: [
         {
-          image: "https://picsum.photos/id/1022/60/60",
+          image:
+            "https://images.pexels.com/photos/5935791/pexels-photo-5935791.jpeg?auto=compress&cs=tinysrgb&w=600",
           text: "Não partilhe a sua password",
         },
         {
-          image: "https://picsum.photos/id/1023/60/60",
+          image:
+            "https://images.pexels.com/photos/5474301/pexels-photo-5474301.jpeg?auto=compress&cs=tinysrgb&w=600",
           text: "Use autenticação em dois fatores",
         },
         {
-          image: "https://picsum.photos/id/1024/60/60",
+          image:
+            "https://images.pexels.com/photos/3747486/pexels-photo-3747486.jpeg?auto=compress&cs=tinysrgb&w=600",
           text: "Evite redes públicas",
         },
         {
-          image: "https://picsum.photos/id/1025/60/60",
+          image:
+            "https://images.pexels.com/photos/5474294/pexels-photo-5474294.jpeg?auto=compress&cs=tinysrgb&w=600",
           text: "Desconfie de e-mails suspeitos",
         },
       ],
@@ -130,11 +138,13 @@ export const useLabelsStore = create<LabelsStore>(() => ({
       title: "Serviços Disponíveis",
       items: [
         {
-          image: "https://picsum.photos/id/1026/60/60",
+          image:
+            "https://images.pexels.com/photos/6633599/pexels-photo-6633599.jpeg?auto=compress&cs=tinysrgb&w=600",
           text: "Consulta de créditos",
         },
         {
-          image: "https://picsum.photos/id/1021/60/60",
+          image:
+            "https://images.pexels.com/photos/7947999/pexels-photo-7947999.jpeg?auto=compress&cs=tinysrgb&w=600",
           text: "Extração de dados de créditos para Excel",
         },
       ],
