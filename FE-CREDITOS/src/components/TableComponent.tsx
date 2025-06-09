@@ -2,10 +2,11 @@ import React, { Suspense, useState } from "react";
 import { Table } from "react-bootstrap";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import ExpandableInfo from "./ExpandableInfo";
-import { useFaturasFetch } from "../hooks/useFaturasFetch";
 import { useLabelsStore } from "utils/useLabelsStore";
 import { Documento } from "../types/types";
 import Loading from "utils/Loading";
+import { ENDPOINTS } from "../api/endpoints";
+import { useFetchData } from "../hooks/useFetchData";
 
 const PdfPreview = React.lazy(() => import("utils/PdfPreview"));
 
@@ -17,14 +18,18 @@ type TableComponentProps = {
 const TableComponent = ({ headers, data }: TableComponentProps) => {
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
 
-  const { data: invoicesData, loading, error } = useFaturasFetch();
+  const {
+    data: invoicesData,
+    loading,
+    error,
+  } = useFetchData<Documento>(ENDPOINTS.faturas);
   const extraInfoHeaders = useLabelsStore((state) => state.extraInfoHeaders);
+
+  const extra = data.length > headers.length;
 
   const toggleRow = (index: number) => {
     setExpandedRow(expandedRow === index ? null : index);
   };
-
-  const extra = data.length > headers.length;
 
   return (
     <Table responsive borderless>

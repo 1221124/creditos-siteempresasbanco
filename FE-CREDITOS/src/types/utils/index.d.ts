@@ -32,6 +32,8 @@ declare module "#not-for-import/feUtils/store/types" {
         walletLabel: string;
         garantiasLabel: string;
         creditosDocImportLabel: string;
+        garantiasPathLabel: string;
+        creditosDocImportPathLabel: string;
     };
 }
 declare module "utils/useLabelsStore" {

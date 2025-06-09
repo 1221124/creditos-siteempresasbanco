@@ -29,7 +29,7 @@ const NavTabs: React.FC<NavTabsProps> = ({ tabs, tabsStyle }) => {
       variant={tabsStyle === 2 ? "underline" : undefined}
     >
       {tabs.map((tab, index) => (
-        <React.Fragment key={tab.path}>
+        <React.Fragment key={tab.module + tab.path}>
           <Nav.Item>
             <Nav.Link
               as={Link}

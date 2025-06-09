@@ -1,15 +1,18 @@
 import React from "react";
 import Details from "./tabs/Details";
-import { useCreditosDocImportFetch } from "../hooks/useCreditosDocImportFetch";
 import { useLabelsStore } from "utils/useLabelsStore";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { CreditoDocImport } from "../types/types";
 
-const Loading = React.lazy(() => import("utils/Loading"));
-const Error = React.lazy(() => import("utils/Error"));
 const NavTabs = React.lazy(() => import("utils/NavTabs"));
 
-const CreditosDocImportacaoScreen: React.FC = () => {
-  const { data, loading, error } = useCreditosDocImportFetch();
+type CreditosDocImportacaoScreenProps = {
+  creditosData: CreditoDocImport[];
+};
+
+const CreditosDocImportacaoScreen: React.FC<
+  CreditosDocImportacaoScreenProps
+> = ({ creditosData }) => {
   const creditosDocImportTabs = useLabelsStore(
     (state) => state.creditosDocImportTabs
   );
@@ -27,9 +30,6 @@ const CreditosDocImportacaoScreen: React.FC = () => {
     },
   ];
 
-  if (loading) return <Loading />;
-  if (error) return <Error message={error} />;
-
   return (
     <div>
       <h2 className="mb-4">{creditosDocImportLabel}</h2>
@@ -39,7 +39,7 @@ const CreditosDocImportacaoScreen: React.FC = () => {
         <Route index element={<Navigate to="detalhes" replace />} />
         <Route
           path="detalhes"
-          element={<Details data={data} isCreditoDocImportacao />}
+          element={<Details data={creditosData} isCreditoDocImportacao />}
         />
       </Routes>
     </div>

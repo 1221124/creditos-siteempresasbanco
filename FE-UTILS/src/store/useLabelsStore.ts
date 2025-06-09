@@ -45,7 +45,7 @@ export const useLabelsStore = create<LabelsStore>(() => ({
     "Nº Operação",
     "Data inicial",
     "Data final",
-    "Montante",
+    "Montante Original",
     "Responsabilidade Atual",
   ],
   documentosHeaders: ["Data", "Nome"],
@@ -80,4 +80,6 @@ export const useLabelsStore = create<LabelsStore>(() => ({
   walletLabel: "Carteira de Créditos",
   garantiasLabel: "Garantias e Avales",
   creditosDocImportLabel: "Créditos Documentários de Importação",
+  garantiasPathLabel: "garantias-e-avales",
+  creditosDocImportPathLabel: "doc-importacao",
 }));

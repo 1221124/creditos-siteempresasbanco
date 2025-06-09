@@ -28,3 +28,9 @@ export type Documento = {
   nome: string;
   pdf: string;
 };
+
+export type CreditWalletCard = {
+  title: string;
+  operations: number;
+  amount: string;
+};

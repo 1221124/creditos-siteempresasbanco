@@ -4,32 +4,26 @@ import { useNavigate } from "react-router-dom";
 import SquareCard from "./SquareCard";
 import NavTabs from "utils/NavTabs";
 import { useLabelsStore } from "utils/useLabelsStore";
+import { CreditWalletCard } from "../types/types";
 
-interface CreditCardData {
-  title: string;
-  operations: number;
-  amount: string;
-  maxAmount?: string;
-}
+type CreditWalletProps = {
+  cards: CreditWalletCard[];
+};
 
-const cards: CreditCardData[] = [
-  {
-    title: "Garantias e Avales",
-    operations: 25,
-    amount: "2.320.658,00 EUR",
-  },
-  {
-    title: "Créditos Doc. de Importação",
-    operations: 3,
-    amount: "25.000,00 EUR",
-    maxAmount: "25.000,00 EUR",
-  },
-];
-
-const CreditWallet: React.FC = () => {
+const CreditWallet: React.FC<CreditWalletProps> = ({ cards }) => {
   const navigate = useNavigate();
   const walletTabs = useLabelsStore((state) => state.walletTabs);
   const walletLabel = useLabelsStore((state) => state.walletLabel);
+  const garantiasLabel = useLabelsStore((state) => state.garantiasLabel);
+  const creditosDocImportLabel = useLabelsStore(
+    (state) => state.creditosDocImportLabel
+  );
+  const garantiasPathLabel = useLabelsStore(
+    (state) => state.garantiasPathLabel
+  );
+  const creditosDocImportPathLabel = useLabelsStore(
+    (state) => state.creditosDocImportPathLabel
+  );
 
   const [maxSize, setMaxSize] = useState(0);
 
@@ -37,10 +31,17 @@ const CreditWallet: React.FC = () => {
     setMaxSize((prev) => (size > prev ? size : prev));
   };
 
-  const handleButtonNavigation = (card: CreditCardData) => {
-    return card.title === "Garantias e Avales"
-      ? navigate("garantias-e-avales")
-      : navigate("doc-importacao");
+  const handleButtonNavigation = (cardTitle: string) => {
+    switch (cardTitle) {
+      case garantiasLabel:
+        navigate(garantiasPathLabel);
+        break;
+      case creditosDocImportLabel:
+        navigate(creditosDocImportPathLabel);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -54,15 +55,13 @@ const CreditWallet: React.FC = () => {
         {cards.map((card, idx) => (
           <SquareCard
             key={idx}
-            onSizeMeasured={handleSizeMeasured}
             uniformSize={maxSize > 0 ? maxSize : undefined}
+            onSizeMeasured={handleSizeMeasured}
           >
             <Card className="shadow-sm">
               <Card.Body
                 className="d-flex flex-column justify-content-between"
-                style={{
-                  whiteSpace: "nowrap",
-                }}
+                style={{ whiteSpace: "nowrap" }}
               >
                 <div>
                   <Card.Title className="d-flex justify-content-between align-items-center fs-6 text-uppercase text-muted">
@@ -74,9 +73,7 @@ const CreditWallet: React.FC = () => {
                     <div className="fw-bold">{card.operations}</div>
                   </div>
                   <div className="mb-3">
-                    <span className="text-muted">
-                      {card.maxAmount ? "Montante Máximo" : "Montante"}
-                    </span>
+                    <span className="text-muted">Montante</span>
                     <div className="fw-bold">{card.amount}</div>
                   </div>
                 </div>
@@ -85,7 +82,7 @@ const CreditWallet: React.FC = () => {
                     variant="primary"
                     className="px-0 pt-0 border-0 bg-transparent text-primary fw-semibold"
                     style={{ textDecoration: "none", boxShadow: "none" }}
-                    onClick={() => handleButtonNavigation(card)}
+                    onClick={() => handleButtonNavigation(card.title)}
                   >
                     Ver detalhes &gt;
                   </Button>

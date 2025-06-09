@@ -5,20 +5,31 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useHosted } from "utils/HostedContext";
 import "utils/styles";
 import CreditWallet from "./components/CreditWallet";
+import { useCreditWalletCards } from "./hooks/useCreditWalletCards";
+import Loading from "utils/Loading";
+import Error from "utils/Error";
 
 export default function App() {
   const { hosted } = useHosted();
+  const { cards, garantiasData, creditosData, loading, error } =
+    useCreditWalletCards();
 
-  const CreditosApp = (
+  if (loading) return <Loading />;
+  if (error) return <Error message={error} />;
+
+  const content = (
     <Routes>
-      <Route index element={<CreditWallet />} />
-      <Route path="garantias-e-avales/*" element={<GarantiasScreen />} />
+      <Route index element={<CreditWallet cards={cards} />} />
+      <Route
+        path="garantias-e-avales/*"
+        element={<GarantiasScreen garantiasData={garantiasData} />}
+      />
       <Route
         path="doc-importacao/*"
-        element={<CreditosDocImportacaoScreen />}
+        element={<CreditosDocImportacaoScreen creditosData={creditosData} />}
       />
     </Routes>
   );
 
-  return hosted ? CreditosApp : <BrowserRouter>{CreditosApp}</BrowserRouter>;
+  return hosted ? content : <BrowserRouter>{content}</BrowserRouter>;
 }

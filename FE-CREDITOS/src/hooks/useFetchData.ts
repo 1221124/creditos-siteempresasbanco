@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { get } from "../../services/RESTAdapter";
+import { get } from "../services/RESTAdapter";
 import { useLabelsStore } from "utils/useLabelsStore";
 
 export function useFetchData<T>(endpoint: string) {

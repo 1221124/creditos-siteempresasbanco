@@ -35,4 +35,6 @@ export type LabelsStore = {
   walletLabel: string;
   garantiasLabel: string;
   creditosDocImportLabel: string;
+  garantiasPathLabel: string;
+  creditosDocImportPathLabel: string;
 };

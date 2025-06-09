@@ -3,6 +3,7 @@ import { Row } from "react-bootstrap";
 import { Garantia } from "../types/types";
 import CardItem from "./CardItem";
 import { useLabelsStore } from "utils/useLabelsStore";
+import { useCalculateAmount } from "../hooks/useCalculateAmount";
 
 type OperationsSummaryProps = {
   data: Garantia[];
@@ -12,33 +13,9 @@ const OperationsSummary: React.FC<OperationsSummaryProps> = ({ data }) => {
   const operationsSummaryHeaders = useLabelsStore(
     (state) => state.operationsSummaryHeaders
   );
-  const portugalLabel = useLabelsStore((state) => state.portugalLabel);
 
-  const numberOfOperations = data.length;
-  const nationalTotal = getTotalByLocal(data, portugalLabel);
-  const internationalTotal = getTotalByLocal(data);
-
-  function getTotalByLocal(data: Garantia[], local?: string): number {
-    return data
-      .filter((item) =>
-        local ? item.local === local : item.local !== portugalLabel
-      )
-      .reduce((acc, item) => {
-        const montanteStr =
-          typeof item.montante === "string"
-            ? item.montante.trim()
-            : String(item.montante);
-        const decimalPart = montanteStr.includes(",")
-          ? montanteStr.split(",")[1]
-          : montanteStr.split(".")[1];
-
-        const montanteDecimal = decimalPart ? Number("0." + decimalPart) : 0;
-
-        const montanteInteiro = Number(montanteStr.split(/[.,]/)[0]);
-
-        return acc + montanteInteiro + montanteDecimal;
-      }, 0);
-  }
+  const { numberOfOperations, nationalTotal, internationalTotal } =
+    useCalculateAmount(data);
 
   return (
     <Row className="align-self-center text-center mb-4 w-100">

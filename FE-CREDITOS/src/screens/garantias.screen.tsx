@@ -1,26 +1,26 @@
 import React from "react";
 import Details from "./tabs/Details";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useGarantiasFetch } from "../hooks/useGarantiasFetch";
-import { useDocumentosFetch } from "../hooks/useDocumentosFetch";
 import Documents from "./tabs/Documents";
 import { useLabelsStore } from "utils/useLabelsStore";
+import { useFetchData } from "../hooks/useFetchData";
+import { Documento, Garantia } from "../types/types";
+import { ENDPOINTS } from "../api/endpoints";
 
 const Loading = React.lazy(() => import("utils/Loading"));
 const Error = React.lazy(() => import("utils/Error"));
 const NavTabs = React.lazy(() => import("utils/NavTabs"));
 
-const GarantiasScreen: React.FC = () => {
-  const {
-    data: garantiasData,
-    loading: loadingGarantias,
-    error: errorGarantias,
-  } = useGarantiasFetch();
+type GarantiasScreenProps = {
+  garantiasData: Garantia[];
+};
+
+const GarantiasScreen: React.FC<GarantiasScreenProps> = ({ garantiasData }) => {
   const {
     data: documentosData,
-    loading: loadingDocumentos,
-    error: errorDocumentos,
-  } = useDocumentosFetch();
+    loading,
+    error,
+  } = useFetchData<Documento>(ENDPOINTS.documentos);
 
   const garantiasTabs = useLabelsStore((state) => state.garantiasTabs);
   const walletTabs = useLabelsStore((state) => state.walletTabs);
@@ -35,9 +35,8 @@ const GarantiasScreen: React.FC = () => {
     },
   ];
 
-  if (loadingGarantias || loadingDocumentos) return <Loading />;
-  if (errorGarantias || errorDocumentos)
-    return <Error message={(errorGarantias || errorDocumentos) as string} />;
+  if (loading) return <Loading />;
+  if (error) return <Error message={error} />;
 
   return (
     <div>
