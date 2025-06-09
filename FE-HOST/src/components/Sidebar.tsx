@@ -28,7 +28,7 @@ const Sidebar: React.FC = () => {
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <Nav className="flex-column gap-4 w-100 align-items-center py-3 border-end sidebar">
+        <Nav className="flex-column w-100 align-items-center border-end sidebar">
           <OverlayTrigger
             placement="right"
             overlay={renderTooltip(homeLabel)}
