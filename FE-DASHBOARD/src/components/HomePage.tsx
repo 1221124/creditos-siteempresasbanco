@@ -1,21 +1,39 @@
-type HomePageProps = {
-  bankName: string;
-  message: string;
-};
+import React, { lazy, useState } from "react";
+import { Col, Row } from "react-bootstrap";
+import { useLabelsStore } from "utils/useLabelsStore";
 
-const HomePage: React.FC<HomePageProps> = ({ bankName, message }) => {
+const CardNavigator = lazy(() => import("utils/CardNavigator"));
+
+const HomePage: React.FC = () => {
+  const homeLabel = useLabelsStore((state) => state.homeLabel);
+  const personNameLabel = useLabelsStore((state) => state.personNameLabel);
+  const infoSections = useLabelsStore((state) => state.infoSections);
+
+  const [maxSize, setMaxSize] = useState(0);
+
+  const handleSizeMeasured = (size: number) => {
+    setMaxSize((prev) => (size > prev ? size : prev));
+  };
+
   return (
-    <div className="d-flex flex-column justify-content-center align-items-center mt-5">
-      <h1>{message}</h1>
-      <div className="mt-4">
-        <img
-          src="https://cdn-icons-png.freepik.com/512/14238/14238769.png"
-          alt={bankName}
-          className="img-fluid"
-          style={{ maxWidth: "100%", height: "auto" }}
-        />
-      </div>
+    <div>
+      <h1 className="mb-4">{homeLabel}</h1>
+      <h4 className="text-muted mb-5">
+        Olá, <strong>{personNameLabel}</strong>!
+      </h4>
+      <Row>
+        {infoSections.map((section, sectionIdx) => (
+          <Col key={sectionIdx} className="mb-4" style={{ minWidth: maxSize }}>
+            <CardNavigator
+              section={section}
+              maxSize={maxSize}
+              onSizeMeasured={handleSizeMeasured}
+            />
+          </Col>
+        ))}
+      </Row>
     </div>
   );
 };
+
 export default HomePage;

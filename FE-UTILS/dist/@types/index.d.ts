@@ -4,6 +4,14 @@ declare module "#not-for-import/feUtils/store/types" {
         path: string;
         module: "creditos" | "dashboard";
     };
+    export type InfoItem = {
+        image?: string;
+        text: string;
+    };
+    export type InfoSection = {
+        title: string;
+        items: InfoItem[];
+    };
     export type LabelsStore = {
         walletTabs: Tab[];
         garantiasTabs: Tab[];
@@ -34,6 +42,7 @@ declare module "#not-for-import/feUtils/store/types" {
         creditosDocImportLabel: string;
         garantiasPathLabel: string;
         creditosDocImportPathLabel: string;
+        infoSections: InfoSection[];
     };
 }
 declare module "feUtils/useLabelsStore" {
@@ -79,6 +88,27 @@ declare module "feUtils/PdfPreview" {
         fileUrl: string;
     }) => import("react/jsx-runtime").JSX.Element;
     export default PdfPreview;
+}
+declare module "feUtils/SquareCard" {
+    import React from "react";
+    interface SquareCardProps {
+        children: React.ReactNode;
+        onSizeMeasured: (size: number) => void;
+        uniformSize?: number;
+    }
+    const SquareCard: React.FC<SquareCardProps>;
+    export default SquareCard;
+}
+declare module "feUtils/CardNavigator" {
+    import React from "react";
+    import { InfoSection } from "#not-for-import/feUtils/store/types";
+    interface CardNavigatorProps {
+        section: InfoSection;
+        maxSize: number;
+        onSizeMeasured: (size: number) => void;
+    }
+    const CardNavigator: React.FC<CardNavigatorProps>;
+    export default CardNavigator;
 }
 declare module "feUtils/useExcelExport" {
     export const useExcelExport: () => {

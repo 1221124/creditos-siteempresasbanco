@@ -53,6 +53,8 @@ module.exports = {
         "./Loading": "./src/components/Loading",
         "./NavTabs": "./src/components/NavTabs",
         "./PdfPreview": "./src/components/PdfPreview",
+        "./SquareCard": "./src/components/SquareCard",
+        "./CardNavigator": "./src/components/CardNavigator",
         "./useExcelExport": "./src/hooks/useExcelExport",
         "./useLabelsStore": "./src/store/useLabelsStore.ts",
         "./HostedContext": "./src/context/HostedContext",

@@ -29,9 +29,9 @@ const SquareCard: React.FC<SquareCardProps> = ({
       ref={ref}
       style={{
         width: uniformSize ?? "auto",
-        height: uniformSize ?? "auto",
+        minHeight: uniformSize ?? "auto",
         display: "inline-block",
-        overflow: "hidden",
+        overflow: "visible",
       }}
     >
       {children}

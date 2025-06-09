@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { lazy, useState } from "react";
 import { Card, Row, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import SquareCard from "./SquareCard";
 import NavTabs from "utils/NavTabs";
 import { useLabelsStore } from "utils/useLabelsStore";
 import { CreditWalletCard } from "../types/types";
+
+const SquareCard = lazy(() => import("utils/SquareCard"));
 
 type CreditWalletProps = {
   cards: CreditWalletCard[];

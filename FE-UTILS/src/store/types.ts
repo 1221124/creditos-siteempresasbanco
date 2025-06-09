@@ -4,6 +4,16 @@ export type Tab = {
   module: "creditos" | "dashboard";
 };
 
+export type InfoItem = {
+  image?: string;
+  text: string;
+};
+
+export type InfoSection = {
+  title: string;
+  items: InfoItem[];
+};
+
 export type LabelsStore = {
   //tabs
   walletTabs: Tab[];
@@ -37,4 +47,6 @@ export type LabelsStore = {
   creditosDocImportLabel: string;
   garantiasPathLabel: string;
   creditosDocImportPathLabel: string;
+  //info
+  infoSections: InfoSection[];
 };

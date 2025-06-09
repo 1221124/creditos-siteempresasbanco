@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -6,6 +6,7 @@ import BankProfile from "./components/BankProfile";
 import UserProfile from "./components/UserProfile";
 import Sidebar from "./components/Sidebar";
 import "utils/styles";
+import { useLabelsStore } from "utils/useLabelsStore";
 
 const Loading = lazy(() => import("utils/Loading"));
 
@@ -13,22 +14,9 @@ const DashboardApp = lazy(() => import("dashboard/App"));
 const CreditosApp = lazy(() => import("creditos/App"));
 
 const App: React.FC = () => {
-  const [bankNameLabel, setBankNameLabel] = useState("");
-  const [companyNameLabel, setCompanyNameLabel] = useState("");
-  const [personNameLabel, setPersonNameLabel] = useState("");
-
-  useEffect(() => {
-    const fetchTabs = async () => {
-      const useLabelsStore = await import("utils/useLabelsStore").then(
-        (mod) => mod.useLabelsStore
-      );
-      setBankNameLabel(useLabelsStore.getState().bankNameLabel);
-      setCompanyNameLabel(useLabelsStore.getState().companyNameLabel);
-      setPersonNameLabel(useLabelsStore.getState().personNameLabel);
-    };
-
-    fetchTabs();
-  }, []);
+  const bankNameLabel = useLabelsStore((state) => state.bankNameLabel);
+  const companyNameLabel = useLabelsStore((state) => state.companyNameLabel);
+  const personNameLabel = useLabelsStore((state) => state.personNameLabel);
 
   return (
     <div className="pt-4 pe-4 pb-4">

@@ -1,9 +1,6 @@
 declare module "#not-for-import/feDashboard/components/HomePage" {
-    type HomePageProps = {
-        bankName: string;
-        message: string;
-    };
-    const HomePage: React.FC<HomePageProps>;
+    import React from "react";
+    const HomePage: React.FC;
     export default HomePage;
 }
 declare module "feDashboard/App" {

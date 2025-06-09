@@ -188,16 +188,6 @@ declare module "#not-for-import/feCreditos/screens/creditosDocImportacao.screen"
     const CreditosDocImportacaoScreen: React.FC<CreditosDocImportacaoScreenProps>;
     export default CreditosDocImportacaoScreen;
 }
-declare module "#not-for-import/feCreditos/components/SquareCard" {
-    import React from "react";
-    interface SquareCardProps {
-        children: React.ReactNode;
-        onSizeMeasured: (size: number) => void;
-        uniformSize?: number;
-    }
-    const SquareCard: React.FC<SquareCardProps>;
-    export default SquareCard;
-}
 declare module "#not-for-import/feCreditos/components/CreditWallet" {
     import React from "react";
     import { CreditWalletCard } from "#not-for-import/feCreditos/types/types";
