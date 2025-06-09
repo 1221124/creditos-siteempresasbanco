@@ -25,7 +25,7 @@ const NavTabs: React.FC<NavTabsProps> = ({ tabs, tabsStyle }) => {
 
   return (
     <Nav
-      className={`d-flex align-items-center justify-content-start nav-tabs-style-${tabsStyle} my-3`}
+      className={`d-flex align-items-center justify-content-start nav-tabs-style-${tabsStyle} mt-3`}
       variant={tabsStyle === 2 ? "underline" : undefined}
     >
       {tabs.map((tab, index) => (

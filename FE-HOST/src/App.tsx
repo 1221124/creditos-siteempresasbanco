@@ -19,7 +19,10 @@ const App: React.FC = () => {
   const personNameLabel = useLabelsStore((state) => state.personNameLabel);
 
   return (
-    <div className="pt-4 pe-4 pb-4">
+    <div
+      className="pt-4 pe-4 pb-4 d-flex flex-column"
+      style={{ height: "100%" }}
+    >
       <Row className="align-items-center justify-content-between mb-4">
         <Col xs="auto">
           <BankProfile name={bankNameLabel} />
@@ -30,7 +33,7 @@ const App: React.FC = () => {
       </Row>
 
       <Suspense fallback={<Loading />}>
-        <Row>
+        <Row className="flex-grow-1" style={{ minHeight: 0 }}>
           <Col xs="auto" className="pe-4">
             <Sidebar />
           </Col>

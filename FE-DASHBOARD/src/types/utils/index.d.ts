@@ -30,7 +30,7 @@ declare module "#not-for-import/feUtils/store/types" {
         tryAgainLabel: string;
         apiErrorLabel: string;
         invoicesLabel: string;
-        homeLabel: string;
+        homeMessageLabel: string;
         bankNameLabel: string;
         companyNameLabel: string;
         personNameLabel: string;
@@ -42,6 +42,8 @@ declare module "#not-for-import/feUtils/store/types" {
         creditosDocImportLabel: string;
         garantiasPathLabel: string;
         creditosDocImportPathLabel: string;
+        homeLabel: string;
+        creditosLabel: string;
         infoSections: InfoSection[];
     };
 }

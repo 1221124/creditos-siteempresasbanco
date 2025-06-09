@@ -34,7 +34,9 @@ const CreditosDocImportacaoScreen: React.FC<
     <div>
       <h2 className="mb-4">{creditosDocImportLabel}</h2>
       <NavTabs tabs={combinedTabs} tabsStyle={1} />
-      <NavTabs tabs={creditosDocImportTabs} tabsStyle={2} />
+      <div className="mb-4">
+        <NavTabs tabs={creditosDocImportTabs} tabsStyle={2} />
+      </div>
       <Routes>
         <Route index element={<Navigate to="detalhes" replace />} />
         <Route

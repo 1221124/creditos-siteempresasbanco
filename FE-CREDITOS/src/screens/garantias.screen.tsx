@@ -42,7 +42,9 @@ const GarantiasScreen: React.FC<GarantiasScreenProps> = ({ garantiasData }) => {
     <div>
       <h2 className="mb-4">{garantiasLabel}</h2>
       <NavTabs tabs={combinedTabs} tabsStyle={1} />
-      <NavTabs tabs={garantiasTabs} tabsStyle={2} />
+      <div className="mb-4">
+        <NavTabs tabs={garantiasTabs} tabsStyle={2} />
+      </div>
       <Routes>
         <Route index element={<Navigate to="detalhes" replace />} />
         <Route

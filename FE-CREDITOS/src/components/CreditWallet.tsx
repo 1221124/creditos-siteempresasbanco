@@ -49,7 +49,7 @@ const CreditWallet: React.FC<CreditWalletProps> = ({ cards }) => {
     <div>
       <h2 className="mb-4">{walletLabel}</h2>
       <NavTabs tabs={walletTabs} tabsStyle={1} />
-      <div className="d-flex justify-content-between align-items-center mb-4">
+      <div className="d-flex justify-content-between align-items-center my-4">
         <h5 className="mb-0 fw-bold">Outras Responsabilidades</h5>
       </div>
       <Row className="d-flex flex-nowrap g-4">

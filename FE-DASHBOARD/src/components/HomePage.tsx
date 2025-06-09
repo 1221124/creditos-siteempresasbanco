@@ -5,7 +5,7 @@ import { useLabelsStore } from "utils/useLabelsStore";
 const CardNavigator = lazy(() => import("utils/CardNavigator"));
 
 const HomePage: React.FC = () => {
-  const homeLabel = useLabelsStore((state) => state.homeLabel);
+  const homeMessageLabel = useLabelsStore((state) => state.homeMessageLabel);
   const personNameLabel = useLabelsStore((state) => state.personNameLabel);
   const infoSections = useLabelsStore((state) => state.infoSections);
 
@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div>
-      <h1 className="mb-4">{homeLabel}</h1>
+      <h1 className="mb-4">{homeMessageLabel}</h1>
       <h4 className="text-muted mb-5">
         Olá, <strong>{personNameLabel}</strong>!
       </h4>

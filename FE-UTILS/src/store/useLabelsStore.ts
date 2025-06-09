@@ -70,7 +70,7 @@ export const useLabelsStore = create<LabelsStore>(() => ({
   tryAgainLabel: "Tentar novamente",
   apiErrorLabel: "Erro na chamada à API:",
   invoicesLabel: "Faturas",
-  homeLabel: "Bem-vindo ao novo Site de Empresas - Banco",
+  homeMessageLabel: "Bem-vindo ao novo Site de Empresas - Banco",
   bankNameLabel: "Site de Empresas - Banco",
   companyNameLabel: "EMPRESA X",
   personNameLabel: "Nome Falso",
@@ -82,6 +82,8 @@ export const useLabelsStore = create<LabelsStore>(() => ({
   creditosDocImportLabel: "Créditos Documentários de Importação",
   garantiasPathLabel: "garantias-e-avales",
   creditosDocImportPathLabel: "doc-importacao",
+  homeLabel: "Página Inicial",
+  creditosLabel: "Créditos",
   //info sections
   infoSections: [
     {

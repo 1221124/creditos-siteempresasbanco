@@ -35,7 +35,7 @@ export type LabelsStore = {
   tryAgainLabel: string;
   apiErrorLabel: string;
   invoicesLabel: string;
-  homeLabel: string;
+  homeMessageLabel: string;
   bankNameLabel: string;
   companyNameLabel: string;
   personNameLabel: string;
@@ -47,6 +47,8 @@ export type LabelsStore = {
   creditosDocImportLabel: string;
   garantiasPathLabel: string;
   creditosDocImportPathLabel: string;
+  homeLabel: string;
+  creditosLabel: string;
   //info
   infoSections: InfoSection[];
 };
