@@ -13,6 +13,9 @@ type CreditosDocImportacaoScreenProps = {
 const CreditosDocImportacaoScreen: React.FC<
   CreditosDocImportacaoScreenProps
 > = ({ creditosData }) => {
+  const creditosDocImportHeaders = useLabelsStore(
+    (state) => state.creditosDocImportHeaders
+  );
   const creditosDocImportTabs = useLabelsStore(
     (state) => state.creditosDocImportTabs
   );
@@ -41,7 +44,13 @@ const CreditosDocImportacaoScreen: React.FC<
         <Route index element={<Navigate to="detalhes" replace />} />
         <Route
           path="detalhes"
-          element={<Details data={creditosData} isCreditoDocImportacao />}
+          element={
+            <Details
+              headers={creditosDocImportHeaders}
+              data={creditosData}
+              showOperationsSummary={false}
+            />
+          }
         />
       </Routes>
     </div>

@@ -63,6 +63,17 @@ declare module "#not-for-import/feCreditos/types/types" {
         amount: string;
     };
 }
+declare module "#not-for-import/feCreditos/hooks/useEmailSender" {
+    import { Documento } from "#not-for-import/feCreditos/types/types";
+    type UseEmailSenderProps = {
+        documents: Documento[];
+        bodyText: string;
+        subject: string;
+    };
+    export function useEmailSender({ documents, bodyText, subject, }: UseEmailSenderProps): {
+        sendEmail: () => void;
+    };
+}
 declare module "#not-for-import/feCreditos/screens/tabs/Documents" {
     import { Documento } from "#not-for-import/feCreditos/types/types";
     import React from "react";
@@ -135,11 +146,15 @@ declare module "#not-for-import/feCreditos/hooks/useFetchData" {
     };
 }
 declare module "#not-for-import/feCreditos/components/TableComponent" {
+    import React from "react";
+    import { Documento } from "#not-for-import/feCreditos/types/types";
     type TableComponentProps = {
         headers: string[];
         data: any[];
+        selectedDocuments?: Documento[];
+        setSelectedDocuments?: React.Dispatch<React.SetStateAction<Documento[]>>;
     };
-    const TableComponent: ({ headers, data }: TableComponentProps) => import("react/jsx-runtime").JSX.Element;
+    const TableComponent: ({ headers, data, selectedDocuments, setSelectedDocuments, }: TableComponentProps) => import("react/jsx-runtime").JSX.Element;
     export default TableComponent;
 }
 declare module "#not-for-import/feCreditos/hooks/useCalculateAmount" {
@@ -162,12 +177,13 @@ declare module "#not-for-import/feCreditos/components/OperationsSummary" {
 }
 declare module "#not-for-import/feCreditos/screens/tabs/Details" {
     type DetailsProps<T> = {
+        headers: string[];
         data: T[];
-        isCreditoDocImportacao: boolean;
+        showOperationsSummary: boolean;
     };
     const Details: <T extends {
         beneficiario: string;
-    }>({ data, isCreditoDocImportacao, }: DetailsProps<T>) => import("react/jsx-runtime").JSX.Element;
+    }>({ headers, data, showOperationsSummary, }: DetailsProps<T>) => import("react/jsx-runtime").JSX.Element;
     export default Details;
 }
 declare module "#not-for-import/feCreditos/screens/garantias.screen" {

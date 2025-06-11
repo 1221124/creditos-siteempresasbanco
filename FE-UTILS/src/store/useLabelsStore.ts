@@ -84,6 +84,7 @@ export const useLabelsStore = create<LabelsStore>(() => ({
   creditosDocImportPathLabel: "doc-importacao",
   homeLabel: "Página Inicial",
   creditosLabel: "Créditos",
+  sendEmailLabel: "Enviar documentos por e-mail",
   //info sections
   infoSections: [
     {
@@ -147,9 +148,13 @@ export const useLabelsStore = create<LabelsStore>(() => ({
         {
           image:
             "https://images.pexels.com/photos/7947999/pexels-photo-7947999.jpeg?auto=compress&cs=tinysrgb&w=600",
-          text: "Extração de dados de créditos para Excel",
+          text: "Extração de dados para formato Excel",
         },
       ],
     },
   ],
+  //free text
+  emailSubjectText: "Envio de Documentos de Créditos",
+  emailBodyText:
+    "Aqui tem os seus documentos de créditos.\n\nSite de Empresas - Banco",
 }));

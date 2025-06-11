@@ -13,9 +13,16 @@ const PdfPreview = React.lazy(() => import("utils/PdfPreview"));
 type TableComponentProps = {
   headers: string[];
   data: any[];
+  selectedDocuments?: Documento[];
+  setSelectedDocuments?: React.Dispatch<React.SetStateAction<Documento[]>>;
 };
 
-const TableComponent = ({ headers, data }: TableComponentProps) => {
+const TableComponent = ({
+  headers,
+  data,
+  selectedDocuments,
+  setSelectedDocuments,
+}: TableComponentProps) => {
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
 
   const {
@@ -31,10 +38,32 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
     setExpandedRow(expandedRow === index ? null : index);
   };
 
+  const toggleSelectDocument = (doc: Documento) => {
+    if (!setSelectedDocuments || !selectedDocuments) return;
+
+    const isSelected = selectedDocuments.some((d) => d.nome === doc.nome);
+
+    if (isSelected) {
+      setSelectedDocuments(
+        selectedDocuments.filter((d) => d.nome !== doc.nome)
+      );
+    } else {
+      setSelectedDocuments([...selectedDocuments, doc]);
+    }
+  };
+
+  const isDocumentSelected = (doc: Documento) => {
+    if (!selectedDocuments) return false;
+    return selectedDocuments.some((d) => d.nome === doc.nome);
+  };
+
   return (
     <Table responsive borderless>
       <thead>
         <tr className="border-bottom border-secondary">
+          {selectedDocuments && setSelectedDocuments && (
+            <th style={{ backgroundColor: "#f8f9fa", width: "40px" }}></th>
+          )}
           {headers.map((header, index) => (
             <th
               key={index}
@@ -51,6 +80,16 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
         {data.map((row, rowIndex) => (
           <React.Fragment key={rowIndex}>
             <tr className={rowIndex !== 0 ? "border-top" : ""}>
+              {selectedDocuments && setSelectedDocuments && (
+                <td className="text-center">
+                  <input
+                    type="checkbox"
+                    checked={isDocumentSelected(row as Documento)}
+                    onChange={() => toggleSelectDocument(row as Documento)}
+                    style={{ width: "20px", height: "20px" }}
+                  />
+                </td>
+              )}
               {Object.entries(row)
                 .slice(0, row.extra === undefined ? undefined : -1)
                 .map(([key, value], colIndex) => {
@@ -89,7 +128,14 @@ const TableComponent = ({ headers, data }: TableComponentProps) => {
             </tr>
             {expandedRow === rowIndex && extra && (
               <tr>
-                <td colSpan={headers.length + 1} className="bg-light">
+                <td
+                  colSpan={
+                    headers.length +
+                    1 +
+                    (selectedDocuments && setSelectedDocuments ? 1 : 0)
+                  }
+                  className="bg-light"
+                >
                   {row.extra != null ? (
                     <ExpandableInfo
                       headers={extraInfoHeaders}

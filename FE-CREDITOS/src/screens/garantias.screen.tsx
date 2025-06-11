@@ -22,6 +22,7 @@ const GarantiasScreen: React.FC<GarantiasScreenProps> = ({ garantiasData }) => {
     error,
   } = useFetchData<Documento>(ENDPOINTS.documentos);
 
+  const garantiasHeaders = useLabelsStore((state) => state.garantiasHeaders);
   const garantiasTabs = useLabelsStore((state) => state.garantiasTabs);
   const walletTabs = useLabelsStore((state) => state.walletTabs);
   const garantiasLabel = useLabelsStore((state) => state.garantiasLabel);
@@ -50,7 +51,11 @@ const GarantiasScreen: React.FC<GarantiasScreenProps> = ({ garantiasData }) => {
         <Route
           path="detalhes"
           element={
-            <Details data={garantiasData} isCreditoDocImportacao={false} />
+            <Details
+              headers={garantiasHeaders}
+              data={garantiasData}
+              showOperationsSummary={true}
+            />
           }
         />
         <Route

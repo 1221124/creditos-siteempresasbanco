@@ -44,7 +44,10 @@ declare module "#not-for-import/feUtils/store/types" {
         creditosDocImportPathLabel: string;
         homeLabel: string;
         creditosLabel: string;
+        sendEmailLabel: string;
         infoSections: InfoSection[];
+        emailSubjectText: string;
+        emailBodyText: string;
     };
 }
 declare module "utils/useLabelsStore" {

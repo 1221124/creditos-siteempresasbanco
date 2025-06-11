@@ -49,6 +49,10 @@ export type LabelsStore = {
   creditosDocImportPathLabel: string;
   homeLabel: string;
   creditosLabel: string;
+  sendEmailLabel: string;
   //info
   infoSections: InfoSection[];
+  //free text
+  emailSubjectText: string;
+  emailBodyText: string;
 };

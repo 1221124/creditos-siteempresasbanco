@@ -7,31 +7,25 @@ import { useState } from "react";
 import { useLabelsStore } from "utils/useLabelsStore";
 
 type DetailsProps<T> = {
+  headers: string[];
   data: T[];
-  isCreditoDocImportacao: boolean;
+  showOperationsSummary: boolean;
 };
 
 const Details = <T extends { beneficiario: string }>({
+  headers,
   data,
-  isCreditoDocImportacao,
+  showOperationsSummary,
 }: DetailsProps<T>) => {
-  const creditosDocImportHeaders = useLabelsStore(
-    (state) => state.creditosDocImportHeaders
-  );
-  const garantiasHeaders = useLabelsStore((state) => state.garantiasHeaders);
   const beneficiarySearchLabel = useLabelsStore(
     (state) => state.beneficiarySearchLabel
   );
-
-  const headers = isCreditoDocImportacao
-    ? creditosDocImportHeaders
-    : garantiasHeaders;
 
   const [filteredData, setFilteredData] = useState<T[]>(data);
 
   return (
     <div className="d-flex w-100 flex-column">
-      {!isCreditoDocImportacao && (
+      {showOperationsSummary && (
         <OperationsSummary data={data as unknown as Garantia[]} />
       )}
 
