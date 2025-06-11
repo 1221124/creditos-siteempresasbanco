@@ -120,16 +120,13 @@ declare module "#not-for-import/feCreditos/components/ExpandableInfo" {
     const ExpandableInfo: React.FC<ExpandableInfoProps>;
     export default ExpandableInfo;
 }
-declare module "#not-for-import/feCreditos/api/endpoints" {
+declare module "#not-for-import/feCreditos/api/config" {
     export const ENDPOINTS: {
         creditosDocImport: string;
         documentos: string;
         faturas: string;
         garantias: string;
     };
-}
-declare module "#not-for-import/feCreditos/api/config" {
-    export const BASE_URL = "https://run.mocky.io/v3/";
 }
 declare module "#not-for-import/feCreditos/services/RESTAdapter" {
     export function get<T>(endpoint: string): Promise<T[]>;

@@ -1,7 +1,7 @@
 import { useCalculateAmount } from "./useCalculateAmount";
 import { Garantia, CreditoDocImport, CreditWalletCard } from "../types/types";
 import { useLabelsStore } from "utils/useLabelsStore";
-import { ENDPOINTS } from "../api/endpoints";
+import { ENDPOINTS } from "../api/config";
 import { useFetchData } from "./useFetchData";
 
 type UseCreditWalletCardsResult = {

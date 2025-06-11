@@ -5,7 +5,7 @@ import Documents from "./tabs/Documents";
 import { useLabelsStore } from "utils/useLabelsStore";
 import { useFetchData } from "../hooks/useFetchData";
 import { Documento, Garantia } from "../types/types";
-import { ENDPOINTS } from "../api/endpoints";
+import { ENDPOINTS } from "../api/config";
 
 const Loading = React.lazy(() => import("utils/Loading"));
 const Error = React.lazy(() => import("utils/Error"));

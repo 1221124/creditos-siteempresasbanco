@@ -1,7 +1,5 @@
-import { BASE_URL } from "../api/config";
-
 export async function get<T>(endpoint: string): Promise<T[]> {
-  const response = await fetch(`${BASE_URL}${endpoint}`);
+  const response = await fetch(`/${endpoint}.json`);
 
   if (!response.ok) {
     throw new Error(`${response.status} - ${response.statusText}`);

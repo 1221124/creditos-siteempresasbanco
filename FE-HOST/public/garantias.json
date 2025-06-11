@@ -1,0 +1,100 @@
+[
+  {
+    "beneficiario": "Schulist, Fahey and Mayert",
+    "local": "China",
+    "operacao": 9,
+    "dataInicial": "28/07/2024",
+    "dataFinal": "11/07/2026",
+    "montante": -442.30,
+    "extra": {
+      "encargoAnual": 2.4,
+      "intervaloCobranca": "Mês a mês",
+      "debitoAgendado": "300 EUR",
+      "contaOrigem": 112123
+    }
+  },
+  {
+    "beneficiario": "McDermott Inc",
+    "local": "China",
+    "operacao": 62,
+    "dataInicial": "05/04/2024",
+    "dataFinal": "09/06/2026",
+    "montante": -307.30,
+    "extra": {
+      "encargoAnual": 2.5,
+      "intervaloCobranca": "Mês a mês",
+      "debitoAgendado": "300 EUR",
+      "contaOrigem": 141241
+    }
+  },
+  {
+    "beneficiario": "Wilkinson, Grady and Hahn",
+    "local": "Portugal",
+    "operacao": 26,
+    "dataInicial": "11/11/2024",
+    "dataFinal": "27/12/2025",
+    "montante": -104.40,
+    "extra": {
+      "encargoAnual": 3.5,
+      "intervaloCobranca": "Trimestral",
+      "debitoAgendado": "1000 EUR",
+      "contaOrigem": 112312
+    }
+  },
+  {
+    "beneficiario": "O'Connell, Orn and Lynch",
+    "local": "China",
+    "operacao": 28,
+    "dataInicial": "06/07/2024",
+    "dataFinal": "23/10/2026",
+    "montante": -132.30,
+    "extra": {
+      "encargoAnual": 2.0,
+      "intervaloCobranca": "Mês a mês",
+      "debitoAgendado": "50 EUR",
+      "contaOrigem": 12313
+    }
+  },
+  {
+    "beneficiario": "Daugherty-Nienow",
+    "local": "China",
+    "operacao": 35,
+    "dataInicial": "01/01/2024",
+    "dataFinal": "24/09/2026",
+    "montante": -102.40,
+    "extra": {
+      "encargoAnual": 2.5,
+      "intervaloCobranca": "Mês a mês",
+      "debitoAgendado": "100 EUR",
+      "contaOrigem": 12312
+    }
+  },
+  {
+    "beneficiario": "Bruen-Hintz",
+    "local": "Portugal",
+    "operacao": 43,
+    "dataInicial": "07/05/2024",
+    "dataFinal": "07/03/2026",
+    "montante": -153.02,
+    "extra": {
+      "encargoAnual": 2.5,
+      "intervaloCobranca": "Mês a mês",
+      "debitoAgendado": "100 EUR",
+      "contaOrigem": 12312
+    }
+  },
+  {
+    "beneficiario": "Schaden Inc",
+    "local": "Portugal",
+    "operacao": 72,
+    "dataInicial": "09/04/2024",
+    "dataFinal": "09/10/2026",
+    "montante": -409.02,
+    "extra": {
+      "encargoAnual": 2.5,
+      "intervaloCobranca": "Mês a mês",
+      "debitoAgendado": "100 EUR",
+      "contaOrigem": 12312
+    }
+  }
+]

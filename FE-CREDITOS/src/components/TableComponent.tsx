@@ -5,7 +5,7 @@ import ExpandableInfo from "./ExpandableInfo";
 import { useLabelsStore } from "utils/useLabelsStore";
 import { Documento } from "../types/types";
 import Loading from "utils/Loading";
-import { ENDPOINTS } from "../api/endpoints";
+import { ENDPOINTS } from "../api/config";
 import { useFetchData } from "../hooks/useFetchData";
 
 const PdfPreview = React.lazy(() => import("utils/PdfPreview"));

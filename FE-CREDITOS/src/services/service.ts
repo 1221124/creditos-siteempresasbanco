@@ -1,4 +1,4 @@
-import { ENDPOINTS } from "./../api/endpoints";
+import { ENDPOINTS } from "../api/config";
 import { CreditoDocImport, Garantia } from "../types/types";
 import { get } from "./RESTAdapter";
 
