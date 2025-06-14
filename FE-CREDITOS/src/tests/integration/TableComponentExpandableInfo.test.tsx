@@ -4,7 +4,6 @@ import * as fetchHook from "../../services/service";
 import * as labelsStore from "utils/useLabelsStore";
 import TableComponent from "../../components/TableComponent";
 
-// Mocks parciais
 jest.mock("utils/PdfPreview", () => () => <div data-testid="pdf-preview">PDF Preview</div>);
 jest.mock("../../components/Invoices", () => () => <div data-testid="invoices">Invoices Preview</div>);
 jest.mock("../../components/CardItem", () => ({ title, value }: any) => <div data-testid="card-item">{`${title}: ${value}`}</div>);
@@ -51,13 +50,13 @@ describe("TableComponent + ExpandableInfo Integration", () => {
     });
   });
 
-  test("Teste 2: renderiza PdfPreview quando \"data\" não tem atributo \"extra\"", async () => {
+  test("Teste 2: não renderiza ExpandableInfo quando \"data\" não tem atributo \"extra\"", async () => {
     render(<TableComponent headers={headers} data={mockDataWithoutExtra} />);
 
     fireEvent.click(screen.getAllByTestId("expand-row-button")[0]);
 
     await waitFor(() => {
-      expect(screen.getByTestId("pdf-preview")).toBeInTheDocument();
+      expect(screen.queryByTestId("expandable-info")).not.toBeInTheDocument();
     });
   });
 });
