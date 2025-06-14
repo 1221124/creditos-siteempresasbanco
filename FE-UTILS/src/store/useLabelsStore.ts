@@ -85,6 +85,7 @@ export const useLabelsStore = create<LabelsStore>(() => ({
   homeLabel: "Página Inicial",
   creditosLabel: "Créditos",
   sendEmailLabel: "Enviar documentos por e-mail",
+  defaultExcelFilename: "DADOS_DE_CREDITOS_SITEEMPRESASBANCO.xlsx",
   //info sections
   infoSections: [
     {

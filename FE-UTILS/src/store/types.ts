@@ -50,6 +50,7 @@ export type LabelsStore = {
   homeLabel: string;
   creditosLabel: string;
   sendEmailLabel: string;
+  defaultExcelFilename: string;
   //info
   infoSections: InfoSection[];
   //free text

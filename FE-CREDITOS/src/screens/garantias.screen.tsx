@@ -3,7 +3,7 @@ import Details from "./tabs/Details";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Documents from "./tabs/Documents";
 import { useLabelsStore } from "utils/useLabelsStore";
-import { useFetchData } from "../hooks/useFetchData";
+import { useFetchData } from "../services/service";
 import { Documento, Garantia } from "../types/types";
 import { ENDPOINTS } from "../api/config";
 

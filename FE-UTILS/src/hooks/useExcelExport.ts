@@ -17,11 +17,12 @@ const flattenObject = (obj: any, prefix = ""): any => {
 
 export const useExcelExport = () => {
   const errorOccuredLabel = useLabelsStore((state) => state.errorOccuredLabel);
+  const defaultExcelFilename = useLabelsStore(state => state.defaultExcelFilename);
 
   const exportToExcel = useCallback(
     async (
       data: any[],
-      defaultFilename = "DADOS_DE_CREDITOS_EMPRESAX_SITEEMPRESASBANCO.xlsx"
+      defaultFilename = defaultExcelFilename
     ): Promise<boolean> => {
       if (!data || data.length === 0) {
         return false;
@@ -30,7 +31,7 @@ export const useExcelExport = () => {
       const flattenedData = data.map((item) => flattenObject(item));
       const worksheet = XLSX.utils.json_to_sheet(flattenedData);
       const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "Dados");
+      XLSX.utils.book_append_sheet(workbook, worksheet);
 
       const excelBuffer = XLSX.write(workbook, {
         bookType: "xlsx",
@@ -75,7 +76,7 @@ export const useExcelExport = () => {
         return true;
       }
     },
-    [errorOccuredLabel]
+    [errorOccuredLabel, defaultExcelFilename]
   );
 
   return { exportToExcel };

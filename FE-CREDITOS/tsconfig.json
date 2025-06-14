@@ -16,7 +16,8 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": { "@types": ["./@types"] },
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "types": []
   },
   "include": ["src"]
 }

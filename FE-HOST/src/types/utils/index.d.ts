@@ -45,6 +45,7 @@ declare module "#not-for-import/feUtils/store/types" {
         homeLabel: string;
         creditosLabel: string;
         sendEmailLabel: string;
+        defaultExcelFilename: string;
         infoSections: InfoSection[];
         emailSubjectText: string;
         emailBodyText: string;
@@ -117,6 +118,6 @@ declare module "utils/CardNavigator" {
 }
 declare module "utils/useExcelExport" {
     export const useExcelExport: () => {
-        exportToExcel: (data: any[], defaultFilename?: string) => Promise<boolean>;
+        exportToExcel: (data: any[], defaultFilename?: any) => Promise<boolean>;
     };
 }

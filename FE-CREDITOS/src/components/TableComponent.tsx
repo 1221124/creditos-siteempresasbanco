@@ -6,7 +6,7 @@ import { useLabelsStore } from "utils/useLabelsStore";
 import { Documento } from "../types/types";
 import Loading from "utils/Loading";
 import { ENDPOINTS } from "../api/config";
-import { useFetchData } from "../hooks/useFetchData";
+import { useFetchData } from "../services/service";
 
 const PdfPreview = React.lazy(() => import("utils/PdfPreview"));
 

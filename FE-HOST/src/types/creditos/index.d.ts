@@ -131,7 +131,7 @@ declare module "#not-for-import/feCreditos/api/config" {
 declare module "#not-for-import/feCreditos/services/RESTAdapter" {
     export function get<T>(endpoint: string): Promise<T[]>;
 }
-declare module "#not-for-import/feCreditos/hooks/useFetchData" {
+declare module "#not-for-import/feCreditos/services/service" {
     export function useFetchData<T>(endpoint: string): {
         data: T[];
         loading: boolean;
@@ -209,6 +209,17 @@ declare module "#not-for-import/feCreditos/components/CreditWallet" {
     };
     const CreditWallet: React.FC<CreditWalletProps>;
     export default CreditWallet;
+}
+declare module "#not-for-import/feCreditos/hooks/useFetchData" {
+    export function useFetchData<T>(endpoint: string): {
+        data: T[];
+        loading: boolean;
+        error: string;
+    } | {
+        data: T[];
+        loading: boolean;
+        error: null;
+    };
 }
 declare module "#not-for-import/feCreditos/hooks/useCreditWalletCards" {
     import { Garantia, CreditoDocImport, CreditWalletCard } from "#not-for-import/feCreditos/types/types";

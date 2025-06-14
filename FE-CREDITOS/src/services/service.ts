@@ -1,19 +1,36 @@
-import { ENDPOINTS } from "../api/config";
-import { CreditoDocImport, Garantia } from "../types/types";
-import { get } from "./RESTAdapter";
+import { useState, useEffect } from "react";
+import { get } from "../services/RESTAdapter";
+import { useLabelsStore } from "utils/useLabelsStore";
 
-export async function getCreditosDocImport(): Promise<CreditoDocImport[]> {
-  return get<CreditoDocImport>(ENDPOINTS.creditosDocImport);
-}
+export function useFetchData<T>(endpoint: string) {
+  const [data, setData] = useState<T[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-export async function getDocumentos(): Promise<Document[]> {
-  return get<Document>(ENDPOINTS.documentos);
-}
+  const errorOccuredLabel = useLabelsStore((state) => state.errorOccuredLabel);
 
-export async function getFaturas(): Promise<Document[]> {
-  return get<Document>(ENDPOINTS.faturas);
-}
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await get<T>(endpoint);
+        setData(result);
+      } catch (err) {
+        setError(errorOccuredLabel + ": " + (err as Error).message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-export async function getGarantias(): Promise<Garantia[]> {
-  return get<Garantia>(ENDPOINTS.garantias);
+    fetchData();
+  }, [endpoint, errorOccuredLabel]);
+
+  if (loading) {
+    return { data, loading, error: null };
+  }
+
+  if (error) {
+    return { data, loading: false, error };
+  }
+
+  return { data, loading: false, error: null };
 }

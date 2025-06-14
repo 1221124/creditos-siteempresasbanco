@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import { render, screen, waitFor } from "@testing-library/react";
-import * as fetchHook from "../../hooks/useFetchData";
+import * as fetchHook from "../../services/service";
 import * as labelsStore from "utils/useLabelsStore";
 import { MemoryRouter } from "react-router-dom";
 import GarantiasScreen from "../../screens/garantias.screen";
