@@ -218,6 +218,7 @@ module.exports = {
     "^utils/Loading$": "<rootDir>/src/tests/mocks/utils/Loading.tsx",
     "^utils/Error$": "<rootDir>/src/tests/mocks/utils/Error.tsx",
     "^utils/NavTabs$": "<rootDir>/src/tests/mocks/utils/NavTabs.tsx",
+    "^utils/PdfPreview$": "<rootDir>/src/tests/mocks/utils/PdfPreview.tsx",
     "^utils/useLabelsStore$":
       "<rootDir>/src/tests/mocks/utils/useLabelsStore.ts",
     "^utils/useExcelExport$":

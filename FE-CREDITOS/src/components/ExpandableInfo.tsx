@@ -29,7 +29,7 @@ const ExpandableInfo: React.FC<ExpandableInfoProps> = ({
   const seeInvoicesLabel = useLabelsStore((state) => state.seeInvoicesLabel);
 
   return (
-    <div className="p-3">
+    <div className="p-3" data-testid="expandable-info">
       <em>
         {loading && <Loading />}
         {error && <Error message={error} />}

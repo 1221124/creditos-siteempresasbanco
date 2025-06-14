@@ -32,7 +32,7 @@ const TableComponent = ({
   } = useFetchData<Documento>(ENDPOINTS.faturas);
   const extraInfoHeaders = useLabelsStore((state) => state.extraInfoHeaders);
 
-  const extra = data.length > headers.length;
+  const extra = data.some((row) => Object.keys(row).length > headers.length);
 
   const toggleRow = (index: number) => {
     setExpandedRow(expandedRow === index ? null : index);
@@ -114,6 +114,7 @@ const TableComponent = ({
               {extra && (
                 <td className="text-center">
                   <button
+                    data-testid="expand-row-button"
                     onClick={() => toggleRow(rowIndex)}
                     className="btn btn-sm btn-link p-0"
                   >
